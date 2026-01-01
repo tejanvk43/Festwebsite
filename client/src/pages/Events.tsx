@@ -8,7 +8,8 @@ import { useState } from "react";
 
 export default function Events() {
   const { data: events, isLoading, error } = useEvents();
-  const [filter, setFilter] = useState<"all" | "tech" | "cultural" | "gaming">("all");
+  const [mainFilter, setMainFilter] = useState<"all" | "tech" | "cultural">("all");
+  const [deptFilter, setDeptFilter] = useState("all");
 
   if (isLoading) {
     return (
@@ -36,15 +37,32 @@ export default function Events() {
     );
   }
 
-  const filteredEvents = filter === "all" 
-    ? events 
-    : events?.filter(e => e.type.toLowerCase().includes(filter));
+  const filteredEvents = events?.filter(e => {
+    // Main filter logic
+    if (mainFilter === "tech" && e.type !== "tech") return false;
+    if (mainFilter === "cultural" && e.type !== "cultural") return false;
 
-  const filters = [
-    { id: "all", label: "ALL QUESTS" },
-    { id: "tech", label: "TECH" },
+    // Dept filter logic (only applies if tech is selected or all is selected)
+    if (mainFilter === "tech" || mainFilter === "all") {
+       if (deptFilter !== "all" && e.department.toLowerCase() !== deptFilter.toLowerCase()) return false;
+    }
+
+    return true;
+  });
+
+  const mainFilters = [
+    { id: "all", label: "ALL EVENTS" },
+    { id: "tech", label: "TECHNICAL" },
     { id: "cultural", label: "CULTURAL" },
-    { id: "gaming", label: "GAMING" },
+  ];
+
+  const deptFilters = [
+    { id: "all", label: "ALL DEPTS" },
+    { id: "cse/aiml", label: "CSE/AIML" },
+    { id: "it", label: "IT" },
+    { id: "ece/eee", label: "ECE/EEE" },
+    { id: "mech", label: "MECH" },
+    { id: "general", label: "GENERAL" },
   ];
 
   return (
@@ -56,16 +74,19 @@ export default function Events() {
         </p>
       </div>
 
-      {/* Filter Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
-        {filters.map((f) => (
+      {/* Main Categories */}
+      <div className="flex flex-wrap justify-center gap-4 mb-8">
+        {mainFilters.map((f) => (
           <button
             key={f.id}
-            onClick={() => setFilter(f.id as any)}
+            onClick={() => {
+              setMainFilter(f.id as any);
+              setDeptFilter("all"); // Reset dept filter when changing main category
+            }}
             className={`
-              px-6 py-3 font-pixel text-xs border-2 transition-all
-              ${filter === f.id 
-                ? "bg-primary text-primary-foreground border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]" 
+              px-8 py-4 font-pixel text-xs border-2 transition-all
+              ${mainFilter === f.id 
+                ? "bg-primary text-primary-foreground border-primary glow-yellow" 
                 : "bg-background text-muted-foreground border-border hover:border-primary hover:text-primary"}
             `}
           >
@@ -73,6 +94,31 @@ export default function Events() {
           </button>
         ))}
       </div>
+
+      {/* Department Sub-categories (only show if tech or all is selected) */}
+      {(mainFilter === "tech" || mainFilter === "all") && (
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-wrap justify-center gap-2 mb-12 py-4 border-y border-border/50"
+        >
+          <span className="w-full text-center text-[10px] font-pixel text-muted-foreground mb-2">DEPARTMENTS</span>
+          {deptFilters.map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setDeptFilter(f.id)}
+              className={`
+                px-4 py-2 font-pixel text-[10px] border transition-all
+                ${deptFilter === f.id 
+                  ? "bg-muted text-primary border-primary" 
+                  : "bg-background text-muted-foreground border-border hover:border-primary/50"}
+              `}
+            >
+              {f.label}
+            </button>
+          ))}
+        </motion.div>
+      )}
 
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -89,7 +135,7 @@ export default function Events() {
                 <PixelCard className="h-full flex flex-col group hover:border-primary">
                   <div className="flex justify-between items-start mb-4">
                      <span className="px-2 py-1 bg-primary/10 text-primary text-[10px] font-pixel border border-primary/20">
-                       {event.type.toUpperCase()}
+                       {event.department.toUpperCase()}
                      </span>
                      <span className="text-muted-foreground text-xs font-mono flex items-center gap-1">
                        <Clock className="w-3 h-3" /> {event.startTime}
@@ -108,7 +154,7 @@ export default function Events() {
                     </div>
                     <div className="flex items-center gap-2 justify-end">
                        <Users className="w-4 h-4" />
-                       <span>Team: {event.teamSize}</span>
+                       <span>INDIVIDUAL</span>
                     </div>
                   </div>
                 </PixelCard>

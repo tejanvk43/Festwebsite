@@ -1,9 +1,16 @@
 import { Link } from "wouter";
 import { Twitter, Instagram, Facebook, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer className="border-t-2 border-border bg-card mt-auto">
+    <motion.footer 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="border-t-2 border-border bg-card mt-auto"
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -59,6 +66,6 @@ export function Footer() {
           © 2026 yoURFest. ALL RIGHTS RESERVED. GAME ON.
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

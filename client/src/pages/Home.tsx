@@ -30,14 +30,24 @@ export default function Home() {
               JAN 23-24, 2026 &middot; USHARAMA COLLEGE
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-9xl mb-6 tracking-tighter">
+            <motion.h1 
+              initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-5xl md:text-7xl lg:text-9xl mb-6 tracking-tighter"
+            >
               <GlitchText text="yoUR Fest 2026" />
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+            >
               The ultimate convergence of technology, culture, and retro-futurism. 
               <span className="text-primary block mt-2 font-medium">Level up your reality.</span>
-            </p>
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/events">
@@ -59,9 +69,9 @@ export default function Home() {
       <section className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: Calendar, label: "3 DAYS", sub: "Non-stop Action" },
-            { icon: MapPin, label: "5 VENUES", sub: "Usharama Campus" },
-            { icon: Zap, label: "50+ EVENTS", sub: "Tech & Cultural" },
+            { icon: Calendar, label: "2 DAYS", sub: "Non-stop Action" },
+            { icon: MapPin, label: "2 VENUES", sub: "Usharama Campus" },
+            { icon: Zap, label: "10+ EVENTS", sub: "Tech & Cultural" },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -130,10 +140,10 @@ export default function Home() {
             {featuredEvents.map((event, idx) => (
               <motion.div
                 key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                viewport={{ once: true, amount: 0.2 }}
+                initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
                 <Link href={`/events/${event.id}`}>
                   <div className="h-full cursor-pointer group">
@@ -179,9 +189,9 @@ export default function Home() {
       {/* CTA Section */}
       <section className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "circOut" }}
           viewport={{ once: true, amount: 0.2 }}
           className="relative border-2 border-primary bg-primary/5 p-8 md:p-16 text-center overflow-hidden"
         >

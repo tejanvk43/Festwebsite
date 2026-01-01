@@ -18,7 +18,12 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_0_20px_rgba(255,241,0,0.2)]">
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_0_20px_rgba(255,241,0,0.2)]"
+    >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
           <div className="font-pixel text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
@@ -100,6 +105,6 @@ export function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

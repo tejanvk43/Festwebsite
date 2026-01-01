@@ -21,7 +21,7 @@ export default function EventDetail() {
         <div className="lg:col-span-2 space-y-8">
           <div>
              <div className="inline-block px-3 py-1 mb-4 border border-primary/30 bg-primary/5 text-primary text-xs font-pixel uppercase">
-               {event.type}
+               {event.department} &middot; {event.type}
              </div>
              <h1 className="text-4xl md:text-6xl mb-6">{event.title}</h1>
              <p className="text-lg text-muted-foreground leading-relaxed">
@@ -73,15 +73,15 @@ export default function EventDetail() {
                  </div>
                </div>
 
-               <div className="flex items-center gap-4">
-                 <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
-                   <Users className="w-5 h-5 text-primary" />
-                 </div>
-                 <div>
-                   <div className="text-xs text-muted-foreground font-pixel uppercase">Team Size</div>
-                   <div className="font-medium">{event.teamSize} Member{event.teamSize > 1 ? 's' : ''}</div>
-                 </div>
-               </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
+                    <Users className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground font-pixel uppercase">Participation</div>
+                    <div className="font-medium">Individual</div>
+                  </div>
+                </div>
 
                <div className="flex items-center gap-4">
                  <div className="w-10 h-10 border-2 border-accent flex items-center justify-center bg-accent/10">
@@ -95,8 +95,8 @@ export default function EventDetail() {
 
                <div className="border-t-2 border-border my-6"></div>
 
-               <div className="text-center">
-                 <div className="text-2xl font-bold mb-4">₹{event.registrationFee} <span className="text-xs font-normal text-muted-foreground">/ team</span></div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold mb-4">₹{event.registrationFee} <span className="text-xs font-normal text-muted-foreground">/ person</span></div>
                  <Link href="/register">
                    <button className="w-full py-4 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
                      REGISTER NOW

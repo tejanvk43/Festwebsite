@@ -11,12 +11,14 @@ export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEvent(id: string): Promise<Event | undefined>;
   createEvent(event: InsertEvent): Promise<Event>;
-  
+
   getStalls(): Promise<Stall[]>;
   getStall(id: string): Promise<Stall | undefined>;
   createStall(stall: InsertStall): Promise<Stall>;
 
   createRegistration(registration: InsertRegistration): Promise<Registration>;
+  clearEvents(): Promise<void>;
+  clearStalls(): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -51,6 +53,14 @@ export class DatabaseStorage implements IStorage {
   async createRegistration(insertRegistration: InsertRegistration): Promise<Registration> {
     const [registration] = await db.insert(registrations).values(insertRegistration).returning();
     return registration;
+  }
+
+  async clearEvents(): Promise<void> {
+    await db.delete(events);
+  }
+
+  async clearStalls(): Promise<void> {
+    await db.delete(stalls);
   }
 }
 

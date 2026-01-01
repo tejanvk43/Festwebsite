@@ -1,0 +1,135 @@
+{
+    "project_blueprint": {
+        "identity": {
+            "name": "yoURFest 2026",
+            "tagline": "The ultimate convergence of technology, culture, and retro-futurism.",
+            "ethos": "A high-depth festival management platform with a 'Cyber-Retro' or 'Y2K-Cyberpunk' aesthetic. Emphasis on neon accents, sharp pixel edges, and industrial transparency.",
+            "branding": {
+                "casing": "yoURFest (lowercase 'y', 'o', uppercase 'U', 'R')",
+                "logo_logic": {
+                    "main_text": "yoURFest",
+                    "year_suffix": "2026 (smaller, secondary color)",
+                    "style": "Text-shadow intensive (Neon Yellow glow for main, Neon Purple for suffix)"
+                }
+            }
+        },
+        "tech_stack": {
+            "frontend": "React 18 + TypeScript + Vite",
+            "styling": "Tailwind CSS + Vanilla CSS (Design Tokens)",
+            "animations": "Framer Motion (Transitions, Hover states, Pulse effects)",
+            "routing": "Wouter (Lightweight routing)",
+            "icons": "Lucide React",
+            "ui_library": "Shadcn UI (customized for sharp corners and neon shadows)"
+        },
+        "design_system": {
+            "tokens_css_variables": {
+                "--background": "hsl(220, 10%, 4%)",
+                "--foreground": "hsl(60, 100%, 95%)",
+                "--primary": "hsl(56, 100%, 50%) (Neon Yellow)",
+                "--secondary": "hsl(280, 100%, 55%) (Neon Purple)",
+                "--accent": "hsl(186, 100%, 50%) (Cyan Accent)",
+                "--radius": "0px (Sharp industrial corners)"
+            },
+            "typography": {
+                "headers": "'Press Start 2P', cursive (Pixel font)",
+                "body": "'Inter', sans-serif"
+            },
+            "visual_effects": [
+                "Glitch transitions on hover",
+                "Neon outer glows on cards and headers",
+                "Industrial grid background patterns",
+                "Glassmorphism with background-blur-lg for nav/modals"
+            ]
+        },
+        "core_components": {
+            "PixelCard": "Standard container with :root --radius: 0px. Hover: { y: -4, x: -4, box-shadow: 8px 8px 0px 0px ${shadowColor} } plus a matching color outer glow.",
+            "GlitchText": "Stack of 3 spans (relative z-10 for main, absolute -z-10 for cyan/purple aberration). Hover: opacity-60, animate-pulse, and ±2px translate-x shift.",
+            "Navigation": "Sticky with backdrop-filter: blur-lg. Logo features 'yoURFest' in primary with '2026' as a secondary colored superscript/suffix. Links have motion.div layoutId='underline' for active state.",
+            "Footer": "Grid-based with 4 columns: Branding, Quick Links, Contact (Lucide icons in secondary color), and Social (Icon buttons with border-2 hover effects)."
+        },
+        "page_architecture": {
+            "Home": {
+                "sections": [
+                    "Hero Section with Glitch Logo",
+                    "Timeline Preview",
+                    "Featured Event Cards"
+                ]
+            },
+            "Events_Hub": {
+                "features": [
+                    "Department filtering (CSE/AIML, MECH, IT, ECE/EEE, General, Cultural)",
+                    "Pixel-perfect grid layout",
+                    "Conditional badges for departments"
+                ]
+            },
+            "Event_Detail": {
+                "features": [
+                    "Sticky sidecar for registration info",
+                    "Rich text rules & regulations list",
+                    "High-contrast prize/team size indicators"
+                ]
+            },
+            "Marketplace": {
+                "features": [
+                    "Stall profiles with image galleries",
+                    "Opening hours timeline",
+                    "Interactive contact/booth location maps"
+                ]
+            },
+            "Register": {
+                "features": [
+                    "Multi-field validation form (Zod/Hook-form)",
+                    "Event dropdown selection",
+                    "Simulated success state with toast notifications"
+                ]
+            }
+        },
+        "data_schemas": {
+            "event": {
+                "fields": [
+                    "id",
+                    "title",
+                    "type",
+                    "department",
+                    "shortDescription",
+                    "fullDescription",
+                    "date",
+                    "startTime",
+                    "endTime",
+                    "venueArea",
+                    "teamSize",
+                    "registrationFee",
+                    "prize",
+                    "rules",
+                    "tags",
+                    "image"
+                ]
+            },
+            "stall": {
+                "fields": [
+                    "id",
+                    "name",
+                    "type",
+                    "description",
+                    "owner",
+                    "booth",
+                    "location",
+                    "items",
+                    "priceRange",
+                    "openingHours",
+                    "contact",
+                    "image"
+                ]
+            }
+        },
+        "vibecoding_instructions": [
+            "Mandatory pixelated aesthetics: All components must use --radius: 0px.",
+            "Individual Participation: All events are strictly individual (Team Size: 1).",
+            "Department Centric: Filtering must be driven by Department rather than just broad Tech/Cultural categories.",
+            "Prize Standardization: Every single event must offer 'Cash Prize & Certificates' as the reward.",
+            "Dynamic data: Keep UI stateful. Even if data is static now, structure components to consume props correctly.",
+            "Motion design: Every button hover should trigger a physical translation (translation-x/y) or a glow shift.",
+            "SEO: Ensure every page has a single H1 with appropriate semantic hierarchy."
+        ]
+    }
+}

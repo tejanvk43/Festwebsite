@@ -37,13 +37,15 @@ export const stalls = sqliteTable("stalls", {
 
 export const registrations = sqliteTable("registrations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  eventId: text("event_id").notNull(), // FK to events.id manually
+  eventIds: text("event_ids", { mode: "json" }).$type<string[]>().notNull(), // Array of event IDs
   teamName: text("team_name"),
   participantName: text("participant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
   rollNumber: text("roll_number").notNull(),
   college: text("college"),
+  branch: text("branch", { mode: "json" }).$type<string[]>(), // Array - store multiple tech branches
+  regType: text("reg_type").notNull().default("tech"), // tech, cultural, both
 });
 
 export const insertEventSchema = createInsertSchema(events);
