@@ -38,7 +38,7 @@ export function CountdownTimer() {
     
     return (
       <div className="flex flex-col items-center">
-        <div className="bg-primary/10 border-2 border-primary px-2 py-3 md:px-4 md:py-4 min-w-[70px] md:min-w-[90px] flex gap-1 justify-center">
+        <div className="bg-primary/10 border-2 border-primary px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 min-w-[50px] sm:min-w-[60px] md:min-w-[70px] lg:min-w-[90px] flex gap-0.5 sm:gap-1 justify-center">
           {hasChanged ? (
             <AnimatePresence mode="wait">
               <motion.div
@@ -50,26 +50,26 @@ export function CountdownTimer() {
                   duration: 0.5,
                   ease: [0.34, 1.56, 0.64, 1]
                 }}
-                className="flex gap-1"
+                className="flex gap-0.5 sm:gap-1"
               >
                 {digits.map((digit, index) => (
-                  <div key={index} className="font-pixel text-2xl md:text-4xl text-primary w-4 md:w-7 text-center">
+                  <div key={index} className="font-pixel text-lg sm:text-xl md:text-2xl lg:text-4xl text-primary w-3 sm:w-4 md:w-5 lg:w-7 text-center">
                     {digit}
                   </div>
                 ))}
               </motion.div>
             </AnimatePresence>
           ) : (
-            <div className="flex gap-1">
+            <div className="flex gap-0.5 sm:gap-1">
               {digits.map((digit, index) => (
-                <div key={index} className="font-pixel text-2xl md:text-4xl text-primary w-4 md:w-7 text-center">
+                <div key={index} className="font-pixel text-lg sm:text-xl md:text-2xl lg:text-4xl text-primary w-3 sm:w-4 md:w-5 lg:w-7 text-center">
                   {digit}
                 </div>
               ))}
             </div>
           )}
         </div>
-        <span className="text-[10px] md:text-xs font-pixel text-muted-foreground mt-2 uppercase tracking-widest">
+        <span className="text-[8px] sm:text-[10px] md:text-xs font-pixel text-muted-foreground mt-1 sm:mt-2 uppercase tracking-widest">
           {label}
         </span>
       </div>
@@ -77,13 +77,13 @@ export function CountdownTimer() {
   };
 
   return (
-    <div className="flex gap-3 md:gap-4 justify-center items-center">
+    <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center items-center px-2">
       <TimeUnit value={timeLeft.days} prevValue={prevTimeRef.current.days} label="DAYS" />
-      <div className="text-primary font-pixel text-2xl md:text-4xl -mt-6">:</div>
+      <div className="text-primary font-pixel text-lg sm:text-xl md:text-2xl lg:text-4xl -mt-4 sm:-mt-5 md:-mt-6">:</div>
       <TimeUnit value={timeLeft.hours} prevValue={prevTimeRef.current.hours} label="HOURS" />
-      <div className="text-primary font-pixel text-2xl md:text-4xl -mt-6">:</div>
+      <div className="text-primary font-pixel text-lg sm:text-xl md:text-2xl lg:text-4xl -mt-4 sm:-mt-5 md:-mt-6">:</div>
       <TimeUnit value={timeLeft.minutes} prevValue={prevTimeRef.current.minutes} label="MINS" />
-      <div className="text-primary font-pixel text-2xl md:text-4xl -mt-6">:</div>
+      <div className="text-primary font-pixel text-lg sm:text-xl md:text-2xl lg:text-4xl -mt-4 sm:-mt-5 md:-mt-6">:</div>
       <TimeUnit value={timeLeft.seconds} prevValue={prevTimeRef.current.seconds} label="SECS" />
     </div>
   );

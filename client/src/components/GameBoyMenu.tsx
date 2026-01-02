@@ -21,6 +21,7 @@ interface GameBoyMenuProps {
 export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
   const [location, setLocation] = useLocation();
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
   // Sync selected index with current location on open
   useEffect(() => {
@@ -29,11 +30,29 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
   }, [location]);
 
   const handleUp = () => {
-    setSelectedIndex(prev => (prev > 0 ? prev - 1 : navItems.length - 1));
+    setSelectedIndex(prev => {
+      const newIndex = prev > 0 ? prev - 1 : navItems.length - 1;
+      scrollToItem(newIndex);
+      return newIndex;
+    });
   };
 
   const handleDown = () => {
-    setSelectedIndex(prev => (prev < navItems.length - 1 ? prev + 1 : 0));
+    setSelectedIndex(prev => {
+      const newIndex = prev < navItems.length - 1 ? prev + 1 : 0;
+      scrollToItem(newIndex);
+      return newIndex;
+    });
+  };
+
+  const scrollToItem = (index: number) => {
+    if (menuRef.current) {
+      const items = menuRef.current.querySelectorAll('[data-menu-item]');
+      const item = items[index] as HTMLElement;
+      if (item) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
   };
 
   const handleSelect = () => {
@@ -68,7 +87,7 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
           onA={handleSelect} 
           onB={onClose}
         >
-          <div className="space-y-1">
+          <div ref={menuRef} className="space-y-1 max-h-[200px] overflow-y-auto scrollbar-hide">
             <div className="flex items-center justify-between border-b border-primary/20 pb-2 mb-2">
               <span className="text-[10px] font-pixel text-primary">yoUR Fest 2026</span>
               <div className="flex gap-2">
@@ -84,6 +103,7 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
               return (
                 <div 
                   key={item.href}
+                  data-menu-item
                   className={cn(
                     "flex items-center gap-2 p-2 transition-all duration-150 pointer-events-none",
                     isSelected ? "bg-primary text-primary-foreground translate-x-1" : "text-primary/60"

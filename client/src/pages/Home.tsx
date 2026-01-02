@@ -27,15 +27,15 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block px-4 py-2 mb-6 border-2 border-accent text-accent font-pixel text-xs bg-accent/10">
-              JAN 23-24, 2026 &middot; USHARAMA COLLEGE
+            <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 border-2 border-accent text-accent font-pixel text-[8px] sm:text-xs bg-accent/10">
+              JAN 23-24, 2026 · USHARAMA COLLEGE
             </div>
             
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-9xl mb-6 tracking-tighter"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-4 sm:mb-6 tracking-tighter"
             >
               <GlitchText text="yoUR Fest 2026" />
             </motion.h1>
@@ -44,7 +44,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+              className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed font-light px-4"
             >
               The ultimate convergence of technology, culture, and retro-futurism. 
               <span className="text-primary block mt-2 font-medium">Level up your reality.</span>
@@ -54,19 +54,19 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="mb-10"
+              className="mb-6 sm:mb-10"
             >
               <CountdownTimer />
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <Link href="/events">
-                <button className="px-8 py-4 bg-primary text-primary-foreground font-pixel text-sm border-2 border-primary shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground font-pixel text-xs sm:text-sm border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] sm:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
                   EXPLORE EVENTS
                 </button>
               </Link>
               <Link href="/register">
-                <button className="px-8 py-4 bg-transparent text-secondary font-pixel text-sm border-2 border-secondary shadow-[6px_6px_0px_0px_rgba(255,77,230,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent text-secondary font-pixel text-xs sm:text-sm border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(255,77,230,0.3)] sm:shadow-[6px_6px_0px_0px_rgba(255,77,230,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
                   GET TICKETS
                 </button>
               </Link>
