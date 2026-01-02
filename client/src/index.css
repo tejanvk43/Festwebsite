@@ -57,8 +57,8 @@
   --foreground: 220 10% 4%;
   /* Deep dark text */
 
-  --primary: 0 70% 40%;
-  /* Classic Retro Red for light mode contrast */
+  --primary: 142 70% 35%;
+  /* Emerald Retro Green for light mode contrast */
   --primary-foreground: 60 100% 98%;
 
   --secondary: 45 100% 45%;
@@ -79,12 +79,12 @@
   --border: 220 10% 80%;
   --input: 220 10% 90%;
 
-  --ring: 0 70% 40%;
+  --ring: 142 70% 35%;
 
   /* Softened glows for light mode */
   --glow-yellow: 45 100% 50%;
-  --glow-purple: 0 70% 45%;
-  --glow-cyan: 30 100% 45%;
+  --glow-purple: 142 70% 40%;
+  --glow-cyan: 158 100% 40%;
 }
 
 @layer base {
@@ -105,8 +105,14 @@
   h4,
   h5,
   h6 {
-    @apply font-pixel text-primary uppercase leading-relaxed;
-    text-shadow: 0 0 10px hsla(var(--primary), 0.4), 0 0 20px hsla(var(--primary), 0.2);
+    @apply font-pixel text-primary uppercase leading-relaxed transition-all duration-300;
+    text-shadow: 0 0 12px hsla(var(--primary), 0.6), 0 0 24px hsla(var(--primary), 0.3);
+  }
+
+  /* Specific neon text for prominent elements */
+  .neon-text {
+    text-shadow: 0 0 15px hsla(var(--primary), 0.7), 0 0 30px hsla(var(--primary), 0.4);
+    @apply animate-neon-pulse;
   }
 }
 
@@ -216,11 +222,11 @@
 
   0%,
   100% {
-    text-shadow: 0 0 10px hsla(var(--primary), 0.4), 0 0 20px hsla(var(--primary), 0.2);
+    text-shadow: 0 0 12px hsla(var(--primary), 0.5), 0 0 24px hsla(var(--primary), 0.3);
   }
 
   50% {
-    text-shadow: 0 0 20px hsla(var(--primary), 0.6), 0 0 30px hsla(var(--primary), 0.4);
+    text-shadow: 0 0 20px hsla(var(--primary), 0.8), 0 0 35px hsla(var(--primary), 0.5);
   }
 }
 

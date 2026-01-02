@@ -11,7 +11,7 @@ export default function Stalls() {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl mb-4 text-secondary">MARKETPLACE</h1>
+          <h1 className="text-4xl md:text-6xl mb-4 text-secondary neon-text">MARKETPLACE</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Food, Merch, and Gaming Zones. Recharge and Gear up.
           </p>
@@ -32,7 +32,7 @@ export default function Stalls() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-6xl mb-4 text-secondary">MARKETPLACE</h1>
+        <h1 className="text-4xl md:text-6xl mb-4 text-secondary neon-text">MARKETPLACE</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Food, Merch, and Gaming Zones. Recharge and Gear up.
         </p>

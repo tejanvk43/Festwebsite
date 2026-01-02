@@ -35,7 +35,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-4 sm:mb-6 tracking-tighter"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-4 sm:mb-6 tracking-tighter neon-text"
             >
               <GlitchText text="yoUR Fest 2026" />
             </motion.h1>
@@ -95,7 +95,7 @@ export default function Home() {
                 <item.icon className="w-8 h-8 text-primary" />
               </div>
               <div>
-                <h3 className="text-2xl mb-1">{item.label}</h3>
+                <h3 className="text-2xl mb-1 neon-text">{item.label}</h3>
                 <p className="text-muted-foreground text-sm">{item.sub}</p>
               </div>
               </PixelCard>
