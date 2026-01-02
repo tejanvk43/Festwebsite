@@ -51,13 +51,49 @@
   --glow-cyan: 186 100% 50%;
 }
 
+.light {
+  --background: 60 100% 98%;
+  /* Paper white - #FFFEF5 */
+  --foreground: 220 10% 4%;
+  /* Deep dark text */
+
+  --primary: 0 70% 40%;
+  /* Classic Retro Red for light mode contrast */
+  --primary-foreground: 60 100% 98%;
+
+  --secondary: 45 100% 45%;
+  /* Gold/Amber for contrast in light mode */
+  --secondary-foreground: 220 10% 4%;
+
+  --accent: 30 100% 40%;
+  /* Deep Orange/Amber */
+  --accent-foreground: 60 100% 98%;
+
+  --muted: 220 10% 90%;
+  --muted-foreground: 220 10% 40%;
+
+  --card: 60 100% 95%;
+  /* Off-white cards */
+  --card-foreground: 220 10% 4%;
+
+  --border: 220 10% 80%;
+  --input: 220 10% 90%;
+
+  --ring: 0 70% 40%;
+
+  /* Softened glows for light mode */
+  --glow-yellow: 45 100% 50%;
+  --glow-purple: 0 70% 45%;
+  --glow-cyan: 30 100% 45%;
+}
+
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased font-body overflow-x-hidden;
+    @apply bg-background text-foreground antialiased font-body overflow-x-hidden transition-colors duration-300;
     background-image:
-      linear-gradient(135deg, rgba(10, 13, 26, 0.98), rgba(10, 13, 26, 0.98)),
-      linear-gradient(rgba(255, 241, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 241, 0, 0.05) 1px, transparent 1px);
+      linear-gradient(135deg, hsl(var(--background) / 0.98), hsl(var(--background) / 0.98)),
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
     background-size: 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
     animation: grid-shift 20s linear infinite;
@@ -70,7 +106,7 @@
   h5,
   h6 {
     @apply font-pixel text-primary uppercase leading-relaxed;
-    text-shadow: 0 0 10px rgba(255, 241, 0, 0.4), 0 0 20px rgba(255, 241, 0, 0.2);
+    text-shadow: 0 0 10px hsla(var(--primary), 0.4), 0 0 20px hsla(var(--primary), 0.2);
   }
 }
 
@@ -81,24 +117,24 @@
 
   /* Neon Glow Effects */
   .glow-yellow {
-    box-shadow: 0 0 10px rgba(255, 241, 0, 0.5), 0 0 20px rgba(255, 241, 0, 0.3), inset 0 0 10px rgba(255, 241, 0, 0.1);
+    box-shadow: 0 0 10px hsla(var(--glow-yellow), 0.5), 0 0 20px hsla(var(--glow-yellow), 0.3), inset 0 0 10px hsla(var(--glow-yellow), 0.1);
   }
 
   .glow-purple {
-    box-shadow: 0 0 10px rgba(190, 127, 255, 0.5), 0 0 20px rgba(190, 127, 255, 0.3), inset 0 0 10px rgba(190, 127, 255, 0.1);
+    box-shadow: 0 0 10px hsla(var(--glow-purple), 0.5), 0 0 20px hsla(var(--glow-purple), 0.3), inset 0 0 10px hsla(var(--glow-purple), 0.1);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 10px hsla(var(--glow-cyan), 0.5), 0 0 20px hsla(var(--glow-cyan), 0.3), inset 0 0 10px hsla(var(--glow-cyan), 0.1);
   }
 
   .pixel-shadow {
-    box-shadow: 4px 4px 0px 0px rgba(255, 241, 0, 0.2), 0 0 15px rgba(255, 241, 0, 0.3);
+    box-shadow: 4px 4px 0px 0px hsla(var(--primary), 0.2), 0 0 15px hsla(var(--primary), 0.3);
   }
 
   .pixel-shadow-hover {
     @apply transition-all active:translate-y-1 active:translate-x-1;
-    box-shadow: 6px 6px 0px 0px rgba(255, 241, 0, 0.3), 0 0 20px rgba(255, 241, 0, 0.4);
+    box-shadow: 6px 6px 0px 0px hsla(var(--primary), 0.3), 0 0 20px hsla(var(--primary), 0.4);
   }
 
   .pixel-border {
@@ -106,14 +142,14 @@
   }
 
   .pixel-card {
-    @apply border-2 border-border bg-card;
-    box-shadow: 0 0 12px rgba(255, 241, 0, 0.2), 4px 4px 0px 0px rgba(255, 241, 0, 0.15);
+    @apply border-2 border-border bg-card transition-colors duration-300;
+    box-shadow: 0 0 12px hsla(var(--primary), 0.2), 4px 4px 0px 0px hsla(var(--primary), 0.15);
   }
 
   .neon-border {
     @apply border-2;
     border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent))) 1;
-    box-shadow: 0 0 15px rgba(255, 241, 0, 0.2);
+    box-shadow: 0 0 15px hsla(var(--primary), 0.2);
   }
 
   .crt-screen {
@@ -161,7 +197,7 @@
   border: 2px solid transparent;
   background-clip: content-box;
   border-radius: 0;
-  box-shadow: 0 0 10px rgba(255, 241, 0, 0.4);
+  box-shadow: 0 0 10px hsla(var(--primary), 0.4);
 }
 
 /* Futuristic grid background animation */
@@ -180,11 +216,11 @@
 
   0%,
   100% {
-    text-shadow: 0 0 10px rgba(255, 241, 0, 0.4), 0 0 20px rgba(255, 241, 0, 0.2);
+    text-shadow: 0 0 10px hsla(var(--primary), 0.4), 0 0 20px hsla(var(--primary), 0.2);
   }
 
   50% {
-    text-shadow: 0 0 20px rgba(255, 241, 0, 0.6), 0 0 30px rgba(255, 241, 0, 0.4);
+    text-shadow: 0 0 20px hsla(var(--primary), 0.6), 0 0 30px hsla(var(--primary), 0.4);
   }
 }
 
@@ -225,6 +261,7 @@
     transition: none !important;
   }
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

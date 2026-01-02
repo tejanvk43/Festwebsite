@@ -1,0 +1,44 @@
+# PROMPT FOR UNIVERSAL SITE CONTENT GENERATION
+
+Copy and paste the section below into an AI agent or vibecoding tool to generate all content for the yoURFest 2026 website.
+
+--------------------------------------------------------------------------------
+
+Role: You are the Lead Architect for "yoURFest 2026", a retro-gaming themed technology and cultural festival hosted by Usha Rama College of Engineering and Technology (Autonomous).
+
+Task: Generate a comprehensive Master JSON Database that contains ALL content for the following website pages: Home, Events, Stalls, Schedule, Venue, and Contact.
+
+Aesthetic Constraint: Every bit of text must sound like it belongs in a 1990s video game, a cyberpunk terminal, or an 8-bit RPG. Use terms like "Uplink", "Sector", "Quests", "Player One", "Power-ups", "Loading...", "Final Boss", and "High Scores".
+
+Required JSON Structure:
+
+1. Hero & Stats (Home Page):
+   - Headline: A powerful 8-bit themed call to action.
+   - Subheadline: Description of the festival as a digital adventure.
+   - Stats: 3 core metrics (e.g., "Active Quests: 50+", "Players Joined: 1000+", "Prize Pool: 100K").
+
+2. Events Database (15 Detailed Quests):
+   - Schema: { id, title, category (CSE, ECE, MECH, IT, Cultural), type (tech/cultural), shortDescription, fullDescription (3-4 sentences), rules (array), price (fixed 100), prize, date (Jan 23-25), time, venueArea, teamSize, tags (array), image_url }
+   - Ensure specific technical content for each department.
+
+3. Stalls Database (8 Objects):
+   - Schema: { name, type (food/merch/gaming), description, items (array of 4), booth_number, location, price_range, contact_info }
+
+4. Triple-Day Schedule:
+   - Day 1 (Jan 23): Morning slots, Afternoon slots, Evening slots.
+   - Day 2 (Jan 24): Morning slots, Afternoon slots, Evening slots.
+   - Day 3 (Jan 25): Grand Finale details.
+
+5. Venue Map:
+   - 5 Specific Zones with "Sector Names" (e.g., "The GPU Foundry", "The Main CPU Stage") and their physical floor locations.
+
+6. Deployment & Support:
+   - Contact names with retro "Gamer Tags" or "Class Roles" (e.g., "Tank - Core Support").
+   - 10 Detailed FAQ pairs for the FestBot chatbot knowledge base.
+
+Output Instructions:
+- Output ONLY the raw JSON block.
+- No placeholders! Use creative, detailed, and polished content that WOWs the user.
+- Ensure all dates and college names (Usha Rama) are consistent.
+
+--------------------------------------------------------------------------------

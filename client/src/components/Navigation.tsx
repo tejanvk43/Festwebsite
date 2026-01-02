@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -13,7 +13,15 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Navigation({ onOpenMenu }: { onOpenMenu: () => void }) {
+export function Navigation({ 
+  onOpenMenu, 
+  theme, 
+  toggleTheme 
+}: { 
+  onOpenMenu: () => void;
+  theme: 'dark' | 'light';
+  toggleTheme: () => void;
+}) {
   const [location] = useLocation();
 
   return (
@@ -44,6 +52,18 @@ export function Navigation({ onOpenMenu }: { onOpenMenu: () => void }) {
             </button>
           </Link>
           
+          <button
+            onClick={toggleTheme}
+            className="p-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all flex items-center justify-center glow-yellow group"
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:rotate-45" />
+            ) : (
+              <Moon className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-rotate-12" />
+            )}
+          </button>
+
           <button
             onClick={onOpenMenu}
             className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 bg-primary text-primary-foreground font-pixel text-[10px] sm:text-xs border-2 border-primary shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)] sm:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all glow-yellow"

@@ -54,6 +54,20 @@ function Router() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   const handleLoadingFinished = () => {
     setIsLoading(false);
@@ -72,7 +86,11 @@ function App() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="min-h-screen flex flex-col bg-background text-foreground font-body selection:bg-primary selection:text-primary-foreground"
           >
-            <Navigation onOpenMenu={() => setIsMenuOpen(true)} />
+            <Navigation 
+              onOpenMenu={() => setIsMenuOpen(true)} 
+              theme={theme}
+              toggleTheme={toggleTheme}
+            />
             <main className="flex-grow">
               <Router />
             </main>
