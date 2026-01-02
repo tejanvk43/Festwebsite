@@ -19,11 +19,22 @@ export default function EventDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
+          <div className="relative h-[300px] md:h-[400px] w-full border-2 border-primary/20 overflow-hidden group">
+            <img 
+              src={event.image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80"} 
+              alt={event.title} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+            <div className="absolute bottom-6 left-6">
+               <div className="inline-block px-3 py-1 mb-4 border border-primary bg-primary/20 backdrop-blur-md text-primary-foreground text-xs font-pixel uppercase shadow-[4px_4px_0px_0px_rgba(255,241,0,0.5)]">
+                 {event.department} &middot; {event.type}
+               </div>
+               <h1 className="text-4xl md:text-6xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">{event.title}</h1>
+            </div>
+          </div>
+
           <div>
-             <div className="inline-block px-3 py-1 mb-4 border border-primary/30 bg-primary/5 text-primary text-xs font-pixel uppercase">
-               {event.department} &middot; {event.type}
-             </div>
-             <h1 className="text-4xl md:text-6xl mb-6">{event.title}</h1>
              <p className="text-lg text-muted-foreground leading-relaxed">
                {event.fullDescription}
              </p>

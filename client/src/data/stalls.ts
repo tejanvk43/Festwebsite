@@ -29,7 +29,7 @@ export const stalls: Stall[] = [
             { day: "2026-01-24", open: "10:00", close: "22:00" }
         ],
         contact: { phone: "+91-90000-11111", email: "food@usharama.edu" },
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80"
+        image: "/assets/stalls/retro-bites.png"
     },
     {
         id: "stall-002",
@@ -46,7 +46,7 @@ export const stalls: Stall[] = [
             { day: "2026-01-24", open: "10:00", close: "18:00" }
         ],
         contact: { phone: "+91-90000-22222", email: "vr@gmail.com" },
-        image: "https://images.unsplash.com/photo-1478416272538-5f7e51dc5400?w=800&q=80"
+        image: "/assets/stalls/vr-zone.png"
     },
     {
         id: "stall-003",
@@ -63,7 +63,7 @@ export const stalls: Stall[] = [
             { day: "2026-01-24", open: "09:00", close: "17:00" }
         ],
         contact: { phone: "+91-90000-33333", email: "rigmaster@gmail.com" },
-        image: "https://images.unsplash.com/photo-1587202372775-e0631921a418?w=800&q=80"
+        image: "/assets/stalls/custom-pc.png"
     },
     {
         id: "stall-004",
@@ -80,6 +80,6 @@ export const stalls: Stall[] = [
             { day: "2026-01-24", open: "09:00", close: "19:00" }
         ],
         contact: { phone: "+91-90000-44444", email: "thrift@gmail.com" },
-        image: "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?w=800&q=80"
+        image: "/assets/stalls/tech-thrift.png"
     }
 ];

@@ -47,15 +47,15 @@ export default function Contact() {
 
         <div className="space-y-6">
           <PixelCard variant="secondary" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-secondary">STUDENT COORDINATORS</h3>
+            <h3 className="font-pixel mb-4 text-secondary">Faculty COORDINATOR</h3>
             <div className="space-y-4">
               <div>
-                <div className="font-bold">Rahul Verma</div>
-                <div className="text-sm text-muted-foreground">+91 98765 43210</div>
+                <div className="font-bold">Faculty-1</div>
+                <div className="text-sm text-muted-foreground">Faculty 1 Number</div>
               </div>
               <div>
-                <div className="font-bold">Priya Sharma</div>
-                <div className="text-sm text-muted-foreground">+91 98765 12345</div>
+                <div className="font-bold">Faculty-2</div>
+                <div className="text-sm text-muted-foreground">Faculty 2 Number</div>
               </div>
             </div>
           </PixelCard>

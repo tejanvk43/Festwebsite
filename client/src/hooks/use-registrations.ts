@@ -15,7 +15,8 @@ export function useCreateRegistration() {
       // LOG TO CONSOLE AS SIMULATED STORAGE
       console.log("SIMULATED REGISTRATION SUCCESS:", data);
 
-      if (onSuccess) onSuccess();
+      const mockId = Math.floor(Math.random() * 900000) + 100000;
+      if (onSuccess) onSuccess({ id: mockId });
 
       toast({
         title: "Registration Successful!",

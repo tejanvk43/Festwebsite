@@ -31,11 +31,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Block C",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard safety gear required", "Participants must bring college ID"],
         tags: ["mechanical", "competition"],
-        image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80"
+        image: "/assets/events/tech-olympics.png"
     },
     {
         id: "evt-mech-002",
@@ -53,7 +53,7 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Helmets mandatory", "Strict adherence to track signals"],
         tags: ["racing", "mechanical"],
-        image: "https://images.unsplash.com/photo-1547447134-cd3f5c716030?w=800&q=80"
+        image: "/assets/events/go-karting.png"
     },
     // CSE, AIML & DS
     {
@@ -68,11 +68,11 @@ export const events: Event[] = [
         endTime: "12:00",
         venueArea: "Seminar Hall A",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["No recording without permission"],
         tags: ["AI", "ML", "Computer Science"],
-        image: "https://images.unsplash.com/photo-1540575861501-7cf05a4112fb?w=800&q=80"
+        image: "/assets/events/tech-talks.png"
     },
     {
         id: "evt-cse-002",
@@ -86,11 +86,11 @@ export const events: Event[] = [
         endTime: "14:30",
         venueArea: "Block A",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["No mobile phones during the contest"],
         tags: ["puzzles", "logic"],
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&q=80"
     },
     {
         id: "evt-cse-003",
@@ -104,11 +104,11 @@ export const events: Event[] = [
         endTime: "17:00",
         venueArea: "AI Lab",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Use of specific AI models only", "Ethical guidelines apply"],
         tags: ["AI", "Prompting"],
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+        image: "/assets/events/prompt-ai.png"
     },
     {
         id: "evt-cse-004",
@@ -122,11 +122,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Block A Labs",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard competitive programming rules apply"],
         tags: ["coding", "programming"],
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
     },
     {
         id: "evt-cse-005",
@@ -140,11 +140,11 @@ export const events: Event[] = [
         endTime: "16:00",
         venueArea: "Open Area",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Completion within time is key"],
         tags: ["stamina", "logic"],
-        image: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80"
     },
     // IT
     {
@@ -159,11 +159,11 @@ export const events: Event[] = [
         endTime: "18:00",
         venueArea: "IT Lab 1",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Bring your own laptops"],
         tags: ["hacking", "development"],
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
     },
     {
         id: "evt-it-002",
@@ -177,11 +177,11 @@ export const events: Event[] = [
         endTime: "17:00",
         venueArea: "Incubation Center",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Limit to 5 min pitch"],
         tags: ["startup", "ideas"],
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
     },
     // ECE & EEE
     {
@@ -196,11 +196,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Circuits Lab",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Safety first", "Components provided"],
         tags: ["electronics", "hardware"],
-        image: "https://images.unsplash.com/photo-1518770660439-46361a0af8bb?w=800&q=80"
+        image: "/assets/events/circuitrix.png"
     },
     {
         id: "evt-ece-002",
@@ -214,11 +214,11 @@ export const events: Event[] = [
         endTime: "16:00",
         venueArea: "Block D Area",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Speed and accuracy"],
         tags: ["quiz", "fast-paced"],
-        image: "https://images.unsplash.com/photo-1512428559083-abd60b38646b?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80"
     },
     {
         id: "evt-ece-003",
@@ -232,11 +232,11 @@ export const events: Event[] = [
         endTime: "17:00",
         venueArea: "Campus-wide",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Mobile tracking mandatory"],
         tags: ["treasure-hunt", "clues"],
-        image: "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80"
     },
     {
         id: "evt-ece-004",
@@ -250,11 +250,11 @@ export const events: Event[] = [
         endTime: "14:00",
         venueArea: "Design Lab",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Humor allowed but respectful"],
         tags: ["humor", "creative"],
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+        image: "/assets/events/techno-parady.png"
     },
     // All Departments / General
     {
@@ -269,11 +269,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Main Hall",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Multiple rounds", "Rapid fire final"],
         tags: ["quiz", "general"],
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80"
+        image: "/assets/events/technical-quiz.png"
     },
     {
         id: "evt-all-002",
@@ -287,11 +287,11 @@ export const events: Event[] = [
         endTime: "17:00",
         venueArea: "Exhibition Center",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Functional models required", "Poster mandatory"],
         tags: ["innovation", "creative"],
-        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
     },
     {
         id: "evt-all-003",
@@ -305,11 +305,11 @@ export const events: Event[] = [
         endTime: "15:00",
         venueArea: "Hallway A",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard poster size", "Oral summary required"],
         tags: ["research", "design"],
-        image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80"
+        image: "/assets/events/poster-presentation.png"
     },
     {
         id: "evt-all-004",
@@ -323,11 +323,11 @@ export const events: Event[] = [
         endTime: "16:30",
         venueArea: "Conference Room",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard format guidelines", "PPT required"],
         tags: ["academic", "paper"],
-        image: "https://images.unsplash.com/photo-1454165833744-119520427847?w=800&q=80"
+        image: "/assets/events/paper-presentation.png"
     },
     // Cultural Events (24-01-2026)
     {
@@ -342,11 +342,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Main Stage",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Traditional attire mandatory"],
         tags: ["tradition", "talent"],
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+        image: "/assets/events/telugu-ammai.png"
     },
     {
         id: "evt-cul-002",
@@ -360,7 +360,7 @@ export const events: Event[] = [
         endTime: "18:00",
         venueArea: "Main Stage",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Max 3 minute performance"],
         tags: ["dance", "performance"],
@@ -378,11 +378,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Auditorium",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Minus-one tracks allowed"],
         tags: ["music", "voice"],
-        image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80"
     },
     {
         id: "evt-cul-004",
@@ -396,11 +396,11 @@ export const events: Event[] = [
         endTime: "20:00",
         venueArea: "Online/Campus",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Event hashtags required"],
         tags: ["social-media", "creative"],
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=800&q=80"
     },
     {
         id: "evt-cul-005",
@@ -414,11 +414,11 @@ export const events: Event[] = [
         endTime: "17:00",
         venueArea: "Campus-wide",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Raw files required on demand"],
         tags: ["photography", "art"],
-        image: "https://images.unsplash.com/photo-1452784444945-3f422708fe5e?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?w=800&q=80"
     },
     {
         id: "evt-cul-006",
@@ -432,11 +432,11 @@ export const events: Event[] = [
         endTime: "15:00",
         venueArea: "Science Lobby",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["No hazardous materials"],
         tags: ["science", "learning"],
-        image: "https://images.unsplash.com/photo-1564325724739-bae0bd08fc21?w=800&q=80"
+        image: "/assets/events/science-fair.png"
     },
     {
         id: "evt-cul-007",
@@ -450,11 +450,11 @@ export const events: Event[] = [
         endTime: "16:00",
         venueArea: "Garden Area",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Bring your flowers if needed"],
         tags: ["art", "natural"],
-        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80"
     },
     {
         id: "evt-cul-008",
@@ -468,11 +468,11 @@ export const events: Event[] = [
         endTime: "13:00",
         venueArea: "Debate Room",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Language: English/Telugu"],
         tags: ["speaking", "debate"],
-        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80"
+        image: "/assets/events/talkathon.png"
     },
     {
         id: "evt-cul-009",
@@ -486,11 +486,11 @@ export const events: Event[] = [
         endTime: "14:00",
         venueArea: "Art Studio",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Bring your own brushes"],
         tags: ["painting", "creative"],
-        image: "https://images.unsplash.com/photo-1460518451285-cd7ba7122700?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80"
     },
     {
         id: "evt-cul-010",
@@ -504,11 +504,11 @@ export const events: Event[] = [
         endTime: "16:00",
         venueArea: "Library Lawn",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Fastest solvers win"],
         tags: ["literature", "maze"],
-        image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80"
     },
     {
         id: "evt-cul-011",
@@ -522,10 +522,10 @@ export const events: Event[] = [
         endTime: "18:00",
         venueArea: "Main Stage",
         teamSize: 1,
-        registrationFee: 0,
+        registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Semi-formal attire required"],
         tags: ["personality", "talent"],
-        image: "https://images.unsplash.com/photo-1546519638-68e10940435a?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=800&q=80"
     }
 ];

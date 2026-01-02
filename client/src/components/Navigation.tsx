@@ -25,11 +25,21 @@ export function Navigation() {
       className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_0_20px_rgba(255,241,0,0.2)]"
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/">
-          <div className="font-pixel text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
-            yoURFest<span className="text-secondary text-xs align-top ml-1" style={{ textShadow: '0 0 8px rgba(190, 127, 255, 0.4)' }}>2026</span>
-          </div>
-        </Link>
+        <div className="flex items-center gap-4">
+          <a href="https://usharama.edu.in/home" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
+            <img src="/usha-rama-logo.png" alt="Usha Rama Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+            {/* <div className="hidden lg:block">
+              <div className="text-[8px] font-pixel text-muted-foreground leading-tight">USHA RAMA COLLEGE OF</div>
+              <div className="text-[8px] font-pixel text-muted-foreground leading-tight">ENGINEERING & TECHNOLOGY</div>
+            </div> */}
+          </a>
+          <div className="h-8 w-[2px] bg-border mx-2 hidden md:block" />
+          <Link href="/">
+            <div className="font-pixel text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
+              yoURFest<span className="text-secondary text-xs align-top ml-1" style={{ textShadow: '0 0 8px rgba(190, 127, 255, 0.4)' }}>2026</span>
+            </div>
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">

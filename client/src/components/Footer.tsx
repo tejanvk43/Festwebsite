@@ -14,8 +14,14 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="font-pixel text-xl text-primary">
-              yoURFest<span className="text-secondary text-[10px] ml-1">2026</span>
+            <div className="flex items-center gap-3 mb-2">
+              <img src="/usha-rama-logo.png" alt="Usha Rama Logo" className="h-8 w-auto object-contain" />
+              <div className="font-pixel text-lg text-primary">
+                yoURFest<span className="text-secondary text-[10px] ml-1">2026</span>
+              </div>
+            </div>
+            <div className="text-[9px] font-pixel text-muted-foreground leading-normal">
+              USHA RAMA COLLEGE OF ENGINEERING & TECHNOLOGY (AUTONOMOUS)
             </div>
             <p className="text-muted-foreground text-sm max-w-xs">
               The ultimate retro-futuristic tech and cultural festival. Level up your skills, compete, and celebrate.

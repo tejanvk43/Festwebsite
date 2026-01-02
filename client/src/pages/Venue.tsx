@@ -42,7 +42,7 @@ export default function Venue() {
         <div className="h-[500px] border-2 border-border bg-card relative overflow-hidden group">
           {/* Placeholder for Map - typically you'd embed Google Maps iframe here */}
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.664632662283!2d80.93273831486337!3d16.44186598865173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a36056d6706037b%3A0x867332305886476!2sUsha%20Rama%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1678892134567!5m2!1sen!2sin" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.977009621967!2d80.87176717491565!3d16.57766488417794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a360918fa2d9453%3A0xe7dbf6c842d3a281!2sUsha%20Rama%20College%20Of%20Engineering%20And%20Technology!5e0!3m2!1sen!2sin!4v1767339803834!5m2!1sen!2sin" 
             width="100%" 
             height="100%" 
             style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} 

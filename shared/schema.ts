@@ -43,6 +43,8 @@ export const registrations = sqliteTable("registrations", {
   email: text("email").notNull(),
   phone: text("phone").notNull(),
   rollNumber: text("roll_number").notNull(),
+  participantBranch: text("participant_branch"),
+  participantYear: text("participant_year"),
   college: text("college"),
   branch: text("branch", { mode: "json" }).$type<string[]>(), // Array - store multiple tech branches
   regType: text("reg_type").notNull().default("tech"), // tech, cultural, both

@@ -6,35 +6,45 @@
 
 :root {
   /* Futuristic Neon Yellow Theme */
-  --background: 220 10% 4%;          /* Deep dark - #0A0D1A */
-  --foreground: 60 100% 95%;         /* Bright white-ish */
-  
-  --primary: 56 100% 50%;            /* #FFF100 - Neon Yellow (MAIN) */
+  --background: 220 10% 4%;
+  /* Deep dark - #0A0D1A */
+  --foreground: 60 100% 95%;
+  /* Bright white-ish */
+
+  --primary: 56 100% 50%;
+  /* #FFF100 - Neon Yellow (MAIN) */
   --primary-foreground: 220 10% 4%;
 
-  --secondary: 280 100% 55%;         /* #BE7FFF - Neon Purple */
+  --secondary: 280 100% 55%;
+  /* #BE7FFF - Neon Purple */
   --secondary-foreground: 60 100% 95%;
 
-  --accent: 186 100% 50%;            /* #00E5FF - Cyan Accent */
+  --accent: 186 100% 50%;
+  /* #00E5FF - Cyan Accent */
   --accent-foreground: 220 10% 4%;
 
-  --muted: 220 10% 30%;              /* Dark muted */
+  --muted: 220 10% 30%;
+  /* Dark muted */
   --muted-foreground: 220 10% 60%;
 
-  --card: 220 15% 8%;                /* #0F1629 - Card dark */
+  --card: 220 15% 8%;
+  /* #0F1629 - Card dark */
   --card-foreground: 60 100% 95%;
 
-  --border: 220 20% 20%;             /* #1A2847 - Neon-edged borders */
+  --border: 220 20% 20%;
+  /* #1A2847 - Neon-edged borders */
   --input: 220 20% 20%;
-  
-  --ring: 56 100% 50%;               /* Focus ring matches primary (yellow) */
-  
-  --radius: 0px;                     /* SHARP CORNERS for futuristic look */
-  
+
+  --ring: 56 100% 50%;
+  /* Focus ring matches primary (yellow) */
+
+  --radius: 0px;
+  /* SHARP CORNERS for futuristic look */
+
   /* Fonts */
   --font-pixel: 'Press Start 2P', cursive;
   --font-body: 'Inter', sans-serif;
-  
+
   /* Neon glow colors */
   --glow-yellow: 56 100% 50%;
   --glow-purple: 280 100% 55%;
@@ -44,15 +54,20 @@
 @layer base {
   body {
     @apply bg-background text-foreground antialiased font-body;
-    background-image: 
+    background-image:
       linear-gradient(135deg, rgba(10, 13, 26, 0.98), rgba(10, 13, 26, 0.98)),
       radial-gradient(circle at 20% 50%, rgba(255, 241, 0, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(190, 127, 255, 0.03) 0%, transparent 50%);
     background-size: 100% 100%, 400px 400px, 400px 400px;
     background-attachment: fixed;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-pixel text-primary uppercase leading-relaxed;
     text-shadow: 0 0 10px rgba(255, 241, 0, 0.4), 0 0 20px rgba(255, 241, 0, 0.2);
   }
@@ -62,24 +77,24 @@
   .text-pixel {
     font-family: var(--font-pixel);
   }
-  
+
   /* Neon Glow Effects */
   .glow-yellow {
     box-shadow: 0 0 10px rgba(255, 241, 0, 0.5), 0 0 20px rgba(255, 241, 0, 0.3), inset 0 0 10px rgba(255, 241, 0, 0.1);
   }
-  
+
   .glow-purple {
     box-shadow: 0 0 10px rgba(190, 127, 255, 0.5), 0 0 20px rgba(190, 127, 255, 0.3), inset 0 0 10px rgba(190, 127, 255, 0.1);
   }
-  
+
   .glow-cyan {
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
   }
-  
+
   .pixel-shadow {
     box-shadow: 4px 4px 0px 0px rgba(255, 241, 0, 0.2), 0 0 15px rgba(255, 241, 0, 0.3);
   }
-  
+
   .pixel-shadow-hover {
     @apply transition-all active:translate-y-1 active:translate-x-1;
     box-shadow: 6px 6px 0px 0px rgba(255, 241, 0, 0.3), 0 0 20px rgba(255, 241, 0, 0.4);
@@ -93,7 +108,7 @@
     @apply border-2 border-border bg-card;
     box-shadow: 0 0 12px rgba(255, 241, 0, 0.2), 4px 4px 0px 0px rgba(255, 241, 0, 0.15);
   }
-  
+
   .neon-border {
     @apply border-2;
     border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent))) 1;
@@ -120,15 +135,23 @@
 
 /* Futuristic grid background animation */
 @keyframes grid-shift {
-  0% { background-position: 0 0; }
-  100% { background-position: 40px 40px; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 /* Neon pulse animation */
 @keyframes neon-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 10px rgba(255, 241, 0, 0.4), 0 0 20px rgba(255, 241, 0, 0.2);
   }
+
   50% {
     text-shadow: 0 0 20px rgba(255, 241, 0, 0.6), 0 0 30px rgba(255, 241, 0, 0.4);
   }
@@ -136,4 +159,38 @@
 
 .animate-neon-pulse {
   animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* Print Styles */
+@media print {
+
+  header,
+  footer,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Reset transitions and shadows for print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

@@ -4,7 +4,7 @@ import { insertRegistrationSchema, type InsertRegistration } from "@shared/route
 import { useCreateRegistration } from "@/hooks/use-registrations";
 import { useEvents } from "@/hooks/use-events";
 import { PixelCard } from "@/components/PixelCard";
-import { Loader2, Check, ArrowRight, ArrowLeft } from "lucide-react";
+import { Loader2, Check, ArrowRight, ArrowLeft, Printer, Ticket, Package, AlertCircle } from "lucide-react";
 import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -26,6 +26,8 @@ export default function Register() {
   const { data: events, isLoading: isLoadingEvents } = useEvents();
   const { mutate, isPending } = useCreateRegistration();
   const [step, setStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [regId, setRegId] = useState<number | null>(null);
 
   const form = useForm<InsertRegistration>({
     resolver: zodResolver(insertRegistrationSchema),
@@ -37,6 +39,8 @@ export default function Register() {
       email: "",
       phone: "",
       rollNumber: "",
+      participantBranch: "",
+      participantYear: "",
       branch: [],
       regType: "tech"
     }
@@ -51,13 +55,13 @@ export default function Register() {
 
   const onSubmit = (data: InsertRegistration) => {
     mutate(data, {
-      onSuccess: () => {
-        form.reset();
+      onSuccess: (response: any) => {
+        setRegId(response.id);
+        setIsSubmitted(true);
         toast({
           title: "Success",
           description: "Registration completed successfully!",
         });
-        setStep(1); // Reset to first step
       }
     });
   };
@@ -65,7 +69,7 @@ export default function Register() {
   const nextStep = async () => {
     let fieldsToValidate: any[] = [];
     if (step === 1) {
-      fieldsToValidate = ["participantName", "rollNumber", "email", "phone", "college"];
+      fieldsToValidate = ["participantName", "rollNumber", "participantBranch", "participantYear", "email", "phone", "college"];
     } else if (step === 2) {
       fieldsToValidate = ["regType"];
     } else if (step === 3) {
@@ -156,6 +160,137 @@ export default function Register() {
     return e.type === "cultural";
   });
 
+  if (isSubmitted) {
+    return (
+      <div className="container mx-auto px-4 py-12 flex flex-col items-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-2xl print:max-w-none print:m-0"
+        >
+          {/* Header for print hidden in digital view */}
+          <div className="hidden print:block text-center mb-8 pb-4 border-b-2 border-primary">
+            <h1 className="text-3xl font-pixel text-primary mb-2">yoURFest 2026</h1>
+            <p className="text-sm font-pixel text-muted-foreground uppercase">Official Registration Ticket</p>
+          </div>
+
+          <PixelCard className="border-primary bg-card/50 backdrop-blur-sm relative overflow-hidden print:border-2 print:shadow-none print:bg-white print:text-black">
+            {/* Decoration for digital view */}
+            <div className="absolute top-0 right-0 p-4 opacity-10 print:hidden">
+              <Ticket className="w-48 h-48 -mr-12 -mt-12" />
+            </div>
+
+            <div className="space-y-8 relative z-10">
+              <div className="flex justify-between items-start border-b border-border/50 pb-6 print:border-black/20">
+                <div>
+                  <h2 className="text-2xl text-primary font-pixel mb-1 print:text-black">REGISTRATION CONFIRMED</h2>
+                  <p className="text-muted-foreground text-xs font-pixel uppercase">Ticket ID: <span className="text-foreground font-mono print:text-black">#{String(regId).padStart(6, '0')}</span></p>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">Status</div>
+                  <div className="flex items-center gap-1 text-accent font-pixel text-xs print:text-black">
+                    <Check className="w-3 h-3" /> VERIFIED
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Notice */}
+              <div className="p-4 bg-primary/10 border-2 border-primary/50 text-primary font-pixel text-[10px] leading-relaxed print:bg-white print:border-black print:text-black">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <p>IMPORTANT: THE REGISTRATION FEE WILL BE COLLECTED AT THE COLLEGE REGISTRATION DESK. PLEASE PRESENT THIS TICKET TO COMPLETE YOUR PAYMENT AND VALIDATE YOUR ENTRY.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">PARTICIPANT</div>
+                    <div className="text-lg font-bold print:text-black">{form.getValues("participantName")}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">ROLL NUMBER</div>
+                    <div className="font-mono text-sm print:text-black">{form.getValues("rollNumber")}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">BRANCH & YEAR</div>
+                    <div className="text-sm print:text-black">{form.getValues("participantBranch")} — {form.getValues("participantYear")}{form.getValues("participantYear") === "1" ? "st" : form.getValues("participantYear") === "2" ? "nd" : form.getValues("participantYear") === "3" ? "rd" : "th"} Year</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">COLLEGE</div>
+                    <div className="text-sm print:text-black">{form.getValues("college")}</div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">REGISTRATION TYPE</div>
+                    <div className="text-sm font-pixel text-primary uppercase print:text-black">{regType}</div>
+                  </div>
+                  {regType !== "cultural" && (
+                    <div>
+                      <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">BRANCHES</div>
+                      <div className="text-xs print:text-black">{selectedBranches.join(", ")}</div>
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-1">DATE ISSUED</div>
+                    <div className="text-xs print:text-black">{new Date().toLocaleDateString()}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t-2 border-dashed border-border/50 pt-6 print:border-black/20">
+                <div className="text-[10px] font-pixel text-muted-foreground uppercase mb-4">SELECTED QUESTS & EVENTS</div>
+                <div className="grid grid-cols-1 gap-3">
+                  {selectedEvents.map(event => (
+                    <div key={event.id} className="p-4 bg-muted/30 border-l-4 border-primary flex justify-between items-center print:bg-white print:border-black">
+                      <div>
+                        <div className="text-sm font-bold uppercase print:text-black">{event.title}</div>
+                        <div className="text-[10px] text-muted-foreground print:text-black">{event.department}</div>
+                      </div>
+                      <div className="text-xs font-mono text-muted-foreground print:text-black">{event.startTime}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-center pt-4 print:hidden">
+                <div className="text-[10px] text-muted-foreground font-pixel flex items-center justify-center gap-2">
+                  <Package className="w-3 h-3" /> PLEASE REGISTER AT THE REGISTRATION DESK
+                </div>
+              </div>
+            </div>
+          </PixelCard>
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 print:hidden">
+            <button
+              onClick={() => window.print()}
+              className="flex-grow py-4 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,241,0,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex justify-center items-center gap-2"
+            >
+              <Printer className="w-4 h-4" /> PRINT REGISTRATION TICKET
+            </button>
+            <button
+              onClick={() => {
+                setIsSubmitted(false);
+                setRegId(null);
+                setStep(1);
+                form.reset();
+              }}
+              className="px-8 py-4 bg-background border-2 border-border text-muted-foreground font-pixel text-[10px] hover:text-primary hover:border-primary transition-all uppercase"
+            >
+              REGISTER ANOTHER
+            </button>
+          </div>
+          
+          <p className="mt-8 text-center text-xs text-muted-foreground font-pixel uppercase print:hidden">
+            A confirmation email has been sent to your registered address.
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-2xl mx-auto">
@@ -210,6 +345,30 @@ export default function Register() {
                         className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
                         placeholder="Enter Your Roll Number"
                       />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-pixel uppercase text-muted-foreground">Branch *</label>
+                      <input 
+                        {...form.register("participantBranch")}
+                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                        placeholder="Enter Your Branch (e.g. CSE)"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-pixel uppercase text-muted-foreground">Year *</label>
+                      <select 
+                        {...form.register("participantYear")}
+                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors appearance-none"
+                      >
+                        <option value="">Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                      </select>
                     </div>
                   </div>
 
@@ -367,6 +526,14 @@ export default function Register() {
                     <div className="flex justify-between text-xs font-pixel text-muted-foreground">
                       <span>ROLL:</span>
                       <span className="text-foreground">{form.getValues("rollNumber")}</span>
+                    </div>
+                    <div className="flex justify-between text-xs font-pixel text-muted-foreground">
+                      <span>BRANCH:</span>
+                      <span className="text-foreground">{form.getValues("participantBranch")}</span>
+                    </div>
+                    <div className="flex justify-between text-xs font-pixel text-muted-foreground">
+                      <span>YEAR:</span>
+                      <span className="text-foreground">{form.getValues("participantYear")}</span>
                     </div>
                     <div className="flex justify-between text-xs font-pixel text-muted-foreground">
                       <span>PATH:</span>

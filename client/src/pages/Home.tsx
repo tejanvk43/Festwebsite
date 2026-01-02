@@ -151,7 +151,7 @@ export default function Home() {
                     <div className="aspect-video bg-muted mb-6 overflow-hidden border-2 border-border relative">
                       {/* Using generic tech/event placeholders */}
                       <img 
-                        src={`https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80`} 
+                        src={event.image} 
                         alt={event.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                       />

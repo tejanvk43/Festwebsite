@@ -132,11 +132,23 @@ export default function Events() {
           >
             <Link href={`/events/${event.id}`}>
               <div className="h-full cursor-pointer">
-                <PixelCard className="h-full flex flex-col group hover:border-primary">
+                <PixelCard className="h-full flex flex-col group hover:border-primary overflow-hidden">
+                  <div className="relative h-48 mb-4 -mx-4 -mt-4 border-b border-border group-hover:border-primary transition-colors overflow-hidden">
+                    <img 
+                      src={event.image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"} 
+                      alt={event.title} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] font-pixel border border-primary/20 backdrop-blur-sm">
+                        {event.department.toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+
                   <div className="flex justify-between items-start mb-4">
-                     <span className="px-2 py-1 bg-primary/10 text-primary text-[10px] font-pixel border border-primary/20">
-                       {event.department.toUpperCase()}
-                     </span>
+                     <div className="h-1 w-12 bg-primary/20 group-hover:bg-primary transition-colors" />
                      <span className="text-muted-foreground text-xs font-mono flex items-center gap-1">
                        <Clock className="w-3 h-3" /> {event.startTime}
                      </span>
