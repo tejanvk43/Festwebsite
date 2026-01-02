@@ -4,6 +4,7 @@ import { PixelCard } from "@/components/PixelCard";
 import { GlitchText } from "@/components/GlitchText";
 import { Calendar, MapPin, Ticket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import { CountdownTimer } from "@/components/CountdownTimer";
 
 export default function Home() {
   const { data: events, isLoading } = useEvents();
@@ -48,6 +49,15 @@ export default function Home() {
               The ultimate convergence of technology, culture, and retro-futurism. 
               <span className="text-primary block mt-2 font-medium">Level up your reality.</span>
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="mb-10"
+            >
+              <CountdownTimer />
+            </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/events">

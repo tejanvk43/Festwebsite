@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -13,27 +13,18 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Navigation() {
+export function Navigation({ onOpenMenu }: { onOpenMenu: () => void }) {
   const [location] = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="sticky top-0 z-50 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_0_20px_rgba(255,241,0,0.2)]"
+      className="sticky top-0 w-full border-b-2 border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_0_20px_rgba(255,241,0,0.2)] z-50"
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <a href="https://usharama.edu.in/home" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
-            <img src="/usha-rama-logo.png" alt="Usha Rama Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
-            {/* <div className="hidden lg:block">
-              <div className="text-[8px] font-pixel text-muted-foreground leading-tight">USHA RAMA COLLEGE OF</div>
-              <div className="text-[8px] font-pixel text-muted-foreground leading-tight">ENGINEERING & TECHNOLOGY</div>
-            </div> */}
-          </a>
-          <div className="h-8 w-[2px] bg-border mx-2 hidden md:block" />
           <Link href="/">
             <div className="font-pixel text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
               yoURFest<span className="text-secondary text-xs align-top ml-1" style={{ textShadow: '0 0 8px rgba(190, 127, 255, 0.4)' }}>2026</span>
@@ -41,80 +32,24 @@ export function Navigation() {
           </Link>
         </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>
-              <div
-                className={cn(
-                  "font-pixel text-xs cursor-pointer transition-all hover:text-primary hover:glow-yellow relative py-1 px-2",
-                  location === item.href ? "text-primary glow-yellow" : "text-muted-foreground"
-                )}
-              >
-                {item.label}
-                {location === item.href && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute left-0 right-0 bottom-0 h-[3px] bg-primary"
-                    style={{ boxShadow: '0 0 8px rgba(255, 241, 0, 0.6)' }}
-                  />
-                )}
-              </div>
-            </Link>
-          ))}
+        {/* Unified START button for Desktop & Mobile */}
+        <div className="flex items-center gap-6">
           <Link href="/register">
-            <div className="cursor-pointer bg-primary text-primary-foreground font-pixel text-xs px-4 py-2 border-2 border-primary hover:bg-transparent hover:text-primary transition-all active:translate-x-[2px] active:translate-y-[2px] glow-yellow" style={{ boxShadow: '4px 4px 0px 0px rgba(255,241,0,0.3), 0 0 15px rgba(255,241,0,0.4)' }}>
-              REGISTER
-            </div>
+            <button className="hidden sm:block px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
+              TICKETS
+            </button>
           </Link>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-primary"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          
+          <button
+            onClick={onOpenMenu}
+            className="flex items-center gap-3 px-6 py-2 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all glow-yellow"
+          >
+            <Menu className="w-4 h-4" />
+            <span>START / MENU</span>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b-2 border-border bg-background"
-          >
-            <nav className="flex flex-col p-4 gap-4">
-              {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <div
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "font-pixel text-sm cursor-pointer py-2 hover:text-primary border-l-4 pl-3 transition-all",
-                      location === item.href
-                        ? "border-primary text-primary"
-                        : "border-transparent text-muted-foreground"
-                    )}
-                  >
-                    {item.label}
-                  </div>
-                </Link>
-              ))}
-              <Link href="/register">
-                <div 
-                  onClick={() => setIsOpen(false)}
-                  className="mt-2 text-center cursor-pointer bg-primary text-primary-foreground font-pixel text-xs px-4 py-3 border-2 border-primary hover:bg-transparent hover:text-primary"
-                >
-                  REGISTER NOW
-                </div>
-              </Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 }

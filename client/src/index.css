@@ -53,13 +53,14 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased font-body;
+    @apply bg-background text-foreground antialiased font-body overflow-x-hidden;
     background-image:
       linear-gradient(135deg, rgba(10, 13, 26, 0.98), rgba(10, 13, 26, 0.98)),
-      radial-gradient(circle at 20% 50%, rgba(255, 241, 0, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(190, 127, 255, 0.03) 0%, transparent 50%);
-    background-size: 100% 100%, 400px 400px, 400px 400px;
+      linear-gradient(rgba(255, 241, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 241, 0, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
+    animation: grid-shift 20s linear infinite;
   }
 
   h1,
@@ -113,6 +114,36 @@
     @apply border-2;
     border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent))) 1;
     box-shadow: 0 0 15px rgba(255, 241, 0, 0.2);
+  }
+
+  .crt-screen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .crt-screen::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 2;
+    background-size: 100% 2px, 2px 100%;
+    pointer-events: none;
+  }
+
+  .crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(10, 13, 26, 0.4) 100%);
+    pointer-events: none;
+    z-index: 20000;
   }
 }
 

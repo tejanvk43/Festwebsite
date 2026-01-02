@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { GameBoyMenu } from "@/components/GameBoyMenu";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Events from "@/pages/Events";
@@ -13,6 +14,7 @@ import Schedule from "@/pages/Schedule";
 import Venue from "@/pages/Venue";
 import Contact from "@/pages/Contact";
 import Register from "@/pages/Register";
+import { FestBot } from "@/components/FestBot";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,6 +53,7 @@ function Router() {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLoadingFinished = () => {
     setIsLoading(false);
@@ -69,11 +72,18 @@ function App() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="min-h-screen flex flex-col bg-background text-foreground font-body selection:bg-primary selection:text-primary-foreground"
           >
-            <Navigation />
+            <Navigation onOpenMenu={() => setIsMenuOpen(true)} />
             <main className="flex-grow">
               <Router />
             </main>
             <Footer />
+            <AnimatePresence>
+              {isMenuOpen && (
+                <GameBoyMenu onClose={() => setIsMenuOpen(false)} />
+              )}
+            </AnimatePresence>
+            <div className="crt-overlay" />
+            <FestBot />
             <Toaster />
           </motion.div>
         )}

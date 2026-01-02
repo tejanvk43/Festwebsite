@@ -47,15 +47,41 @@ export default function Contact() {
 
         <div className="space-y-6">
           <PixelCard variant="secondary" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-secondary">Faculty COORDINATOR</h3>
+            <h3 className="font-pixel mb-4 text-secondary uppercase">Faculty COORDINATORS</h3>
             <div className="space-y-4">
-              <div>
-                <div className="font-bold">Faculty-1</div>
-                <div className="text-sm text-muted-foreground">Faculty 1 Number</div>
+              <div className="flex justify-between items-start border-b border-border/30 pb-2">
+                <div>
+                  <div className="font-bold text-sm">Dr. P. Rajesh</div>
+                  <div className="text-[10px] text-muted-foreground uppercase">Convener</div>
+                </div>
+                <div className="text-xs font-mono">+91 94401 23456</div>
               </div>
-              <div>
-                <div className="font-bold">Faculty-2</div>
-                <div className="text-sm text-muted-foreground">Faculty 2 Number</div>
+              <div className="flex justify-between items-start">
+                <div>
+                  <div className="font-bold text-sm">Mr. K. Sai Krishna</div>
+                  <div className="text-[10px] text-muted-foreground uppercase">Co-Convener</div>
+                </div>
+                <div className="text-xs font-mono">+91 98850 67890</div>
+              </div>
+            </div>
+          </PixelCard>
+
+          <PixelCard variant="primary" hoverEffect={false}>
+            <h3 className="font-pixel mb-4 text-primary uppercase">Student COORDINATORS</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-start border-b border-border/30 pb-2">
+                <div>
+                  <div className="font-bold text-sm">T. Teja</div>
+                  <div className="text-[10px] text-muted-foreground uppercase">General Secretary</div>
+                </div>
+                <div className="text-xs font-mono">+91 73861 24708</div>
+              </div>
+              <div className="flex justify-between items-start">
+                <div>
+                  <div className="font-bold text-sm">V. Naveen</div>
+                  <div className="text-[10px] text-muted-foreground uppercase">Technical Lead</div>
+                </div>
+                <div className="text-xs font-mono">+91 90145 62341</div>
               </div>
             </div>
           </PixelCard>
@@ -65,11 +91,11 @@ export default function Contact() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <span>support@yourfest.org</span>
+                <span>College Email</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <span>0866 - 2555555</span>
+                <span>College Phone Number</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent mt-1" />
