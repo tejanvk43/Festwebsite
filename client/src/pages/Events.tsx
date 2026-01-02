@@ -137,7 +137,7 @@ export default function Events() {
                     <img 
                       src={event.image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"} 
                       alt={event.title} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                      className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     <div className="absolute top-4 left-4">

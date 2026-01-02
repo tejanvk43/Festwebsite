@@ -53,7 +53,7 @@ export default function Stalls() {
               <img 
                 src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80" 
                 alt={stall.name}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full h-full object-cover md:grayscale hover:grayscale-0 transition-all duration-500"
               />
               <div className="absolute bottom-2 left-2 px-2 py-1 bg-background border border-border text-[10px] font-pixel text-secondary uppercase">
                 {stall.type}

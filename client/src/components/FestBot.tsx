@@ -15,6 +15,7 @@ export function FestBot() {
   const [messages, setMessages] = useState<Message[]>([
     { role: "bot", content: "yoURFest OS v1.0.4. Booting... System ready. How can I assist you, Player One?" }
   ]);
+  const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,56 +25,87 @@ export function FestBot() {
   }, [messages]);
 
   const handleSend = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || isTyping) return;
 
     const userMsg = input.trim();
     setMessages(prev => [...prev, { role: "user", content: userMsg }]);
     setInput("");
+    setIsTyping(true);
 
-    // Simple keyword matching logic
+    // Dynamic response generation
     setTimeout(() => {
       const botResponse = generateResponse(userMsg);
       setMessages(prev => [...prev, { role: "bot", content: botResponse }]);
-    }, 600);
+      setIsTyping(false);
+    }, 1000 + Math.random() * 1000); // Simulate network/system delay
   };
 
   const generateResponse = (msg: string): string => {
-    const query = msg.toLowerCase();
+    const q = msg.toLowerCase();
     
-    if (query.includes("event") || query.includes("what is happening")) {
-      return `We have ${events.length} quests active! Categories include CSE, ECE, Mechanical, and Cultural. Check the Events page for details.`;
-    }
-    
-    if (query.includes("time") || query.includes("schedule") || query.includes("when")) {
-      return "The festival runs from Jan 23 to Jan 25, 2026. Daily loops start at 09:00 AM.";
+    // Help command
+    if (q.includes("help") || q === "hi" || q === "hello") {
+      return "ACCESS GRANTED. I can provide intel on: \n1. Active EVENTS & Departments\n2. STALLS & Food\n3. SCHEDULE & Timing\n4. VENUE & Map\n5. College Info\n\nWhat's your query, Player?";
     }
 
-    if (query.includes("food") || query.includes("stall") || query.includes("eat")) {
-      const foodStalls = stalls.filter(s => s.category === "Food");
-      return `Hungry? Visit ${foodStalls.map(s => s.name).join(", ")} at the Stall Arcade!`;
+    // College Info
+    if (q.includes("college") || q.includes("usha rama")) {
+      return "Usha Rama College of Engineering and Technology is our host sector. Location: Telaprolu, near Vijayawada. It is an Autonomous institute focused on technical excellence.";
     }
 
-    if (query.includes("where") || query.includes("venue") || query.includes("location")) {
-      return "Main Headquarters: Usharama College of Engineering, Telaprolu. Check the Venue map for coordinates.";
+    // Events Info - General
+    if (q.includes("event") || q.includes("quest") || q.includes("what is happening")) {
+      const categories = [...new Set(events.map(e => e.department))];
+      return `Currently ${events.length} quests detected across departments: ${categories.join(", ")}. Which sector are you interested in?`;
     }
 
-    const matchedEvent = events.find(e => query.includes(e.name.toLowerCase()));
-    if (matchedEvent) {
-      return `${matchedEvent.name}: ${matchedEvent.description} Prize: ${matchedEvent.prize}. Found it in the ${matchedEvent.department} zone.`;
+    // Events Info - Specific Event
+    const eventMatch = events.find(e => q.includes(e.title.toLowerCase()));
+    if (eventMatch) {
+      return `INTEL: ${eventMatch.title} | ${eventMatch.type.toUpperCase()} | Venue: ${eventMatch.venueArea} | Date: ${eventMatch.date}. Description: ${eventMatch.shortDescription} Prize: ${eventMatch.prize}.`;
     }
 
-    return "COMMAND NOT RECOGNIZED. I can help with Event Info, Schedule, Food Stalls, or Venue details. Try asking 'Tell me about events'.";
+    // Department Specific
+    if (q.includes("cse") || q.includes("cs")) return "CSE Sub-sector highlights: Rapid Coders, Tech Talks, and Prompt AI. Full list available in the DATA terminal.";
+    if (q.includes("ece")) return "ECE Sub-sector highlights: Circuitrix and Techno Parady. Check the console for more.";
+    if (q.includes("mech")) return "MECH Sub-sector: Tech Olympics and Go Karting are the main attractions.";
+
+    // Schedule
+    if (q.includes("time") || q.includes("schedule") || q.includes("when")) {
+      return "SEQUENCE: \nDay 1 (Jan 23): Technical Quests & Tech Expo.\nDay 2 (Jan 24): Cultural Grand Finale & Awards.\nSystem uptime: 09:00 AM - 08:30 PM.";
+    }
+
+    // Stalls & Food
+    if (q.includes("food") || q.includes("stall") || q.includes("eat") || q.includes("hungry")) {
+      const foodStalls = stalls.filter(s => s.type === "food");
+      if (foodStalls.length > 0) {
+        return `NUTRITION STATIONS: ${foodStalls.map(s => s.name).join(", ")}. Located at the Main Grounds Pavilion.`;
+      }
+      return "Standard nutrition protocols apply. Visit the Stall Arcade for energy modules.";
+    }
+
+    // Registration
+    if (q.includes("register") || q.includes("join") || q.includes("ticket")) {
+      return "REGISTRATION PROTOCOL: Click the 'GET TICKETS' or 'REGISTER' buttons on the dashboard to uplink your profile.";
+    }
+
+    // Venue
+    if (q.includes("where") || q.includes("venue") || q.includes("location") || q.includes("map")) {
+      return "COORDINATES: Usha Rama College, Telaprolu. Major zones: Block A (IT/CSE), Block C (MECH), Main Stage (Cultural). Tap the Map icon in the console menu.";
+    }
+
+    return "ERROR 404: Command logic not found. I am programmed with knowledge of yoURFest 2026. Try asking about 'Events', 'Food', or 'Schedule'.";
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div className="fixed bottom-6 right-6 z-[10000]">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[320px] h-[450px] bg-black border-4 border-primary rounded-none shadow-[10px_10px_0_0_rgba(255,241,0,0.2)] flex flex-col overflow-hidden"
+            className="mb-4 w-[320px] h-[450px] bg-black border-4 border-primary rounded-none shadow-[10px_10px_0_0_rgba(255,241,0,0.2)] flex flex-col overflow-hidden origin-bottom-right"
           >
             {/* Terminal Header */}
             <div className="bg-primary p-2 flex justify-between items-center">
@@ -97,9 +129,9 @@ export function FestBot() {
                     {m.role === "bot" ? <Bot className="w-3 h-3" /> : <div className="w-3 h-3 border border-white" />}
                     <span className="text-[8px] font-pixel uppercase">{m.role === "bot" ? "SYSTEM" : "USER"}</span>
                   </div>
-                  <div className="pl-5 leading-relaxed">
+                  <div className="pl-5 leading-relaxed whitespace-pre-line">
                     {m.role === "bot" && "> "}{m.content}
-                    {i === messages.length - 1 && m.role === "bot" && (
+                    {i === messages.length - 1 && m.role === "bot" && !isTyping && (
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ repeat: Infinity, duration: 0.8 }}
@@ -109,6 +141,12 @@ export function FestBot() {
                   </div>
                 </div>
               ))}
+              {isTyping && (
+                <div className="text-primary flex items-center gap-2">
+                  <Bot className="w-3 h-3 animate-pulse" />
+                  <span className="text-[10px] font-pixel animate-pulse">PROCESSING...</span>
+                </div>
+              )}
             </div>
 
             {/* Input Footer */}
@@ -134,13 +172,20 @@ export function FestBot() {
         )}
       </AnimatePresence>
 
-      {/* Floating Toggle Button */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-primary text-primary-foreground rounded-none border-2 border-primary shadow-[4px_4px_0_0_rgba(255,241,0,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center glow-yellow"
-      >
-        <MessageSquare className="w-6 h-6" />
-      </button>
+      {/* Floating Toggle Button (Right Side) */}
+      {!isOpen && (
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setIsOpen(true)}
+          className="w-14 h-14 sm:w-16 sm:h-16 bg-primary text-primary-foreground rounded-none border-2 border-primary shadow-[4px_4px_0px_0px_white,0_0_20px_rgba(255,241,0,0.5)] hover:shadow-[6px_6px_0px_0px_white,0_0_30px_rgba(255,241,0,0.8)] transition-all flex flex-col items-center justify-center group"
+        >
+          <Bot className="w-6 h-6 sm:w-7 sm:h-7" />
+          <span className="text-[8px] font-pixel mt-1 opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest text-white">FEST BOT</span>
+        </motion.button>
+      )}
     </div>
   );
 }

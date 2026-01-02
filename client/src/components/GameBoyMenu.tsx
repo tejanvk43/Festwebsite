@@ -29,6 +29,23 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
     if (currentIndex !== -1) setSelectedIndex(currentIndex);
   }, [location]);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
   const handleUp = () => {
     setSelectedIndex(prev => {
       const newIndex = prev > 0 ? prev - 1 : navItems.length - 1;
@@ -74,7 +91,7 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
   }, [selectedIndex]);
 
   return (
-    <div className="fixed inset-0 z-[50000] bg-black/90 flex items-start justify-center p-4 pt-4 md:pt-8 overflow-y-auto overflow-x-hidden">
+    <div className="fixed inset-0 z-[50000] bg-black/90 flex items-center justify-center p-4" style={{ touchAction: 'none' }}>
       <motion.div
         initial={{ y: 50, scale: 0.9, opacity: 0 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}

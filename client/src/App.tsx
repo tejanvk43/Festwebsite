@@ -77,17 +77,24 @@ function App() {
               <Router />
             </main>
             <Footer />
-            <AnimatePresence>
-              {isMenuOpen && (
-                <GameBoyMenu onClose={() => setIsMenuOpen(false)} />
-              )}
-            </AnimatePresence>
             <div className="crt-overlay" />
-            <FestBot />
             <Toaster />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Global Elements outside transform containers */}
+      {!isLoading && (
+        <>
+          <AnimatePresence>
+            {isMenuOpen && (
+              <GameBoyMenu key="menu" onClose={() => setIsMenuOpen(false)} />
+            )}
+          </AnimatePresence>
+
+          <FestBot />
+        </>
+      )}
     </QueryClientProvider>
   );
 }

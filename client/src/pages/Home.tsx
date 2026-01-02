@@ -163,7 +163,7 @@ export default function Home() {
                       <img 
                         src={event.image} 
                         alt={event.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 md:grayscale group-hover:grayscale-0"
                       />
                       <div className="absolute top-2 right-2 px-2 py-1 bg-background/80 backdrop-blur border border-border text-[10px] font-pixel text-primary uppercase">
                         {event.type}
