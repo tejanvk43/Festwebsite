@@ -670,6 +670,65 @@ export default function Register() {
                     </div>
                   </div>
                   
+                  {/* Pricing Breakdown */}
+                  {selectedEvents.length > 0 && (() => {
+                    const totalEvents = selectedEvents.length;
+                    const freeEvents = Math.floor(totalEvents / 3);
+                    const paidEvents = totalEvents - freeEvents;
+                    const totalOriginalCost = selectedEvents.reduce((sum, e) => sum + e.registrationFee, 0);
+                    const averageFee = totalOriginalCost / totalEvents;
+                    const discount = freeEvents * averageFee;
+                    const finalCost = totalOriginalCost - discount;
+                    
+                    return (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-primary/10 border-2 border-primary p-6 space-y-3"
+                      >
+                        <div className="text-sm font-pixel text-primary uppercase mb-4 flex items-center gap-2">
+                          <Gift className="w-4 h-4" />
+                          PRICING BREAKDOWN
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-xs">
+                            <span className="text-muted-foreground">Total Events Selected:</span>
+                            <span className="font-bold">{totalEvents}</span>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-muted-foreground">Original Cost:</span>
+                            <span className="font-mono">₹{totalOriginalCost}</span>
+                          </div>
+                          {freeEvents > 0 && (
+                            <>
+                              <div className="flex justify-between text-xs text-accent">
+                                <span className="flex items-center gap-1">
+                                  <Sparkles className="w-3 h-3" />
+                                  Free Events (Buy 2 Get 1):
+                                </span>
+                                <span className="font-bold">{freeEvents} Event{freeEvents > 1 ? 's' : ''}</span>
+                              </div>
+                              <div className="flex justify-between text-xs text-accent">
+                                <span>Discount:</span>
+                                <span className="font-bold">- ₹{Math.round(discount)}</span>
+                              </div>
+                            </>
+                          )}
+                          <div className="border-t-2 border-primary/30 pt-2 mt-2">
+                            <div className="flex justify-between text-base font-pixel">
+                              <span className="text-primary">FINAL AMOUNT:</span>
+                              <span className="text-primary text-xl">₹{Math.round(finalCost)}</span>
+                            </div>
+                            <p className="text-[8px] text-muted-foreground mt-2">
+                              You pay for {paidEvents} event{paidEvents > 1 ? 's' : ''} • Save ₹{Math.round(discount)}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                  
                   <div className="p-4 bg-accent/5 border border-accent/20 rounded-none flex gap-3 items-start">
                     <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
