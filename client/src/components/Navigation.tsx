@@ -38,8 +38,9 @@ export function Navigation({
           </a>
           <div className="h-6 sm:h-8 w-[2px] bg-border hidden sm:block" />
           <Link href="/">
-            <div className="font-pixel text-base sm:text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
-              yoURFest<span className="text-secondary text-[10px] sm:text-xs align-top ml-0.5 sm:ml-1" style={{ textShadow: '0 0 8px rgba(190, 127, 255, 0.4)' }}>2026</span>
+            <div className="font-pixel text-base sm:text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all flex items-baseline" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
+              <span>yoUR Fest</span>
+              <span className="text-secondary text-[10px] sm:text-xs align-top ml-0.5 sm:ml-1" style={{ textShadow: `0 0 8px hsla(var(--secondary), 0.4)` }}>2026</span>
             </div>
           </Link>
         </div>
@@ -48,10 +49,14 @@ export function Navigation({
         <div className="flex items-center gap-3 sm:gap-6">
           <Link href="/register">
             <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
-              TICKETS
+              Online Registration
             </button>
           </Link>
-          
+          <Link href="/contact">
+            <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
+              Contact Us
+            </button>
+          </Link>
           <button
             onClick={toggleTheme}
             className="p-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all flex items-center justify-center glow-yellow group"

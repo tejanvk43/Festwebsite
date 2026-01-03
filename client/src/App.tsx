@@ -15,6 +15,7 @@ import Venue from "@/pages/Venue";
 import Contact from "@/pages/Contact";
 import Register from "@/pages/Register";
 import { FestBot } from "@/components/FestBot";
+import ScrollToTop from "@/components/ScrollToTop";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -111,6 +112,7 @@ function App() {
           </AnimatePresence>
 
           <FestBot />
+          <ScrollToTop />
         </>
       )}
     </QueryClientProvider>

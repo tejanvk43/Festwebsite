@@ -47,21 +47,28 @@ export default function Contact() {
 
         <div className="space-y-6">
           <PixelCard variant="secondary" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-secondary uppercase">Faculty COORDINATORS</h3>
+            <h3 className="font-pixel mb-4 text-secondary uppercase text-xs">Faculty COORDINATORS</h3>
             <div className="space-y-4">
-              <div className="flex justify-between items-start border-b border-border/30 pb-2">
-                <div>
-                  <div className="font-bold text-sm">Dr. P. Rajesh</div>
-                  <div className="text-[10px] text-muted-foreground uppercase">Convener</div>
+              <div className="flex flex-col border-b border-border/30 pb-2">
+                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Convener</div>
+                <div className="flex justify-between items-center">
+                  <div className="font-bold text-sm">Dr. K. Naresh</div>
+                  <div className="text-xs font-mono text-primary">+91 9949257091</div>
                 </div>
-                <div className="text-xs font-mono">+91 94401 23456</div>
               </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-bold text-sm">Mr. K. Sai Krishna</div>
-                  <div className="text-[10px] text-muted-foreground uppercase">Co-Convener</div>
+              <div className="flex flex-col border-b border-border/30 pb-2">
+                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Co-Convener 1</div>
+                <div className="flex justify-between items-center">
+                  <div className="font-bold text-sm">Dr. S. M. Roy Choudri</div>
+                  <div className="text-xs font-mono text-primary">+91 9849645441</div>
                 </div>
-                <div className="text-xs font-mono">+91 98850 67890</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Co-Convener 2</div>
+                <div className="flex justify-between items-center">
+                  <div className="font-bold text-sm">Dr. K. Babu Rao</div>
+                  <div className="text-xs font-mono text-primary">+91 9100363064</div>
+                </div>
               </div>
             </div>
           </PixelCard>

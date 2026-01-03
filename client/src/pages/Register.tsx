@@ -34,7 +34,7 @@ export default function Register() {
     defaultValues: {
       eventIds: [],
       teamName: "",
-      college: "Usharama College",
+      college: "",
       participantName: "",
       email: "",
       phone: "",
@@ -42,16 +42,20 @@ export default function Register() {
       participantBranch: "",
       participantYear: "",
       branch: [],
-      regType: "tech"
+      regType: "tech",
+      educationLevel: ""
     }
   });
 
   const regType = form.watch("regType");
+  const educationLevel = form.watch("educationLevel");
   const selectedBranches = form.watch("branch") as string[];
   const selectedEventIds = (form.watch("eventIds") || []) as string[];
   const [searchQuery, setSearchQuery] = useState("");
-
   const selectedEvents = events?.filter(e => selectedEventIds.includes(e.id)) || [];
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  
+  const branchOptions = ["CSE", "IT", "ECE", "EEE", "MECH", "CIVIL", "AI&ML", "Data Science", "Cyber Security", "MBA", "MCA"];
 
   const onSubmit = (data: InsertRegistration) => {
     mutate(data, {
@@ -69,7 +73,7 @@ export default function Register() {
   const nextStep = async () => {
     let fieldsToValidate: any[] = [];
     if (step === 1) {
-      fieldsToValidate = ["participantName", "rollNumber", "participantBranch", "participantYear", "email", "phone", "college"];
+      fieldsToValidate = ["participantName", "rollNumber", "participantBranch", "participantYear", "email", "phone", "college", "educationLevel"];
     } else if (step === 2) {
       fieldsToValidate = ["regType"];
     } else if (step === 3) {
@@ -334,41 +338,128 @@ export default function Register() {
                       <label className="text-xs font-pixel uppercase text-muted-foreground">Participant Name *</label>
                       <input 
                         {...form.register("participantName")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                        className={`w-full bg-background border-2 p-3 focus:outline-none transition-colors focus:glow-yellow ${form.formState.errors.participantName ? "border-red-500" : "border-border focus:border-primary"}`}
                         placeholder="Enter Your Name"
                       />
+                      {form.formState.errors.participantName && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.participantName.message}</p>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-pixel uppercase text-muted-foreground">Roll Number *</label>
                       <input 
                         {...form.register("rollNumber")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                        className={`w-full bg-background border-2 p-3 focus:outline-none transition-colors focus:glow-yellow ${form.formState.errors.rollNumber ? "border-red-500" : "border-border focus:border-primary"}`}
                         placeholder="Enter Your Roll Number"
                       />
+                      {form.formState.errors.rollNumber && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.rollNumber.message}</p>
+                      )}
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-pixel uppercase text-muted-foreground">Branch *</label>
+                      <label className="text-xs font-pixel uppercase text-muted-foreground">Education LEVEL *</label>
+                      <div className="stylish-select-container">
+                        <select 
+                          {...form.register("educationLevel")}
+                          className="stylish-select"
+                        >
+                          <option value="" className="stylish-option">Select Level</option>
+                          <option value="DIPLOMA" className="stylish-option">DIPLOMA</option>
+                          <option value="UG" className="stylish-option">UG (B.Tech/B.Sc/etc)</option>
+                          <option value="PG" className="stylish-option">PG (M.Tech/MBA/etc)</option>
+                        </select>
+                      </div>
+                      {form.formState.errors.educationLevel && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.educationLevel.message}</p>
+                      )}
+                    </div>
+                    <div className="space-y-2 relative">
+                      <label className="text-xs font-pixel uppercase text-muted-foreground">Branch / Dept *</label>
                       <input 
                         {...form.register("participantBranch")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
-                        placeholder="Enter Your Branch (e.g. CSE)"
+                        onFocus={() => setShowSuggestions(true)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                        className={`stylish-input ${form.formState.errors.participantBranch ? "border-red-500" : ""}`}
+                        placeholder="Select or Type Branch"
+                        autoComplete="off"
                       />
+                      {form.formState.errors.participantBranch && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.participantBranch.message}</p>
+                      )}
+                      <AnimatePresence>
+                        {showSuggestions && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="suggestions-list scrollbar-hide"
+                          >
+                            {branchOptions.filter(b => 
+                              b.toLowerCase().includes(form.watch("participantBranch")?.toLowerCase() || "")
+                            ).map(option => (
+                              <div 
+                                key={option}
+                                className="suggestion-item"
+                                onClick={() => {
+                                  form.setValue("participantBranch", option);
+                                  setShowSuggestions(false);
+                                }}
+                              >
+                                {option}
+                              </div>
+                            ))}
+                            {branchOptions.filter(b => 
+                              b.toLowerCase().includes(form.watch("participantBranch")?.toLowerCase() || "")
+                            ).length === 0 && (
+                              <div className="p-3 text-[8px] font-pixel text-muted-foreground uppercase">
+                                Press Enter to use custom branch
+                              </div>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-pixel uppercase text-muted-foreground">Year *</label>
-                      <select 
-                        {...form.register("participantYear")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors appearance-none"
-                      >
-                        <option value="">Select Year</option>
-                        <option value="1">1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                        <option value="4">4th Year</option>
-                      </select>
+                      <label className="text-xs font-pixel uppercase text-muted-foreground">Year of Study *</label>
+                      <div className="stylish-select-container">
+                        <select 
+                          {...form.register("participantYear")}
+                          className="stylish-select disabled:opacity-50"
+                          disabled={!educationLevel}
+                        >
+                          <option value="" className="stylish-option">Select Year</option>
+                          {educationLevel === "DIPLOMA" && (
+                            <>
+                              <option value="1" className="stylish-option">1st Year</option>
+                              <option value="2" className="stylish-option">2nd Year</option>
+                              <option value="3" className="stylish-option">3rd Year</option>
+                            </>
+                          )}
+                          {educationLevel === "UG" && (
+                            <>
+                              <option value="1" className="stylish-option">1st Year</option>
+                              <option value="2" className="stylish-option">2nd Year</option>
+                              <option value="3" className="stylish-option">3rd Year</option>
+                              <option value="4" className="stylish-option">4th Year</option>
+                            </>
+                          )}
+                          {educationLevel === "PG" && (
+                            <>
+                              <option value="1" className="stylish-option">1st Year</option>
+                              <option value="2" className="stylish-option">2nd Year</option>
+                            </>
+                          )}
+                        </select>
+                      </div>
+                      {form.formState.errors.participantYear && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.participantYear.message}</p>
+                      )}
                     </div>
                   </div>
 
@@ -378,26 +469,36 @@ export default function Register() {
                       <input 
                         type="email"  
                         {...form.register("email")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                        className={`w-full bg-background border-2 p-3 focus:outline-none transition-colors focus:glow-yellow ${form.formState.errors.email ? "border-red-500" : "border-border focus:border-primary"}`}
                         placeholder="Enter Your Email"
                       />
+                      {form.formState.errors.email && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.email.message}</p>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-pixel uppercase text-muted-foreground">Phone *</label>
                       <input 
                         {...form.register("phone")}
-                        className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                        className={`w-full bg-background border-2 p-3 focus:outline-none transition-colors focus:glow-yellow ${form.formState.errors.phone ? "border-red-500" : "border-border focus:border-primary"}`}
                         placeholder="Enter Phone Number"
                       />
+                      {form.formState.errors.phone && (
+                        <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.phone.message}</p>
+                      )}
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-pixel uppercase text-muted-foreground">College / Institution</label>
+                    <label className="text-xs font-pixel uppercase text-muted-foreground">College / Institution *</label>
                     <input 
                       {...form.register("college")}
-                      className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors focus:glow-yellow"
+                      placeholder="Enter College / Institution"
+                      className={`w-full bg-background border-2 p-3 focus:outline-none transition-colors focus:glow-yellow ${form.formState.errors.college ? "border-red-500" : "border-border focus:border-primary"}`}
                     />
+                    {form.formState.errors.college && (
+                      <p className="text-[10px] text-red-500 font-pixel uppercase mt-1">{form.formState.errors.college.message}</p>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -413,14 +514,17 @@ export default function Register() {
                   <label className="block text-center text-sm font-pixel text-primary mb-6">WHAT'S YOUR PATH?</label>
                   <div className="grid grid-cols-1 gap-4">
                     {[
-                      { id: "tech", label: "TECHNICAL QUESTS" },
-                      { id: "cultural", label: "CULTURAL VIBES" },
-                      { id: "both", label: "ASCEND TO BOTH" }
+                      { id: "tech", label: "TECHNICAL Events" },
+                      { id: "cultural", label: "CULTURAL Events" },
+                      { id: "both", label: "Both TECHNICAL & CULTURAL Events" }
                     ].map(type => (
                       <button
                         key={type.id}
                         type="button"
-                        onClick={() => form.setValue("regType", type.id as any)}
+                        onClick={() => {
+                          form.setValue("regType", type.id as any);
+                          setTimeout(nextStep, 100); // Small delay for visual feedback of selection
+                        }}
                         className={`p-6 border-2 font-pixel text-xs transition-all ${regType === type.id ? "border-primary bg-primary/10 glow-yellow translate-x-1" : "border-border hover:border-primary/50"}`}
                       >
                         {type.label}
@@ -533,7 +637,7 @@ export default function Register() {
                     </div>
                     <div className="flex justify-between text-xs font-pixel text-muted-foreground">
                       <span>YEAR:</span>
-                      <span className="text-foreground">{form.getValues("participantYear")}</span>
+                      <span className="text-foreground">{form.getValues("participantYear")} ({form.getValues("educationLevel")})</span>
                     </div>
                     <div className="flex justify-between text-xs font-pixel text-muted-foreground">
                       <span>PATH:</span>
@@ -586,13 +690,16 @@ export default function Register() {
               )}
               
               {step < 5 ? (
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="flex-grow py-4 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex justify-center items-center gap-2"
-                >
-                  NEXT <ArrowRight className="w-4 h-4" />
-                </button>
+                // Hide NEXT button on Step 2 since clicking an option auto-proceeds
+                step !== 2 && (
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="flex-grow py-4 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex justify-center items-center gap-2"
+                  >
+                    NEXT <ArrowRight className="w-4 h-4" />
+                  </button>
+                )
               ) : (
                 <button 
                   type="submit"

@@ -28,7 +28,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 border-2 border-accent text-accent font-pixel text-[8px] sm:text-xs bg-accent/10">
-              JAN 23-24, 2026 · USHARAMA COLLEGE
+              JAN 23-24, 2026 · Usha Rama College of Engineering and Technology
             </div>
             
             <motion.h1 
@@ -67,7 +67,12 @@ export default function Home() {
               </Link>
               <Link href="/register">
                 <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent text-secondary font-pixel text-xs sm:text-sm border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(255,77,230,0.3)] sm:shadow-[6px_6px_0px_0px_rgba(255,77,230,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-                  GET TICKETS
+                  Register Now
+                </button>
+              </Link>
+              <Link href="/contact">
+                <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent text-accent font-pixel text-xs sm:text-sm border-2 border-accent shadow-[4px_4px_0px_0px_rgba(0,229,255,0.3)] sm:shadow-[6px_6px_0px_0px_rgba(0,229,255,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                  CONTACT US
                 </button>
               </Link>
             </div>

@@ -6,18 +6,20 @@
 
 :root {
   /* Futuristic Neon Yellow Theme */
-  --background: 220 10% 4%;
-  /* Deep dark - #0A0D1A */
+  /* Rich Brown Theme Base */
+  --background: 25 30% 12%;
+  /* Deep Coffee Brown */
   --foreground: 60 100% 95%;
+  /* Off-white */
   /* Bright white-ish */
 
   --primary: 56 100% 50%;
   /* #FFF100 - Neon Yellow (MAIN) */
   --primary-foreground: 220 10% 4%;
 
-  --secondary: 280 100% 55%;
-  /* #BE7FFF - Neon Purple */
-  --secondary-foreground: 60 100% 95%;
+  --secondary: 32 100% 50%;
+  /* #FF8C00 - Cyberpunk Orange */
+  --secondary-foreground: 220 10% 4%;
 
   --accent: 186 100% 50%;
   /* #00E5FF - Cyan Accent */
@@ -27,13 +29,13 @@
   /* Dark muted */
   --muted-foreground: 220 10% 60%;
 
-  --card: 220 15% 8%;
-  /* #0F1629 - Card dark */
+  --card: 25 25% 18%;
+  /* Slightly lighter brown */
   --card-foreground: 60 100% 95%;
 
-  --border: 220 20% 20%;
-  /* #1A2847 - Neon-edged borders */
-  --input: 220 20% 20%;
+  --border: 25 20% 25%;
+  /* Subtle brown border */
+  --input: 25 20% 20%;
 
   --ring: 56 100% 50%;
   /* Focus ring matches primary (yellow) */
@@ -47,7 +49,7 @@
 
   /* Neon glow colors */
   --glow-yellow: 56 100% 50%;
-  --glow-purple: 280 100% 55%;
+  --glow-orange: 32 100% 50%;
   --glow-cyan: 186 100% 50%;
 }
 
@@ -57,16 +59,16 @@
   --foreground: 220 10% 4%;
   /* Deep dark text */
 
-  --primary: 142 70% 35%;
-  /* Emerald Retro Green for light mode contrast */
+  --primary: 220 90% 45%;
+  /* Electric Blue for tech aesthetic */
   --primary-foreground: 60 100% 98%;
 
-  --secondary: 45 100% 45%;
-  /* Gold/Amber for contrast in light mode */
+  --secondary: 280 70% 50%;
+  /* Royal Purple */
   --secondary-foreground: 220 10% 4%;
 
-  --accent: 30 100% 40%;
-  /* Deep Orange/Amber */
+  --accent: 15 90% 50%;
+  /* Industrial Orange */
   --accent-foreground: 60 100% 98%;
 
   --muted: 220 10% 90%;
@@ -79,12 +81,12 @@
   --border: 220 10% 80%;
   --input: 220 10% 90%;
 
-  --ring: 142 70% 35%;
+  --ring: 220 90% 45%;
 
   /* Softened glows for light mode */
   --glow-yellow: 45 100% 50%;
-  --glow-purple: 142 70% 40%;
-  --glow-cyan: 158 100% 40%;
+  --glow-purple: 280 70% 45%;
+  --glow-cyan: 190 90% 45%;
 }
 
 @layer base {
@@ -126,8 +128,8 @@
     box-shadow: 0 0 10px hsla(var(--glow-yellow), 0.5), 0 0 20px hsla(var(--glow-yellow), 0.3), inset 0 0 10px hsla(var(--glow-yellow), 0.1);
   }
 
-  .glow-purple {
-    box-shadow: 0 0 10px hsla(var(--glow-purple), 0.5), 0 0 20px hsla(var(--glow-purple), 0.3), inset 0 0 10px hsla(var(--glow-purple), 0.1);
+  .glow-orange {
+    box-shadow: 0 0 10px hsla(var(--glow-orange), 0.5), 0 0 20px hsla(var(--glow-orange), 0.3), inset 0 0 10px hsla(var(--glow-orange), 0.1);
   }
 
   .glow-cyan {
@@ -234,6 +236,44 @@
   animation: neon-pulse 2s ease-in-out infinite;
 }
 
+/* Stylish Form Elements - Industrial Console Look */
+.stylish-select-container {
+  @apply relative w-full;
+}
+
+.stylish-select {
+  @apply w-full bg-background border-2 border-border p-3 pr-10 focus:outline-none focus:border-primary transition-all appearance-none cursor-pointer;
+  background-image: linear-gradient(45deg, transparent 50%, hsl(var(--primary)) 50%),
+    linear-gradient(135deg, hsl(var(--primary)) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+}
+
+.stylish-select:focus {
+  @apply glow-yellow;
+}
+
+.stylish-option {
+  @apply bg-card text-foreground font-body;
+}
+
+.stylish-input {
+  @apply w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-all focus:glow-yellow;
+}
+
+/* Autocomplete/Suggestions styling */
+.suggestions-list {
+  @apply absolute left-0 right-0 top-[calc(100%+2px)] bg-card border-2 border-primary z-[100] max-h-[200px] overflow-y-auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.suggestion-item {
+  @apply p-3 font-pixel text-[10px] cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors border-b border-border last:border-0;
+}
+
 /* Print Styles */
 @media print {
 
@@ -245,7 +285,7 @@
 
   body {
     background: white !important;
-    color: black !important;
+    color: rgb(0, 0, 0) !important;
     margin: 0;
     padding: 0;
   }

@@ -55,14 +55,14 @@ export function FestBot() {
 
     // Events Info - General
     if (q.includes("event") || q.includes("quest") || q.includes("what is happening")) {
-      const categories = [...new Set(events.map(e => e.department))];
+      const categories = Array.from(new Set(events.map(e => e.department)));
       return `Currently ${events.length} quests detected across departments: ${categories.join(", ")}. Which sector are you interested in?`;
     }
 
     // Events Info - Specific Event
     const eventMatch = events.find(e => q.includes(e.title.toLowerCase()));
     if (eventMatch) {
-      return `INTEL: ${eventMatch.title} | ${eventMatch.type.toUpperCase()} | Venue: ${eventMatch.venueArea} | Date: ${eventMatch.date}. Description: ${eventMatch.shortDescription} Prize: ${eventMatch.prize}.`;
+      return `INTEL: ${eventMatch.title} | ${eventMatch.type.toUpperCase()} | Date: ${eventMatch.date}. Description: ${eventMatch.shortDescription} Prize: ${eventMatch.prize}.`;
     }
 
     // Department Specific
@@ -72,7 +72,7 @@ export function FestBot() {
 
     // Schedule
     if (q.includes("time") || q.includes("schedule") || q.includes("when")) {
-      return "SEQUENCE: \nDay 1 (Jan 23): Technical Quests & Tech Expo.\nDay 2 (Jan 24): Cultural Grand Finale & Awards.\nSystem uptime: 09:00 AM - 08:30 PM.";
+      return "SEQUENCE: \nDay 1 (Jan 23): Technical Quests & Tech Expo.\nDay 2 (Jan 24): Cultural Grand Finale & Awards.\nSystem uptime: 09:40 AM - 04:00 PM.";
     }
 
     // Stalls & Food
@@ -89,9 +89,14 @@ export function FestBot() {
       return "REGISTRATION PROTOCOL: Click the 'GET TICKETS' or 'REGISTER' buttons on the dashboard to uplink your profile.";
     }
 
+    // Contact / Team
+    if (q.includes("contact") || q.includes("convener") || q.includes("help") || q.includes("team")) {
+      return "CORE LIAISONS: \nConvener: Dr. K. Naresh (+91 9949257091)\nCo-Convener 1: Dr. S. M. Roy Choudri (+91 9849645441)\nCo-Convener 2: Dr. K. Babu Rao (+91 9100363064)\nDirect uplink: his-support@usharama.in";
+    }
+
     // Venue
     if (q.includes("where") || q.includes("venue") || q.includes("location") || q.includes("map")) {
-      return "COORDINATES: Usha Rama College, Telaprolu. Major zones: Block A (IT/CSE), Block C (MECH), Main Stage (Cultural). Tap the Map icon in the console menu.";
+      return "COORDINATES: Usha Rama College, Telaprolu. Major zones: Block A (IT/CSE), Block C (MECH), Main Stage (Cultural). For specific room info, check the digital kiosks on site.";
     }
 
     return "ERROR 404: Command logic not found. I am programmed with knowledge of yoURFest 2026. Try asking about 'Events', 'Food', or 'Schedule'.";
@@ -105,7 +110,7 @@ export function FestBot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[320px] h-[450px] bg-black border-4 border-primary rounded-none shadow-[10px_10px_0_0_rgba(255,241,0,0.2)] flex flex-col overflow-hidden origin-bottom-right"
+            className="mb-4 w-[320px] h-[450px] bg-background border-4 border-primary rounded-none shadow-[10px_10px_0_0_rgba(255,241,0,0.2)] flex flex-col overflow-hidden origin-bottom-right"
           >
             {/* Terminal Header */}
             <div className="bg-primary p-2 flex justify-between items-center">
@@ -158,7 +163,7 @@ export function FestBot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Enter command..."
-                  className="flex-1 bg-black border border-primary/50 p-2 text-primary focus:outline-none focus:border-primary text-xs"
+                  className="flex-1 bg-background border border-primary/50 p-2 text-primary focus:outline-none focus:border-primary text-xs"
                 />
                 <button 
                   onClick={handleSend}
@@ -183,7 +188,7 @@ export function FestBot() {
           className="w-14 h-14 sm:w-16 sm:h-16 bg-primary text-primary-foreground rounded-none border-2 border-primary shadow-[4px_4px_0px_0px_white,0_0_20px_rgba(255,241,0,0.5)] hover:shadow-[6px_6px_0px_0px_white,0_0_30px_rgba(255,241,0,0.8)] transition-all flex flex-col items-center justify-center group"
         >
           <Bot className="w-6 h-6 sm:w-7 sm:h-7" />
-          <span className="text-[8px] font-pixel mt-1 opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest text-white">FEST BOT</span>
+          <span className="text-[8px] font-pixel mt-1 transition-opacity uppercase tracking-widest text-primary-foreground group-hover:text-white">FEST BOT</span>
         </motion.button>
       )}
     </div>

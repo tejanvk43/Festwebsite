@@ -20,10 +20,10 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
   return (
     <div className="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[560px] bg-[#f7b731] p-4 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_15px_0_#d19214,0_20px_40px_rgba(0,0,0,0.4)] md:shadow-[0_20px_0_#d19214,0_30px_60px_rgba(0,0,0,0.4)] border-3 md:border-4 border-[#d19214] flex flex-col gap-4 sm:gap-6 md:gap-8 mx-auto">
       {/* Power Light */}
-      <div className="absolute left-3 sm:left-4 top-16 sm:top-20 flex flex-col items-center gap-1">
+      {/* <div className="absolute left-3 sm:left-4 top-16 sm:top-20 flex flex-col items-center gap-1">
         <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-600 shadow-[0_0_10px_red]" />
         <span className="text-[5px] sm:text-[6px] font-pixel text-[#d19214]">POWER</span>
-      </div>
+      </div> */}
 
       {/* Screen Area */}
       <div className="bg-[#2d3436] p-3 sm:p-4 rounded-lg md:rounded-xl border-3 md:border-4 border-[#1e272e] shadow-inner">

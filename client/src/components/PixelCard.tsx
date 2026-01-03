@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 
-interface PixelCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PixelCardProps extends HTMLMotionProps<"div"> {
   variant?: "default" | "primary" | "secondary" | "accent";
   hoverEffect?: boolean;
 }

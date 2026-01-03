@@ -57,7 +57,6 @@ export default function Schedule() {
                          <PixelCard className="w-full flex items-center justify-between p-4 group-hover:border-accent transition-colors" hoverEffect={false}>
                            <div>
                              <h3 className="font-bold text-lg mb-1">{event.title}</h3>
-                             <p className="text-sm text-muted-foreground">{event.venueArea}</p>
                            </div>
                            <div className="px-3 py-1 bg-muted/20 text-[10px] font-pixel border border-muted/30">
                              {event.type}

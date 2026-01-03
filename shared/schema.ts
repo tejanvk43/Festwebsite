@@ -46,13 +46,23 @@ export const registrations = sqliteTable("registrations", {
   participantBranch: text("participant_branch"),
   participantYear: text("participant_year"),
   college: text("college"),
+  educationLevel: text("education_level"), // UG, PG, DIPLOMA
   branch: text("branch", { mode: "json" }).$type<string[]>(), // Array - store multiple tech branches
   regType: text("reg_type").notNull().default("tech"), // tech, cultural, both
 });
 
 export const insertEventSchema = createInsertSchema(events);
 export const insertStallSchema = createInsertSchema(stalls);
-export const insertRegistrationSchema = createInsertSchema(registrations);
+export const insertRegistrationSchema = createInsertSchema(registrations, {
+  participantName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  rollNumber: z.string().min(1, "Roll number is required"),
+  participantBranch: z.string().min(1, "Branch name is required"),
+  participantYear: z.string().min(1, "Year of study is required"),
+  educationLevel: z.string().min(1, "Education level is required"),
+  college: z.string().min(1, "College name is required"),
+});
 
 export type Event = typeof events.$inferSelect;
 export type InsertEvent = z.infer<typeof insertEventSchema>;
