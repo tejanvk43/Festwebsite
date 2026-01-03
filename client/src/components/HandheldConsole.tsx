@@ -35,9 +35,6 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
         </div>
         <div className="flex justify-between items-center mt-2 px-1">
           <span className="text-[6px] sm:text-[8px] font-pixel text-muted-foreground/50 tracking-[0.2em]">DOT MATRIX WITH STEREO SOUND</span>
-          <div className="flex gap-1">
-            {[1, 2, 3].map(i => <div key={i} className="w-[1px] h-1.5 sm:h-2 bg-muted-foreground/20" />)}
-          </div>
         </div>
       </div>
 
@@ -71,6 +68,7 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
             >
               <span className="text-white font-pixel text-lg sm:text-xl md:text-2xl">B</span>
             </button>
+            <span className="text-[6px] font-pixel text-[#d19214] text-center leading-tight">GO BACK/<br/>CLOSE</span>
           </div>
           <div className="flex flex-col items-center gap-1">
             <button 
@@ -79,6 +77,7 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
             >
               <span className="text-white font-pixel text-lg sm:text-xl md:text-2xl">A</span>
             </button>
+            <span className="text-[6px] font-pixel text-[#d19214] text-center leading-tight">SELECT/<br/>ENTER</span>
           </div>
         </div>
       </div>
@@ -95,12 +94,7 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
         </div>
       </div>
 
-      {/* Speaker Grill */}
-      <div className="absolute right-6 bottom-12 rotate-[30deg] flex flex-col gap-1.5 opacity-30">
-        {[1, 2, 3, 4, 5, 6].map(i => (
-          <div key={i} className="w-16 h-1.5 bg-[#d19214] rounded-full" />
-        ))}
-      </div>
+
     </div>
   );
 }

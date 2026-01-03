@@ -13,9 +13,14 @@ export default function Home() {
   const featuredEvents = events?.slice(0, 3) || [];
 
   return (
-    <div className="space-y-20 pb-20">
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden border-b-2 border-border">
+    <div className="pb-20">
+      {/* Hero Section with Promo Banner */}
+      <section className="relative min-h-[80vh] flex flex-col overflow-hidden border-b-2 border-border">
+        {/* Promo Banner - At top */}
+        <PromoBanner />
+        
+        {/* Hero Content */}
+        <div className="flex-1 flex items-center justify-center">
         {/* Abstract Background Elements */}
         <div className="absolute inset-0 z-0 opacity-20">
            <div className="absolute top-10 left-10 w-32 h-32 bg-primary blur-3xl rounded-full"></div>
@@ -60,15 +65,6 @@ export default function Home() {
               <CountdownTimer />
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="mb-8 px-4 max-w-3xl mx-auto"
-            >
-              <PromoBanner />
-            </motion.div>
-
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <Link href="/events">
                 <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground font-pixel text-xs sm:text-sm border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] sm:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
@@ -88,10 +84,11 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
       {/* Info Stats */}
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto px-4 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { icon: Calendar, label: "2 DAYS", sub: "Non-stop Action" },

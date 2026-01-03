@@ -92,7 +92,7 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
   }, [selectedIndex]);
 
   return (
-    <div className="fixed inset-0 z-[50000] bg-black/90 flex items-center justify-center p-4" style={{ touchAction: 'none' }}>
+    <div className="fixed inset-0 z-[50000] bg-black/90 flex items-center justify-center p-4 select-none" style={{ touchAction: 'none' }}>
       <motion.div
         initial={{ y: 50, scale: 0.9, opacity: 0 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -105,12 +105,13 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
           onA={handleSelect} 
           onB={onClose}
         >
-          <div ref={menuRef} className="space-y-1 max-h-[200px] overflow-y-auto scrollbar-hide">
-            <div className="flex items-center justify-between border-b border-primary/20 pb-2 mb-2">
-              <span className="text-[10px] font-pixel text-primary">yoUR Fest 2026</span>
+          <div className="flex flex-col h-full">
+            <div ref={menuRef} className="space-y-0.5 flex-1 overflow-y-auto scrollbar-hide">
+            <div className="flex items-center justify-between border-b border-white/30 pb-2 mb-2">
+              <span className="text-sm font-pixel text-white">yoUR Fest 2026</span>
               <div className="flex gap-2">
-                 <div className="w-1.5 h-1.5 bg-primary/20" />
-                 <div className="w-1.5 h-1.5 bg-primary/20" />
+                 <div className="w-1.5 h-1.5 bg-white/30" />
+                 <div className="w-1.5 h-1.5 bg-white/30" />
               </div>
             </div>
 
@@ -122,25 +123,22 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
                 <div 
                   key={item.href}
                   data-menu-item
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedIndex(index);
-                    handleSelect();
-                  }}
                   className={cn(
-                    "flex items-center gap-2 p-2 transition-all duration-150 cursor-pointer",
-                    isSelected ? "bg-primary text-primary-foreground translate-x-1" : "text-primary/60 hover:text-primary hover:bg-primary/5"
+                    "flex items-center gap-2 p-2 transition-all duration-150 pointer-events-none",
+                    isSelected ? "bg-primary text-black translate-x-1" : "text-white/80"
                   )}
                 >
                   <Icon className={cn("w-4 h-4", isSelected ? "animate-pulse" : "opacity-50")} />
-                  <span className="text-xs font-pixel tracking-wider">{item.label}</span>
+                  <span className="text-sm font-pixel tracking-wider">{item.label}</span>
                   {isSelected && <ChevronRight className="w-4 h-4 ml-auto" />}
                 </div>
               );
             })}
+            </div>
 
-            <div className="mt-4 pt-4 border-t border-primary/20">
-              <div className="text-[8px] font-pixel text-primary/40 leading-relaxed uppercase space-y-1">
+            {/* Instructions - Always visible at bottom */}
+            <div className="mt-2 pt-2 border-t border-white/20">
+              <div className="text-[10px] font-pixel text-white/70 leading-relaxed uppercase space-y-0.5">
                 DPAD: NAVIGATE<br/>
                 (A) BUTTON: SELECT/ENTER<br/>
                 (B) BUTTON: GO BACK/CLOSE
