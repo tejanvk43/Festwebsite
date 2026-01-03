@@ -4,7 +4,8 @@ import { insertRegistrationSchema, type InsertRegistration } from "@shared/route
 import { useCreateRegistration } from "@/hooks/use-registrations";
 import { useEvents } from "@/hooks/use-events";
 import { PixelCard } from "@/components/PixelCard";
-import { Loader2, Check, ArrowRight, ArrowLeft, Printer, Ticket, Package, AlertCircle } from "lucide-react";
+import { PromoBanner } from "@/components/PromoBanner";
+import { Loader2, Check, ArrowRight, ArrowLeft, Printer, Ticket, Package, AlertCircle, Gift, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -297,6 +298,9 @@ export default function Register() {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <div className="mb-8">
+        <PromoBanner />
+      </div>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-5xl mb-4 text-primary normal-case">JOIN yoURFest</h1>

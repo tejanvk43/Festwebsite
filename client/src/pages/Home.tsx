@@ -1,6 +1,7 @@
 import { useEvents } from "@/hooks/use-events";
 import { Link } from "wouter";
 import { PixelCard } from "@/components/PixelCard";
+import { PromoBanner } from "@/components/PromoBanner";
 import { GlitchText } from "@/components/GlitchText";
 import { Calendar, MapPin, Ticket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
@@ -57,6 +58,15 @@ export default function Home() {
               className="mb-6 sm:mb-10"
             >
               <CountdownTimer />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="mb-8 px-4 max-w-3xl mx-auto"
+            >
+              <PromoBanner />
             </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">

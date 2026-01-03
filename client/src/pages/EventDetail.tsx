@@ -85,6 +85,18 @@ export default function EventDetail() {
                     <div className="font-medium">Individual</div>
                   </div>
                 </div>
+                
+                <div className="flex items-center gap-4">
+                 <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
+                   <Users className="w-5 h-5 text-primary" />
+                 </div>
+                 <div>
+                   <div className="text-xs text-muted-foreground font-pixel uppercase">Faculty Coordinator</div>
+                   <div className="font-medium">{event.facultyCoordinator}</div>
+                   <div className="mt-2 text-xs text-muted-foreground font-pixel uppercase">Student Coordinator</div>
+                   <div className="font-medium">{event.studentCoordinator}</div>
+                 </div>
+               </div>
 
                <div className="flex items-center gap-4">
                  <div className="w-10 h-10 border-2 border-accent flex items-center justify-center bg-accent/10">

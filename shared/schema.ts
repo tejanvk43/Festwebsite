@@ -18,6 +18,8 @@ export const events = sqliteTable("events", {
   rules: text("rules", { mode: "json" }).$type<string[]>().notNull(),
   tags: text("tags", { mode: "json" }).$type<string[]>().notNull(),
   image: text("image").notNull(),
+  facultyCoordinator: text("faculty_coordinator"),
+  studentCoordinator: text("student_coordinator"),
 });
 
 export const stalls = sqliteTable("stalls", {

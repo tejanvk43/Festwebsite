@@ -14,6 +14,8 @@ export interface Event {
     rules: string[];
     tags: string[];
     image: string;
+    facultyCoordinator?: string;
+    studentCoordinator?: string;
 }
 
 export const events: Event[] = [
@@ -33,7 +35,9 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Standard safety gear required", "Participants must bring college ID"],
         tags: ["mechanical", "competition"],
-        image: "/assets/events/tech-olympics.png"
+        image: "/assets/events/tech-olympics.png",
+        facultyCoordinator: "Dr. Smith",
+        studentCoordinator: "John Doe"
     },
     {
         id: "evt-mech-002",
@@ -50,7 +54,9 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Helmets mandatory", "Strict adherence to track signals"],
         tags: ["racing", "mechanical"],
-        image: "/assets/events/go-karting.png"
+        image: "/assets/events/go-karting.png",
+        facultyCoordinator: "Prof. Johnson",
+        studentCoordinator: "Jane Doe"
     },
     // CSE, AIML & DS
     {

@@ -79,7 +79,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Trophies & Certificates",
         rules: ["Standard safety gear required", "Participants must bring college ID"],
         tags: ["mechanical", "competition"],
-        image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-mech-002",
@@ -96,7 +98,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Cash Prize & Medals",
         rules: ["Helmets mandatory", "Strict adherence to track signals"],
         tags: ["racing", "mechanical"],
-        image: "https://images.unsplash.com/photo-1547447134-cd3f5c716030?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1547447134-cd3f5c716030?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       // CSE, AIML & DS
       {
@@ -114,7 +118,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Learning Materials & Certificates",
         rules: ["No recording without permission"],
         tags: ["AI", "ML", "Computer Science"],
-        image: "https://images.unsplash.com/photo-1540575861501-7cf05a4112fb?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1540575861501-7cf05a4112fb?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cse-002",
@@ -131,7 +137,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Surprise Gifts",
         rules: ["No mobile phones during the contest"],
         tags: ["puzzles", "logic"],
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cse-003",
@@ -148,7 +156,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "AI Tool Subs",
         rules: ["Use of specific AI models only", "Ethical guidelines apply"],
         tags: ["AI", "Prompting"],
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cse-004",
@@ -165,7 +175,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Cash Prize & Internships",
         rules: ["Standard competitive programming rules apply"],
         tags: ["coding", "programming"],
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cse-005",
@@ -182,7 +194,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Tech Gadgets",
         rules: ["Completion within time is key"],
         tags: ["stamina", "logic"],
-        image: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       // All Departments
       {
@@ -200,7 +214,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Vouchers & Certificates",
         rules: ["Multiple rounds", "Rapid fire final"],
         tags: ["quiz", "general"],
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-all-002",
@@ -217,7 +233,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Best Project Award",
         rules: ["Functional models required", "Poster mandatory"],
         tags: ["innovation", "creative"],
-        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-all-003",
@@ -234,7 +252,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Certificates",
         rules: ["Standard poster size", "Oral summary required"],
         tags: ["research", "design"],
-        image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-all-004",
@@ -251,7 +271,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Best Paper Publication Merit",
         rules: ["Standard format guidelines", "PPT required"],
         tags: ["academic", "paper"],
-        image: "https://images.unsplash.com/photo-1454165833744-119520427847?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1454165833744-119520427847?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       // IT
       {
@@ -269,7 +291,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Cash & Swag",
         rules: ["Bring your own laptops"],
         tags: ["hacking", "development"],
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-it-002",
@@ -286,7 +310,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Mentorship opportunity",
         rules: ["Limit to 5 min pitch"],
         tags: ["startup", "ideas"],
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       // ECE & EEE
       {
@@ -304,7 +330,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Electronic Kits",
         rules: ["Safety first", "Components provided"],
         tags: ["electronics", "hardware"],
-        image: "https://images.unsplash.com/photo-1518770660439-46361a0af8bb?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1518770660439-46361a0af8bb?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-ece-002",
@@ -321,7 +349,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Gift Cards",
         rules: ["Speed and accuracy"],
         tags: ["quiz", "fast-paced"],
-        image: "https://images.unsplash.com/photo-1512428559083-abd60b38646b?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1512428559083-abd60b38646b?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-ece-003",
@@ -338,7 +368,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Surprise Mega Prize",
         rules: ["Mobile tracking mandatory"],
         tags: ["treasure-hunt", "clues"],
-        image: "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-ece-004",
@@ -355,7 +387,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Creative Award",
         rules: ["Humor allowed but respectful"],
         tags: ["humor", "creative"],
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       // Cultural Events (24-01-2026)
       {
@@ -373,7 +407,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Title & Crown",
         rules: ["Traditional attire mandatory"],
         tags: ["tradition", "talent"],
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-002",
@@ -390,7 +426,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Cash Prize & Trophy",
         rules: ["Max 3 minute performance"],
         tags: ["dance", "performance"],
-        image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-003",
@@ -407,7 +445,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Trophies",
         rules: ["Minus-one tracks allowed"],
         tags: ["music", "voice"],
-        image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-004",
@@ -424,7 +464,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Growth Kit",
         rules: ["Event hashtags required"],
         tags: ["social-media", "creative"],
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-005",
@@ -441,7 +483,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Lens kit",
         rules: ["Raw files required on demand"],
         tags: ["photography", "art"],
-        image: "https://images.unsplash.com/photo-1452784444945-3f422708fe5e?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1452784444945-3f422708fe5e?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-006",
@@ -458,7 +502,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Science sets",
         rules: ["No hazardous materials"],
         tags: ["science", "learning"],
-        image: "https://images.unsplash.com/photo-1564325724739-bae0bd08fc21?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1564325724739-bae0bd08fc21?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-007",
@@ -475,7 +521,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Home decor vouchers",
         rules: ["Bring your flowers if needed"],
         tags: ["art", "natural"],
-        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-008",
@@ -492,7 +540,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Public speaking books",
         rules: ["Language: English/Telugu"],
         tags: ["speaking", "debate"],
-        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-009",
@@ -509,7 +559,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Art kits",
         rules: ["Bring your own brushes"],
         tags: ["painting", "creative"],
-        image: "https://images.unsplash.com/photo-1460518451285-cd7ba7122700?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1460518451285-cd7ba7122700?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-010",
@@ -526,7 +578,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Books & Novelties",
         rules: ["Fastest solvers win"],
         tags: ["literature", "maze"],
-        image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       },
       {
         id: "evt-cul-011",
@@ -543,7 +597,9 @@ async function seedDatabase(storage: IStorage) {
         prize: "Title & Trophy",
         rules: ["Semi-formal attire required"],
         tags: ["personality", "talent"],
-        image: "https://images.unsplash.com/photo-1546519638-68e10940435a?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1546519638-68e10940435a?w=800&q=80",
+        facultyCoordinator: "TBD",
+        studentCoordinator: "TBD"
       }
     ];
 

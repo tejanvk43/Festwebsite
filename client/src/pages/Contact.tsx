@@ -9,106 +9,143 @@ export default function Contact() {
         <p className="text-muted-foreground">Have questions? We're here to help.</p>
       </div>
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        <PixelCard>
-          <form className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-pixel uppercase text-muted-foreground">Name</label>
-              <input 
-                type="text" 
-                className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors"
-                placeholder="PLAYER ONE"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <label className="text-xs font-pixel uppercase text-muted-foreground">Email</label>
-              <input 
-                type="email" 
-                className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors"
-                placeholder="player@example.com"
-              />
-            </div>
+      <div className="max-w-6xl mx-auto space-y-8">
+        {/* Organizing Committee: Full Width Directory */}
+        <PixelCard variant="secondary" hoverEffect={false}>
+          <div className="space-y-10">
+            {/* Conveners Section - Centered or Top */}
+            <section className="border-b border-secondary/20 pb-8">
+              <h3 className="font-pixel mb-6 text-secondary uppercase text-sm text-center">Festival Conveners</h3>
+              <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex flex-col items-center min-w-[200px]">
+                  <div className="text-[10px] text-muted-foreground uppercase font-pixel mb-2 opacity-70">Convener</div>
+                  <div className="font-bold text-lg">Dr. K. Naresh</div>
+                  <div className="text-sm font-mono text-primary mt-1">+91 9949257091</div>
+                </div>
+                <div className="flex flex-col items-center min-w-[200px]">
+                  <div className="text-[10px] text-muted-foreground uppercase font-pixel mb-2 opacity-70">Co-Convener</div>
+                  <div className="font-bold text-lg">Dr. S. M. Roy Choudri</div>
+                  <div className="text-sm font-mono text-primary mt-1">+91 9849645441</div>
+                </div>
+                <div className="flex flex-col items-center min-w-[200px]">
+                  <div className="text-[10px] text-muted-foreground uppercase font-pixel mb-2 opacity-70">Co-Convener</div>
+                  <div className="font-bold text-lg">Dr. K. Babu Rao</div>
+                  <div className="text-sm font-mono text-primary mt-1">+91 9100363064</div>
+                </div>
+              </div>
+            </section>
 
-            <div className="space-y-2">
-              <label className="text-xs font-pixel uppercase text-muted-foreground">Message</label>
-              <textarea 
-                rows={5}
-                className="w-full bg-background border-2 border-border p-3 focus:outline-none focus:border-primary transition-colors resize-none"
-                placeholder="Type your message here..."
-              />
-            </div>
+            {/* Organizing Committee (Categorized) */}
+            <section>
+              <h3 className="font-pixel mb-8 text-secondary uppercase text-sm text-center">Organizing Committee</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                {[
+                  {
+                    dept: "CSE & AI",
+                    faculty: [{ name: "Dr. B V Praveen Kumar", phone: "9160923988" }],
+                    student: [{ name: "Mr P. Teja Naga Venkata Kishore", phone: "8919998149" }]
+                  },
+                  {
+                    dept: "EEE",
+                    faculty: [{ name: "Sri A Balaji", phone: "9492080980" }],
+                    student: [{ name: "Mr JSS. Mohan", phone: "6304638545" }]
+                  },
+                  {
+                    dept: "IT",
+                    faculty: [{ name: "Sri B Trivikrama Rao", phone: "9703418339" }],
+                    student: [{ name: "Mr M. Mahesh Babu", phone: "7815835004" }]
+                  },
+                  {
+                    dept: "ECE",
+                    faculty: [
+                      { name: "Sri M K Kishore", phone: "9550419419" },
+                      { name: "Mrs K Nitya", phone: "9885571089" }
+                    ],
+                    student: [{ name: "Mr K Sai Vamsi", phone: "6281444857" }]
+                  },
+                  {
+                    dept: "IT",
+                    faculty: [{ name: "Sri B Trivikrama Rao", phone: "9703418339" }],
+                    student: [{ name: "Mr M. Mahesh Babu", phone: "7815835004" }]
+                  },
+                  {
+                    dept: "Mechanical",
+                    faculty: [{ name: "Sri N Ranjith Kumar", phone: "8328177044" }],
+                    student: [{ name: "Mr V. Syam Sundar", phone: "7670927864" }]
+                  },
+                  {
+                    dept: "Diploma",
+                    faculty: [{ name: "Sri T Srinivasa Rao", phone: "9490703377" }],
+                    student: [{ name: "Mr S Eswar Kumar", phone: "9032075103" }]
+                  },
+                  {
+                    dept: "S&H / First Year",
+                    faculty: [{ name: "Sri R. Simhachalam", phone: "9492023446" }],
+                    student: [{ name: "Mr P Varshith", phone: "6301880546" }]
+                  },
+                  {
+                    dept: "Administration",
+                    faculty: [
+                      { name: "Sri S Murali (AO)", phone: "9949712255" },
+                      { name: "Sri A V Rao (Manager)", phone: "9949312255" },
+                      { name: "Sri P Sunil (Purchases)", phone: "9989012255" }
+                    ],
+                    student: []
+                  }
+                ].map((group, idx) => (
+                  <div key={idx} className="bg-background/50 border-2 border-border/50 p-6 space-y-4 hover:border-primary/50 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                    <div className="text-xs font-pixel text-secondary uppercase border-b border-secondary/20 pb-2">{group.dept}</div>
+                    
+                    <div className="space-y-3">
+                      {group.faculty.map((f, i) => (
+                        <div key={i}>
+                          <div className="text-[10px] text-muted-foreground uppercase font-pixel opacity-70 mb-1">Faculty</div>
+                          <div className="flex justify-between items-center gap-2">
+                            <div className="font-bold text-sm leading-tight">{f.name}</div>
+                            <div className="text-sm font-mono text-primary whitespace-nowrap">{f.phone}</div>
+                          </div>
+                        </div>
+                      ))}
 
-            <button className="w-full py-4 bg-primary text-primary-foreground font-pixel text-xs border-2 border-primary shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
-              <Send className="w-4 h-4" /> SEND MESSAGE
-            </button>
-          </form>
+                      {group.student.length > 0 && group.student.map((s, i) => (
+                        <div key={i} className="pt-2 border-t border-border/10">
+                          <div className="text-[10px] text-muted-foreground uppercase font-pixel opacity-70 mb-1">Student Lead</div>
+                          <div className="flex justify-between items-center gap-2">
+                            <div className="font-bold text-sm leading-tight">{s.name}</div>
+                            <div className="text-sm font-mono text-secondary whitespace-nowrap">{s.phone}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
         </PixelCard>
 
-        <div className="space-y-6">
-          <PixelCard variant="secondary" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-secondary uppercase text-xs">Faculty COORDINATORS</h3>
-            <div className="space-y-4">
-              <div className="flex flex-col border-b border-border/30 pb-2">
-                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Convener</div>
-                <div className="flex justify-between items-center">
-                  <div className="font-bold text-sm">Dr. K. Naresh</div>
-                  <div className="text-xs font-mono text-primary">+91 9949257091</div>
-                </div>
-              </div>
-              <div className="flex flex-col border-b border-border/30 pb-2">
-                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Co-Convener 1</div>
-                <div className="flex justify-between items-center">
-                  <div className="font-bold text-sm">Dr. S. M. Roy Choudri</div>
-                  <div className="text-xs font-mono text-primary">+91 9849645441</div>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-[8px] text-muted-foreground uppercase font-pixel mb-1">Co-Convener 2</div>
-                <div className="flex justify-between items-center">
-                  <div className="font-bold text-sm">Dr. K. Babu Rao</div>
-                  <div className="text-xs font-mono text-primary">+91 9100363064</div>
-                </div>
-              </div>
+        {/* General Contact Info Footer */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
+          <PixelCard variant="accent" hoverEffect={false} className="flex items-center gap-4 py-6">
+            <Mail className="w-6 h-6 text-accent shrink-0" />
+            <div>
+              <div className="text-[10px] font-pixel text-muted-foreground uppercase">Email US</div>
+              <div className="font-bold">yourfest@usharama.in</div>
             </div>
           </PixelCard>
-
-          <PixelCard variant="primary" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-primary uppercase">Student COORDINATORS</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-start border-b border-border/30 pb-2">
-                <div>
-                  <div className="font-bold text-sm">T. Teja</div>
-                  <div className="text-[10px] text-muted-foreground uppercase">General Secretary</div>
-                </div>
-                <div className="text-xs font-mono">+91 73861 24708</div>
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-bold text-sm">V. Naveen</div>
-                  <div className="text-[10px] text-muted-foreground uppercase">Technical Lead</div>
-                </div>
-                <div className="text-xs font-mono">+91 90145 62341</div>
-              </div>
+          <PixelCard variant="accent" hoverEffect={false} className="flex items-center gap-4 py-6">
+            <Phone className="w-6 h-6 text-accent shrink-0" />
+            <div>
+              <div className="text-[10px] font-pixel text-muted-foreground uppercase">Call US</div>
+              <div className="font-bold">+91 91003 63064</div>
             </div>
           </PixelCard>
-
-          <PixelCard variant="accent" hoverEffect={false}>
-            <h3 className="font-pixel mb-4 text-accent">CONTACT INFO</h3>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-accent" />
-                <span>College Email</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-accent" />
-                <span>College Phone Number</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-accent mt-1" />
-                <span>Usharama College of Engineering,<br/>Telaprolu, AP</span>
-              </li>
-            </ul>
+          <PixelCard variant="accent" hoverEffect={false} className="flex items-center gap-4 py-6">
+            <MapPin className="w-6 h-6 text-accent shrink-0" />
+            <div>
+              <div className="text-[10px] font-pixel text-muted-foreground uppercase">Visit US</div>
+              <div className="font-bold text-xs uppercase">Usharama College, AP</div>
+            </div>
           </PixelCard>
         </div>
       </div>
