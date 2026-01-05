@@ -13,7 +13,7 @@ export function generateTicketId(registrationId: number): string {
  * The QR code contains a URL to verify the ticket
  */
 export async function generateQRCode(ticketId: string, baseUrl?: string): Promise<string> {
-    const appUrl = baseUrl || process.env.APP_URL || 'http://localhost:5000';
+    const appUrl = (baseUrl || process.env.APP_URL || 'http://localhost:5000').replace(/\/$/, '');
     const ticketUrl = `${appUrl}/ticket/${ticketId}`;
 
     try {
