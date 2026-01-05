@@ -1,49 +1,21 @@
 import { useMutation } from "@tanstack/react-query";
-import { collection, setDoc, doc, getDocs, query, orderBy, limit } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { queryClient } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { api } from "@shared/routes";
 import { type InsertRegistration } from "@shared/schema";
 import { useToast } from "./use-toast";
-import { generateTicketId, generateQRCode, calculatePricing } from "@/lib/ticket";
-
-async function getNextRegistrationId() {
-  const q = query(collection(db, "registrations"), orderBy("id", "desc"), limit(1));
-  const snapshot = await getDocs(q);
-  if (snapshot.empty) return 1;
-  const lastDoc = snapshot.docs[0].data();
-  return (lastDoc.id || 0) + 1;
-}
 
 export function useCreateRegistration() {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: async (input: InsertRegistration) => {
-      const nextId = await getNextRegistrationId();
-      const ticketId = generateTicketId(nextId);
-      const pricing = calculatePricing(input.eventIds.length);
-      const qrCode = await generateQRCode(ticketId);
-
-      const registrationData = {
-        ...input,
-        id: nextId,
-        ticketId,
-        totalEvents: pricing.totalEvents,
-        freeEvents: pricing.freeEvents,
-        originalAmount: pricing.originalAmount,
-        discountAmount: pricing.discountAmount,
-        finalAmount: pricing.finalAmount,
-        qrCode,
-        createdAt: new Date().toISOString(),
-      };
-
-      await setDoc(doc(db, "registrations", ticketId), registrationData);
-      return registrationData;
+    mutationFn: async (data: InsertRegistration) => {
+      const res = await apiRequest("POST", api.registrations.create.path, data);
+      return await res.json();
     },
     onSuccess: (data) => {
       toast({
         title: "Registration Successful!",
-        description: `Your ticket ID is ${data.ticketId}. See you at yoURFest 2026!`,
+        description: `Your ticket ID is ${data.ticketId}. Check your email for confirmation!`,
       });
       queryClient.invalidateQueries({ queryKey: ["events"] });
     },
