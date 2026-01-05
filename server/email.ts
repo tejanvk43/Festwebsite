@@ -37,7 +37,12 @@ export async function sendRegistrationEmail(
   }
 
   try {
+    console.log(`📨 Attempting to send email to: ${registration.email}`);
     const transporter = createTransporter();
+
+    // Test transporter
+    await transporter.verify();
+    console.log('✅ SMTP Transporter verified successfully.');
 
     // Generate QR code URL for ticket verification
     const appUrl = process.env.APP_URL || 'http://localhost:5000';
@@ -162,8 +167,13 @@ export async function sendRegistrationEmail(
     await transporter.sendMail(mailOptions);
     console.log(`✅ Registration confirmation email sent to ${registration.email}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Failed to send registration email:', error);
+    if (error.code === 'EAUTH') {
+      console.error('👉 AUTHENTICATION ERROR: Please check your GMAIL_APP_PASSWORD and GMAIL_USER.');
+    } else if (error.code === 'ESOCKET') {
+      console.error('👉 NETWORK ERROR: Could not connect to Gmail SMTP servers.');
+    }
     return false;
   }
 }
