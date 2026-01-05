@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "http://YOUR_BACKEND_IP:5000/api/:splat"
+  to = "https://proud-lamps-cut.loca.lt"
   status = 200
 
 [[redirects]]
