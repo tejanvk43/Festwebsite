@@ -77,7 +77,13 @@ export default function Register() {
         setTicketData({
           ticketId: response.ticketId,
           qrCode: response.qrCode,
-          pricing: response.pricing
+          pricing: {
+            totalEvents: response.totalEvents,
+            freeEvents: response.freeEvents,
+            originalAmount: response.originalAmount,
+            discountAmount: response.discountAmount,
+            finalAmount: response.finalAmount
+          }
         });
         setIsSubmitted(true);
         toast({
