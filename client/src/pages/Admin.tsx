@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { PixelCard } from "@/components/HandheldConsole";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import type { Registration } from "@shared/schema";
 
 export default function AdminPage() {
@@ -24,17 +26,13 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [search, setSearch] = useState("");
 
+
   const { data: registrations, isLoading, refetch } = useQuery<Registration[]>({
-    queryKey: ['/api/admin/registrations'],
+    queryKey: ['registrations'],
     queryFn: async () => {
-      const auth = btoa(`${email}:${password}`);
-      const res = await fetch('/api/admin/registrations', {
-        headers: {
-          'Authorization': `Basic ${auth}`
-        }
-      });
-      if (!res.ok) throw new Error('Unauthorized');
-      return res.json();
+      const q = query(collection(db, "registrations"), orderBy("id", "asc"));
+      const snapshot = await getDocs(q);
+      return snapshot.docs.map(doc => doc.data() as Registration);
     },
     enabled: isAuthenticated
   });

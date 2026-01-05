@@ -2,6 +2,9 @@ import { useRoute } from "wouter";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Clock, User, Mail, Phone, School, CheckCircle, AlertCircle, Ticket } from "lucide-react";
+import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { type Registration, type Event } from "@shared/schema";
 
 interface TicketData {
   registration: {
@@ -40,9 +43,22 @@ export default function TicketView() {
   const { data, isLoading, error } = useQuery<TicketData>({
     queryKey: ['ticket', ticketId],
     queryFn: async () => {
-      const res = await fetch(`/api/ticket/${ticketId}`);
-      if (!res.ok) throw new Error('Ticket not found');
-      return res.json();
+      const docRef = doc(db, "registrations", ticketId!);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) throw new Error('Ticket not found');
+      
+      const registration = docSnap.data() as Registration;
+      
+      // Fetch detailed event info for each eventId
+      const events: Event[] = [];
+      if (registration.eventIds && registration.eventIds.length > 0) {
+        const eventsSnapshot = await getDocs(
+          query(collection(db, "events"), where("id", "in", registration.eventIds))
+        );
+        events.push(...eventsSnapshot.docs.map(d => d.data() as Event));
+      }
+
+      return { registration, events };
     },
     enabled: !!ticketId
   });
