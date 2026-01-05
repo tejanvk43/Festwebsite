@@ -121,11 +121,16 @@ export async function registerRoutes(
         })
       );
 
-      // Send confirmation email (don't wait for it)
-      sendRegistrationEmail(
-        registration,
-        eventDetails.filter(Boolean) as any[]
-      ).catch(err => console.error('Email sending failed:', err));
+      // Send confirmation email (await to ensure completion in serverless environment)
+      try {
+        await sendRegistrationEmail(
+          registration,
+          eventDetails.filter(Boolean) as any[]
+        );
+      } catch (err) {
+        console.error('Email sending failed:', err);
+        // Continue to return success even if email fails
+      }
 
       res.status(201).json({
         message: 'Registration successful',
