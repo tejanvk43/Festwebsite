@@ -14,6 +14,8 @@ import Schedule from "@/pages/Schedule";
 import Venue from "@/pages/Venue";
 import Contact from "@/pages/Contact";
 import Register from "@/pages/Register";
+import TicketView from "@/pages/TicketView";
+import AdminPage from "@/pages/Admin";
 import { FestBot } from "@/components/FestBot";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -45,6 +47,8 @@ function Router() {
           <Route path="/venue" component={Venue} />
           <Route path="/contact" component={Contact} />
           <Route path="/register" component={Register} />
+          <Route path="/ticket/:ticketId" component={TicketView} />
+          <Route path="/admin" component={AdminPage} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

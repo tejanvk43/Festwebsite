@@ -27,9 +27,9 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
 
       {/* Screen Area */}
       <div className="bg-[#2d3436] p-3 sm:p-4 rounded-lg md:rounded-xl border-3 md:border-4 border-[#1e272e] shadow-inner">
-        <div className="bg-[#1e272e] aspect-[4/3] rounded-sm overflow-hidden border-2 border-[#2d3436] relative group">
+        <div className="bg-[#1e272e] aspect-square rounded-sm overflow-hidden border-2 border-[#2d3436] relative group min-h-[280px] sm:min-h-[320px] md:min-h-[380px]">
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-          <div className="h-full w-full overflow-y-auto custom-scrollbar p-2 select-none">
+          <div className="h-full w-full overflow-y-auto custom-scrollbar p-3 select-none">
             {children}
           </div>
         </div>
@@ -95,6 +95,25 @@ export function HandheldConsole({ children, onUp, onDown, onA, onB }: HandheldCo
       </div>
 
 
+    </div>
+  );
+}
+
+export function PixelCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  return (
+    <div className={`bg-card border-2 border-primary/20 p-6 relative overflow-hidden group hover:border-primary/50 transition-colors ${className}`}>
+      {/* Corner Accents */}
+      <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      
+      {/* Scanline Effect Overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
+      
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 }

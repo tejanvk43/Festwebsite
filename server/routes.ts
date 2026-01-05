@@ -1,8 +1,10 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { storage } from "./storage";
+import { storage, type IStorage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
+import { generateTicketId, generateQRCode, calculatePricing } from "./ticket";
+import { sendRegistrationEmail } from "./email";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -35,11 +37,109 @@ export async function registerRoutes(
     res.json(stall);
   });
 
+  // Get registration by ticket ID (for QR code scanning)
+  app.get('/api/ticket/:ticketId', async (req, res) => {
+    try {
+      const registration = await storage.getRegistrationByTicketId(req.params.ticketId);
+      if (!registration) {
+        return res.status(404).json({ message: 'Ticket not found' });
+      }
+
+      // Get event details for the registered events
+      const eventDetails = await Promise.all(
+        registration.eventIds.map(id => storage.getEvent(id))
+      );
+
+      res.json({
+        registration,
+        events: eventDetails.filter(Boolean)
+      });
+    } catch (err) {
+      console.error('Error fetching ticket:', err);
+      res.status(500).json({ message: 'Failed to fetch ticket' });
+    }
+  });
+
+  // Admin route to get all registrations
+  app.get('/api/admin/registrations', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
+    const user = auth[0];
+    const pass = auth[1];
+
+    if (user === 'admin@yourfest2026' && pass === 'yoURfest2026') {
+      const registrations = await storage.getRegistrations();
+      res.json(registrations);
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  });
+
   app.post(api.registrations.create.path, async (req, res) => {
     try {
       const input = api.registrations.create.input.parse(req.body);
-      const registration = await storage.createRegistration(input);
-      res.status(201).json({ message: 'Registration successful', id: registration.id });
+
+      // Get current last registration ID to generate ticket ID
+      const lastId = await storage.getLastRegistrationId();
+      const nextId = lastId + 1;
+      const ticketId = generateTicketId(nextId);
+
+      // Calculate pricing based on number of events
+      const eventCount = input.eventIds.length;
+      const pricing = calculatePricing(eventCount);
+
+      // Generate QR code
+      const qrCode = await generateQRCode(ticketId);
+
+      // Create registration with all new fields
+      const registration = await storage.createRegistration({
+        ...input,
+        ticketId,
+        totalEvents: pricing.totalEvents,
+        freeEvents: pricing.freeEvents,
+        originalAmount: pricing.originalAmount,
+        discountAmount: pricing.discountAmount,
+        finalAmount: pricing.finalAmount,
+        qrCode,
+        createdAt: new Date().toISOString(),
+      });
+
+      // Get event details for email
+      const eventDetails = await Promise.all(
+        input.eventIds.map(async (id) => {
+          const event = await storage.getEvent(id);
+          return event ? {
+            id: event.id,
+            title: event.title,
+            date: event.date,
+            registrationFee: event.registrationFee
+          } : null;
+        })
+      );
+
+      // Send confirmation email (don't wait for it)
+      sendRegistrationEmail(
+        registration,
+        eventDetails.filter(Boolean) as any[]
+      ).catch(err => console.error('Email sending failed:', err));
+
+      res.status(201).json({
+        message: 'Registration successful',
+        id: registration.id,
+        ticketId: registration.ticketId,
+        qrCode: registration.qrCode,
+        pricing: {
+          totalEvents: pricing.totalEvents,
+          freeEvents: pricing.freeEvents,
+          originalAmount: pricing.originalAmount,
+          discountAmount: pricing.discountAmount,
+          finalAmount: pricing.finalAmount
+        }
+      });
     } catch (err) {
       if (err instanceof z.ZodError) {
         return res.status(400).json({
@@ -47,6 +147,7 @@ export async function registerRoutes(
           field: err.errors[0].path.join('.'),
         });
       }
+      console.error('Registration error:', err);
       throw err;
     }
   });
@@ -56,6 +157,7 @@ export async function registerRoutes(
 
   return httpServer;
 }
+
 
 async function seedDatabase(storage: IStorage) {
   // Clear existing events to force re-seed with new list
@@ -68,6 +170,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-mech-001",
         title: "Tech Olympics",
         type: "tech",
+        department: "MECH",
         shortDescription: "Mechanical engineering challenges and contests.",
         fullDescription: "A series of hands-on technical challenges designed for mechanical engineering enthusiasts.",
         date: "2026-01-23",
@@ -87,6 +190,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-mech-002",
         title: "Go Karting",
         type: "tech",
+        department: "MECH",
         shortDescription: "Race your way to victory.",
         fullDescription: "Experience the thrill of high-speed racing in our custom-designed karting track.",
         date: "2026-01-23",
@@ -107,6 +211,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cse-001",
         title: "Tech Talks",
         type: "tech",
+        department: "CSE/AIML",
         shortDescription: "Insightful sessions on emerging technologies.",
         fullDescription: "Expert talks on AI, Machine Learning, and the future of Computing.",
         date: "2026-01-23",
@@ -118,7 +223,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Learning Materials & Certificates",
         rules: ["No recording without permission"],
         tags: ["AI", "ML", "Computer Science"],
-        image: "https://images.unsplash.com/photo-1540575861501-7cf05a4112fb?w=800&q=80",
+        image: "/assets/events/tech_talks.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -126,6 +231,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cse-002",
         title: "Cryptic Crosswords",
         type: "tech",
+        department: "CSE/AIML",
         shortDescription: "Solve the code, win the game.",
         fullDescription: "A tech-themed crossword competition to test your vocabulary and knowledge.",
         date: "2026-01-23",
@@ -145,6 +251,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cse-003",
         title: "Prompt AI",
         type: "tech",
+        department: "CSE/AIML",
         shortDescription: "Master the art of prompt engineering.",
         fullDescription: "Competitions focused on generating the best outputs from AI models using creative prompts.",
         date: "2026-01-23",
@@ -164,6 +271,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cse-004",
         title: "Rapid Coders",
         type: "tech",
+        department: "CSE/AIML",
         shortDescription: "Speed coding challenge.",
         fullDescription: "Solve programming problems as fast as you can in this high-intensity coding sprint.",
         date: "2026-01-23",
@@ -183,6 +291,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cse-005",
         title: "Beat The Clock",
         type: "tech",
+        department: "CSE/AIML",
         shortDescription: "Time-bound technical tasks.",
         fullDescription: "A series of quick-fire technical tasks where you race against the timer.",
         date: "2026-01-23",
@@ -203,6 +312,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-all-001",
         title: "Technical Quiz",
         type: "tech",
+        department: "ALL",
         shortDescription: "General technical quiz across disciplines.",
         fullDescription: "Test your knowledge of the latest developments across all engineering fields.",
         date: "2026-01-23",
@@ -213,7 +323,7 @@ async function seedDatabase(storage: IStorage) {
         registrationFee: 100,
         prize: "Vouchers & Certificates",
         rules: ["Multiple rounds", "Rapid fire final"],
-        tags: ["quiz", "general"],
+        tags: ["quiz", "general", "DIPLOMA"],
         image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
@@ -222,6 +332,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-all-002",
         title: "Project Exhibition",
         type: "tech",
+        department: "ALL",
         shortDescription: "Showcase your innovative prototypes.",
         fullDescription: "An opportunity for students to demonstrate their final year projects and innovations.",
         date: "2026-01-23",
@@ -232,7 +343,7 @@ async function seedDatabase(storage: IStorage) {
         registrationFee: 100,
         prize: "Best Project Award",
         rules: ["Functional models required", "Poster mandatory"],
-        tags: ["innovation", "creative"],
+        tags: ["innovation", "creative", "DIPLOMA"],
         image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
@@ -241,6 +352,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-all-003",
         title: "Poster Presentation",
         type: "tech",
+        department: "ALL",
         shortDescription: "Visual presentation of research ideas.",
         fullDescription: "Design and present a poster summarizing a technical research topic.",
         date: "2026-01-23",
@@ -251,7 +363,7 @@ async function seedDatabase(storage: IStorage) {
         registrationFee: 100,
         prize: "Certificates",
         rules: ["Standard poster size", "Oral summary required"],
-        tags: ["research", "design"],
+        tags: ["research", "design", "DIPLOMA"],
         image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
@@ -260,6 +372,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-all-004",
         title: "Paper Presentation",
         type: "tech",
+        department: "ALL",
         shortDescription: "Present your technical papers.",
         fullDescription: "Submit and present research papers to a panel of expert judges.",
         date: "2026-01-23",
@@ -270,8 +383,8 @@ async function seedDatabase(storage: IStorage) {
         registrationFee: 100,
         prize: "Best Paper Publication Merit",
         rules: ["Standard format guidelines", "PPT required"],
-        tags: ["academic", "paper"],
-        image: "https://images.unsplash.com/photo-1454165833744-119520427847?w=800&q=80",
+        tags: ["academic", "paper", "DIPLOMA"],
+        image: "/assets/events/paper_presentation.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -280,6 +393,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-it-001",
         title: "Hackathon",
         type: "tech",
+        department: "IT",
         shortDescription: "Build a solution in one day.",
         fullDescription: "Intensive design and development event to solve real-world problems.",
         date: "2026-01-23",
@@ -299,6 +413,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-it-002",
         title: "Innovation Ideas",
         type: "tech",
+        department: "IT",
         shortDescription: "Pitch your startup concepts.",
         fullDescription: "Pitch decks and business plans for new tech-driven business ideas.",
         date: "2026-01-23",
@@ -319,6 +434,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-ece-001",
         title: "Circuitrix",
         type: "tech",
+        department: "ECE/EEE",
         shortDescription: "Test your circuit debugging skills.",
         fullDescription: "A hands-on challenge to debug and complete missing parts of a complex circuit board.",
         date: "2026-01-23",
@@ -330,7 +446,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Electronic Kits",
         rules: ["Safety first", "Components provided"],
         tags: ["electronics", "hardware"],
-        image: "https://images.unsplash.com/photo-1518770660439-46361a0af8bb?w=800&q=80",
+        image: "/assets/events/circuitrix.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -338,6 +454,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-ece-002",
         title: "Stress Burst",
         type: "tech",
+        department: "ECE/EEE",
         shortDescription: "Fast-paced technical trivia.",
         fullDescription: "Rapid response technical challenges specifically for ECE & EEE concepts.",
         date: "2026-01-23",
@@ -349,7 +466,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Gift Cards",
         rules: ["Speed and accuracy"],
         tags: ["quiz", "fast-paced"],
-        image: "https://images.unsplash.com/photo-1512428559083-abd60b38646b?w=800&q=80",
+        image: "/assets/events/stress_burst.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -357,6 +474,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-ece-003",
         title: "Mystery Busters",
         type: "tech",
+        department: "ECE/EEE",
         shortDescription: "Sherlock-style technical hunt.",
         fullDescription: "Solve clues hidden in circuits and component data sheets to reach the goal.",
         date: "2026-01-23",
@@ -376,6 +494,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-ece-004",
         title: "Techno Parady",
         type: "tech",
+        department: "ECE/EEE",
         shortDescription: "Creative tech reimagining.",
         fullDescription: "A contest involving re-designing or paradying everyday tech objects for comical or alternate uses.",
         date: "2026-01-23",
@@ -396,6 +515,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-001",
         title: "Telugu Ammai",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Traditional beauty and talent contest.",
         fullDescription: "Celebrating Telugu aesthetic, oratory, and cultural knowledge.",
         date: "2026-01-24",
@@ -415,6 +535,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-002",
         title: "Best Dancer",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Dance solo competition.",
         fullDescription: "Street, classical, or contemporary—show us your best moves.",
         date: "2026-01-24",
@@ -434,6 +555,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-003",
         title: "Best Singer",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Vocal and karaoke challenge.",
         fullDescription: "Solo singing competition across various genres.",
         date: "2026-01-24",
@@ -453,6 +575,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-004",
         title: "Best Reels",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Content creation contest.",
         fullDescription: "Submit short reels capturing the essence of the fest.",
         date: "2026-01-24",
@@ -472,6 +595,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-005",
         title: "Spot Photography",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Capture moments on the fly.",
         fullDescription: "Photograph a given theme within the campus on the day of the fest.",
         date: "2026-01-24",
@@ -491,6 +615,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-006",
         title: "Science Fair",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Exhibiting the wonders of science.",
         fullDescription: "Demonstrate scientific principles through creative experiments.",
         date: "2026-01-24",
@@ -502,7 +627,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Science sets",
         rules: ["No hazardous materials"],
         tags: ["science", "learning"],
-        image: "https://images.unsplash.com/photo-1564325724739-bae0bd08fc21?w=800&q=80",
+        image: "/assets/events/science_fair.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -510,6 +635,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-007",
         title: "Flower Arrangement",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Art with petals.",
         fullDescription: "Creating beautiful floral displays within a time limit.",
         date: "2026-01-24",
@@ -529,6 +655,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-008",
         title: "Talkathon",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Declamations and speeches.",
         fullDescription: "Speaking competition focused on persuasive and informative topics.",
         date: "2026-01-24",
@@ -548,6 +675,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-009",
         title: "Painting/Art",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Canvas and colors.",
         fullDescription: "On-the-spot painting based on a provided mysterious prompt.",
         date: "2026-01-24",
@@ -559,7 +687,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Art kits",
         rules: ["Bring your own brushes"],
         tags: ["painting", "creative"],
-        image: "https://images.unsplash.com/photo-1460518451285-cd7ba7122700?w=800&q=80",
+        image: "/assets/events/painting_art.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       },
@@ -567,6 +695,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-010",
         title: "Literary Maze",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Puzzles and literature.",
         fullDescription: "Word-based puzzles, scavenger hunts involving famous book quotes and authors.",
         date: "2026-01-24",
@@ -586,6 +715,7 @@ async function seedDatabase(storage: IStorage) {
         id: "evt-cul-011",
         title: "Mr. Perfect",
         type: "cultural",
+        department: "CULTURAL",
         shortDescription: "Personality and talent contest for boys.",
         fullDescription: "Judged on fitness, general knowledge, and artistic talent.",
         date: "2026-01-24",
@@ -597,7 +727,7 @@ async function seedDatabase(storage: IStorage) {
         prize: "Title & Trophy",
         rules: ["Semi-formal attire required"],
         tags: ["personality", "talent"],
-        image: "https://images.unsplash.com/photo-1546519638-68e10940435a?w=800&q=80",
+        image: "/assets/events/mr_perfect.png",
         facultyCoordinator: "TBD",
         studentCoordinator: "TBD"
       }

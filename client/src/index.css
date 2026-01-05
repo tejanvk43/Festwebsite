@@ -54,39 +54,39 @@
 }
 
 .light {
-  --background: 60 100% 98%;
-  /* Paper white - #FFFEF5 */
-  --foreground: 220 10% 4%;
+  --background: 60 20% 97%;
+  /* Warm Paper white */
+  --foreground: 220 10% 10%;
   /* Deep dark text */
 
-  --primary: 220 90% 45%;
-  /* Electric Blue for tech aesthetic */
+  --primary: 160 60% 35%;
+  /* Deep Emerald Green - Professional */
   --primary-foreground: 60 100% 98%;
 
-  --secondary: 280 70% 50%;
-  /* Royal Purple */
+  --secondary: 35 80% 45%;
+  /* Warm Amber/Gold */
   --secondary-foreground: 220 10% 4%;
 
-  --accent: 15 90% 50%;
-  /* Industrial Orange */
+  --accent: 25 85% 50%;
+  /* Warm Orange */
   --accent-foreground: 60 100% 98%;
 
-  --muted: 220 10% 90%;
+  --muted: 220 10% 92%;
   --muted-foreground: 220 10% 40%;
 
-  --card: 60 100% 95%;
-  /* Off-white cards */
-  --card-foreground: 220 10% 4%;
+  --card: 60 20% 98%;
+  /* Warm off-white cards */
+  --card-foreground: 220 10% 10%;
 
-  --border: 220 10% 80%;
-  --input: 220 10% 90%;
+  --border: 220 10% 82%;
+  --input: 220 10% 92%;
 
-  --ring: 220 90% 45%;
+  --ring: 160 60% 35%;
 
   /* Softened glows for light mode */
   --glow-yellow: 45 100% 50%;
-  --glow-purple: 280 70% 45%;
-  --glow-cyan: 190 90% 45%;
+  --glow-purple: 160 60% 40%;
+  --glow-cyan: 35 80% 50%;
 }
 
 @layer base {

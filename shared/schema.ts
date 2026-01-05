@@ -6,6 +6,7 @@ export const events = sqliteTable("events", {
   id: text("id").primaryKey(), // Using text ID to match JSON (e.g., 'evt-001')
   title: text("title").notNull(),
   type: text("type").notNull(), // 'tech', 'cultural', etc.
+  department: text("department").notNull().default("ALL"), // Branch/department that conducts the event
   shortDescription: text("short_description").notNull(),
   fullDescription: text("full_description").notNull(),
   date: text("date").notNull(),
@@ -39,6 +40,7 @@ export const stalls = sqliteTable("stalls", {
 
 export const registrations = sqliteTable("registrations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
+  ticketId: text("ticket_id").notNull().unique(), // Unique ticket identifier (e.g., "YF26-00001")
   eventIds: text("event_ids", { mode: "json" }).$type<string[]>().notNull(), // Array of event IDs
   teamName: text("team_name"),
   participantName: text("participant_name").notNull(),
@@ -51,6 +53,15 @@ export const registrations = sqliteTable("registrations", {
   educationLevel: text("education_level"), // UG, PG, DIPLOMA
   branch: text("branch", { mode: "json" }).$type<string[]>(), // Array - store multiple tech branches
   regType: text("reg_type").notNull().default("tech"), // tech, cultural, both
+  // Pricing fields
+  totalEvents: integer("total_events").notNull().default(0),
+  freeEvents: integer("free_events").notNull().default(0),
+  originalAmount: integer("original_amount").notNull().default(0),
+  discountAmount: integer("discount_amount").notNull().default(0),
+  finalAmount: integer("final_amount").notNull().default(0),
+  // QR Code data
+  qrCode: text("qr_code"), // Base64 QR code image
+  createdAt: text("created_at").notNull().default(""),
 });
 
 export const insertEventSchema = createInsertSchema(events);
@@ -64,6 +75,24 @@ export const insertRegistrationSchema = createInsertSchema(registrations, {
   participantYear: z.string().min(1, "Year of study is required"),
   educationLevel: z.string().min(1, "Education level is required"),
   college: z.string().min(1, "College name is required"),
+  ticketId: z.string().optional(),
+  qrCode: z.string().optional(),
+  totalEvents: z.number().optional(),
+  freeEvents: z.number().optional(),
+  originalAmount: z.number().optional(),
+  discountAmount: z.number().optional(),
+  finalAmount: z.number().optional(),
+  createdAt: z.string().optional(),
+}).omit({
+  id: true,
+  ticketId: true,
+  qrCode: true,
+  totalEvents: true,
+  freeEvents: true,
+  originalAmount: true,
+  discountAmount: true,
+  finalAmount: true,
+  createdAt: true
 });
 
 export type Event = typeof events.$inferSelect;

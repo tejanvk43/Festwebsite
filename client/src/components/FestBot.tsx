@@ -55,8 +55,8 @@ export function FestBot() {
 
     // Events Info - General
     if (q.includes("event") || q.includes("quest") || q.includes("what is happening")) {
-      const categories = Array.from(new Set(events.map(e => e.department)));
-      return `Currently ${events.length} quests detected across departments: ${categories.join(", ")}. Which sector are you interested in?`;
+      const categories = Array.from(new Set(events.map(e => e.department === "ALL" ? "ALL BRANCHES" : e.department)));
+      return `Currently ${events.length} quests detected across sectors: ${categories.join(", ")}. Which sector are you interested in?`;
     }
 
     // Events Info - Specific Event
@@ -69,6 +69,7 @@ export function FestBot() {
     if (q.includes("cse") || q.includes("cs")) return "CSE Sub-sector highlights: Rapid Coders, Tech Talks, and Prompt AI. Full list available in the DATA terminal.";
     if (q.includes("ece")) return "ECE Sub-sector highlights: Circuitrix and Techno Parady. Check the console for more.";
     if (q.includes("mech")) return "MECH Sub-sector: Tech Olympics and Go Karting are the main attractions.";
+    if (q.includes("diploma")) return "DIPLOMA Sector: Access granted to all General Quests like Technical Quiz and Project Expo.";
 
     // Schedule
     if (q.includes("time") || q.includes("schedule") || q.includes("when")) {

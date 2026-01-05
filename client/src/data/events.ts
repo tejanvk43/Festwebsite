@@ -74,7 +74,7 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["No recording without permission"],
         tags: ["AI", "ML", "Computer Science"],
-        image: "/assets/events/tech-talks.png"
+        image: "/assets/events/tech_talks.png"
     },
     {
         id: "evt-cse-002",
@@ -212,7 +212,7 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Speed and accuracy"],
         tags: ["quiz", "fast-paced"],
-        image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80"
+        image: "/assets/events/stress_burst.png"
     },
     {
         id: "evt-ece-003",
@@ -253,7 +253,7 @@ export const events: Event[] = [
         id: "evt-all-001",
         title: "Technical Quiz",
         type: "tech",
-        department: "General",
+        department: "ALL",
         shortDescription: "General technical quiz across disciplines.",
         fullDescription: "Test your knowledge of the latest developments across all engineering fields.",
         date: "23-01-2026",
@@ -263,14 +263,14 @@ export const events: Event[] = [
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Multiple rounds", "Rapid fire final"],
-        tags: ["quiz", "general"],
+        tags: ["quiz", "DIPLOMA"],
         image: "/assets/events/technical-quiz.png"
     },
     {
         id: "evt-all-002",
         title: "Project Exhibition",
         type: "tech",
-        department: "General",
+        department: "ALL",
         shortDescription: "Showcase your innovative prototypes.",
         fullDescription: "An opportunity for students to demonstrate their final year projects and innovations.",
         date: "23-01-2026",
@@ -280,14 +280,14 @@ export const events: Event[] = [
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Functional models required", "Poster mandatory"],
-        tags: ["innovation", "creative"],
+        tags: ["innovation", "DIPLOMA"],
         image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
     },
     {
         id: "evt-all-003",
         title: "Poster Presentation",
         type: "tech",
-        department: "General",
+        department: "ALL",
         shortDescription: "Visual presentation of research ideas.",
         fullDescription: "Design and present a poster summarizing a technical research topic.",
         date: "23-01-2026",
@@ -297,14 +297,14 @@ export const events: Event[] = [
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard poster size", "Oral summary required"],
-        tags: ["research", "design"],
+        tags: ["research", "DIPLOMA"],
         image: "/assets/events/poster-presentation.png"
     },
     {
         id: "evt-all-004",
         title: "Paper Presentation",
         type: "tech",
-        department: "General",
+        department: "ALL",
         shortDescription: "Present your technical papers.",
         fullDescription: "Submit and present research papers to a panel of expert judges.",
         date: "23-01-2026",
@@ -314,15 +314,15 @@ export const events: Event[] = [
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Standard format guidelines", "PPT required"],
-        tags: ["academic", "paper"],
-        image: "/assets/events/paper-presentation.png"
+        tags: ["academic", "DIPLOMA"],
+        image: "/assets/events/paper_presentation.png"
     },
     // Cultural Events (24-01-2026)
     {
         id: "evt-cul-001",
         title: "Telugu Ammai",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Traditional beauty and talent contest.",
         fullDescription: "Celebrating Telugu aesthetic, oratory, and cultural knowledge.",
         date: "24-01-2026",
@@ -339,7 +339,7 @@ export const events: Event[] = [
         id: "evt-cul-002",
         title: "Best Dancer",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Dance solo competition.",
         fullDescription: "Street, classical, or contemporary—show us your best moves.",
         date: "24-01-2026",
@@ -356,7 +356,7 @@ export const events: Event[] = [
         id: "evt-cul-003",
         title: "Best Singer",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Vocal and karaoke challenge.",
         fullDescription: "Solo singing competition across various genres.",
         date: "24-01-2026",
@@ -373,7 +373,7 @@ export const events: Event[] = [
         id: "evt-cul-004",
         title: "Best Reels",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Content creation contest.",
         fullDescription: "Submit short reels capturing the essence of the fest.",
         date: "24-01-2026",
@@ -390,7 +390,7 @@ export const events: Event[] = [
         id: "evt-cul-005",
         title: "Spot Photography",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Capture moments on the fly.",
         fullDescription: "Photograph a given theme within the campus on the day of the fest.",
         date: "24-01-2026",
@@ -407,7 +407,7 @@ export const events: Event[] = [
         id: "evt-cul-006",
         title: "Science Fair",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Exhibiting the wonders of science.",
         fullDescription: "Demonstrate scientific principles through creative experiments.",
         date: "24-01-2026",
@@ -418,13 +418,13 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["No hazardous materials"],
         tags: ["science", "learning"],
-        image: "/assets/events/science-fair.png"
+        image: "/assets/events/science_fair.png"
     },
     {
         id: "evt-cul-007",
         title: "Flower Arrangement",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Art with petals.",
         fullDescription: "Creating beautiful floral displays within a time limit.",
         date: "24-01-2026",
@@ -441,7 +441,7 @@ export const events: Event[] = [
         id: "evt-cul-008",
         title: "Talkathon",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Declamations and speeches.",
         fullDescription: "Speaking competition focused on persuasive and informative topics.",
         date: "24-01-2026",
@@ -458,7 +458,7 @@ export const events: Event[] = [
         id: "evt-cul-009",
         title: "Painting/Art",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Canvas and colors.",
         fullDescription: "On-the-spot painting based on a provided mysterious prompt.",
         date: "24-01-2026",
@@ -469,13 +469,13 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Bring your own brushes"],
         tags: ["painting", "creative"],
-        image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80"
+        image: "/assets/events/painting_art.png"
     },
     {
         id: "evt-cul-010",
         title: "Literary Maze",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Puzzles and literature.",
         fullDescription: "Word-based puzzles, scavenger hunts involving famous book quotes and authors.",
         date: "24-01-2026",
@@ -492,7 +492,7 @@ export const events: Event[] = [
         id: "evt-cul-011",
         title: "Mr. Perfect",
         type: "cultural",
-        department: "Cultural",
+        department: "CULTURAL",
         shortDescription: "Personality and talent contest for boys.",
         fullDescription: "Judged on fitness, general knowledge, and artistic talent.",
         date: "24-01-2026",
@@ -503,6 +503,6 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Semi-formal attire required"],
         tags: ["personality", "talent"],
-        image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=800&q=80"
+        image: "/assets/events/mr_perfect.png"
     }
 ];

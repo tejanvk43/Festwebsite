@@ -17,8 +17,12 @@ export interface IStorage {
   createStall(stall: InsertStall): Promise<Stall>;
 
   createRegistration(registration: InsertRegistration): Promise<Registration>;
+  getRegistrations(): Promise<Registration[]>;
+  getRegistrationByTicketId(ticketId: string): Promise<Registration | undefined>;
+  getLastRegistrationId(): Promise<number>;
   clearEvents(): Promise<void>;
   clearStalls(): Promise<void>;
+  clearRegistrations(): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -55,12 +59,31 @@ export class DatabaseStorage implements IStorage {
     return registration;
   }
 
+  async getRegistrations(): Promise<Registration[]> {
+    return await db.select().from(registrations).orderBy(registrations.id);
+  }
+
+  async getRegistrationByTicketId(ticketId: string): Promise<Registration | undefined> {
+    const [registration] = await db.select().from(registrations).where(eq(registrations.ticketId, ticketId));
+    return registration;
+  }
+
+  async getLastRegistrationId(): Promise<number> {
+    const result = await db.select({ id: registrations.id }).from(registrations).orderBy(registrations.id);
+    if (result.length === 0) return 0;
+    return result[result.length - 1].id;
+  }
+
   async clearEvents(): Promise<void> {
     await db.delete(events);
   }
 
   async clearStalls(): Promise<void> {
     await db.delete(stalls);
+  }
+
+  async clearRegistrations(): Promise<void> {
+    await db.delete(registrations);
   }
 }
 

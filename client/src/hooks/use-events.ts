@@ -1,18 +1,16 @@
-import { events as staticEvents } from "@/data/events";
+import { useQuery } from "@tanstack/react-query";
+import { type Event } from "@shared/schema";
+import { api } from "@shared/routes";
 
 export function useEvents() {
-  return {
-    data: staticEvents,
-    isLoading: false,
-    error: null
-  };
+  return useQuery<Event[]>({
+    queryKey: [api.events.list.path],
+  });
 }
 
 export function useEvent(id: string) {
-  const event = staticEvents.find(e => e.id === id);
-  return {
-    data: event || null,
-    isLoading: false,
-    error: null
-  };
+  return useQuery<Event>({
+    queryKey: [api.events.get.path.replace(":id", id)],
+    enabled: !!id,
+  });
 }

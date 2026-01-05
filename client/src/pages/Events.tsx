@@ -44,7 +44,12 @@ export default function Events() {
 
     // Dept filter logic (only applies if tech is selected or all is selected)
     if (mainFilter === "tech" || mainFilter === "all") {
-       if (deptFilter !== "all" && e.department.toLowerCase() !== deptFilter.toLowerCase()) return false;
+       if (deptFilter !== "all") {
+         const isGeneralEvent = e.department.toLowerCase() === "all";
+         const matchesFilter = e.department.toLowerCase() === deptFilter.toLowerCase();
+         // Show event if it matches filter OR if it's a general event (available to all branches)
+         if (!matchesFilter && !isGeneralEvent) return false;
+       }
     }
 
     return true;
@@ -62,7 +67,7 @@ export default function Events() {
     { id: "it", label: "IT" },
     { id: "ece/eee", label: "ECE/EEE" },
     { id: "mech", label: "MECH" },
-    { id: "general", label: "GENERAL" },
+    { id: "diploma", label: "DIPLOMA" },
   ];
 
   return (
@@ -120,60 +125,119 @@ export default function Events() {
         </motion.div>
       )}
 
-      {/* Events Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredEvents?.map((event, idx) => (
-          <motion.div
-            key={event.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1, duration: 0.5 }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Link href={`/events/${event.id}`}>
-              <div className="h-full cursor-pointer">
-                <PixelCard className="h-full flex flex-col group hover:border-primary overflow-hidden">
-                  <div className="relative h-48 mb-4 -mx-4 -mt-4 border-b border-border group-hover:border-primary transition-colors overflow-hidden">
-                    <img 
-                      src={event.image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"} 
-                      alt={event.title} 
-                      className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] font-pixel border border-primary/20 backdrop-blur-sm">
-                        {event.department.toUpperCase()}
-                      </span>
-                    </div>
-                  </div>
+      {/* Events Grid / Grouped Display */}
+      <div className="space-y-12">
+        {(() => {
+          const displayGroups: Record<string, any[]> = {};
+          
+          if (deptFilter !== "all") {
+            // If a specific department is selected, we only show that group
+            const groupEvents = filteredEvents || [];
+            if (groupEvents.length > 0) {
+              displayGroups[deptFilter.toUpperCase()] = groupEvents;
+            }
+          } else {
+            // Group technical events by branch
+            const allBranches = ["CSE/AIML", "IT", "ECE/EEE", "MECH", "DIPLOMA"];
+            allBranches.forEach(branch => {
+              const branchEvents = events?.filter(e => {
+                const isTech = e.type === "tech";
+                const matchesBranch = e.department.toLowerCase() === branch.toLowerCase();
+                const isGeneral = e.department.toLowerCase() === "all";
+                const isDiploma = e.tags?.includes("DIPLOMA");
 
-                  <div className="flex justify-between items-start mb-4">
-                     <div className="h-1 w-12 bg-primary/20 group-hover:bg-primary transition-colors" />
-                     <span className="text-muted-foreground text-xs font-mono flex items-center gap-1">
-                       <Clock className="w-3 h-3" /> {event.startTime}
-                     </span>
-                  </div>
+                if (branch === "DIPLOMA") {
+                   return isTech && isDiploma;
+                }
+                
+                return isTech && (matchesBranch || isGeneral);
+              }) || [];
+              
+              if (branchEvents.length > 0) {
+                displayGroups[branch] = branchEvents;
+              }
+            });
 
-                  <h3 className="text-xl mb-3 group-hover:text-primary transition-colors">{event.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-6 line-clamp-3 flex-grow">
-                    {event.shortDescription}
-                  </p>
+            // Cultural events are handled separately to ensure they don't merge incorrectly
+            const culturalEvents = events?.filter(e => e.type === "cultural") || [];
+            if (culturalEvents.length > 0 && mainFilter !== "tech") {
+              displayGroups["CULTURAL"] = culturalEvents;
+            }
+          }
 
-                  <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground border-t border-border pt-4">
-                    <div className="flex items-center gap-2">
-                       <Trophy className="w-4 h-4 text-accent" />
-                       <span className="text-accent">{event.prize}</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-end">
-                       <Users className="w-4 h-4" />
-                       <span>INDIVIDUAL</span>
-                    </div>
-                  </div>
-                </PixelCard>
+          if (Object.keys(displayGroups).length === 0) {
+            return (
+              <div className="text-center py-20 border-2 border-dashed border-border text-muted-foreground font-pixel text-sm">
+                NO EVENTS FOUND IN THIS CATEGORY.
               </div>
-            </Link>
-          </motion.div>
-        ))}
+            );
+          }
+
+          return Object.entries(displayGroups).map(([groupName, groupEvents]) => (
+            <div key={groupName} className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="h-[2px] flex-grow bg-primary/20" />
+                <h2 className="font-pixel text-xl text-primary glow-cyan">{groupName}</h2>
+                <div className="h-[2px] flex-grow bg-primary/20" />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {groupEvents.map((event, idx) => (
+                  <motion.div
+                    key={`${groupName}-${event.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                  >
+                    <Link href={`/events/${event.id}`}>
+                      <div className="h-full cursor-pointer">
+                        <PixelCard className="h-full flex flex-col group hover:border-primary overflow-hidden">
+                          <div className="relative h-48 mb-4 -mx-4 -mt-4 border-b border-border group-hover:border-primary transition-colors overflow-hidden">
+                            <img 
+                              src={event.image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"} 
+                              alt={event.title} 
+                              className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                            <div className="absolute top-4 left-4">
+                              <span className={`px-2 py-1 ${event.department.toLowerCase() === 'all' ? 'bg-secondary/90 text-secondary-foreground' : 'bg-primary/90 text-primary-foreground'} text-[10px] font-pixel border border-white/10 backdrop-blur-sm`}>
+                                {event.department.toLowerCase() === 'all' ? (event.tags?.includes('DIPLOMA') ? 'ALL BRANCHES' : 'GENERAL') : event.department.toUpperCase()}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between items-start mb-4">
+                             <div className="h-1 w-12 bg-primary/20 group-hover:bg-primary transition-colors" />
+                             <span className="text-muted-foreground text-xs font-mono flex items-center gap-1">
+                               <Clock className="w-3 h-3" /> {event.startTime}
+                             </span>
+                          </div>
+
+                          <h3 className="text-xl mb-3 group-hover:text-primary transition-colors">{event.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-6 line-clamp-3 flex-grow">
+                            {event.shortDescription}
+                          </p>
+
+                          <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground border-t border-border pt-4">
+                            <div className="flex items-center gap-2">
+                               <Trophy className="w-4 h-4 text-accent" />
+                               <span className="text-accent">{event.prize}</span>
+                            </div>
+                            <div className="flex items-center gap-2 justify-end">
+                               <Users className="w-4 h-4" />
+                               <span>INDIVIDUAL</span>
+                            </div>
+                          </div>
+                        </PixelCard>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ));
+        })()}
       </div>
 
       {filteredEvents?.length === 0 && (

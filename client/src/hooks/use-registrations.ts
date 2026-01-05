@@ -1,42 +1,30 @@
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { api } from "@shared/routes";
+import { type InsertRegistration } from "@shared/schema";
 import { useToast } from "./use-toast";
-import { type InsertRegistration } from "@shared/routes";
 
 export function useCreateRegistration() {
   const { toast } = useToast();
-  const [isPending, setIsPending] = useState(false);
 
-  const mutate = async (data: InsertRegistration, { onSuccess, onError }: any = {}) => {
-    try {
-      setIsPending(true);
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // LOG TO CONSOLE AS SIMULATED STORAGE
-      console.log("SIMULATED REGISTRATION SUCCESS:", data);
-
-      const mockId = Math.floor(Math.random() * 900000) + 100000;
-      if (onSuccess) onSuccess({ id: mockId });
-
+  return useMutation({
+    mutationFn: async (data: InsertRegistration) => {
+      const res = await apiRequest("POST", api.registrations.create.path, data);
+      return await res.json();
+    },
+    onSuccess: (data) => {
       toast({
         title: "Registration Successful!",
-        description: `See you at yoURFest 2026, ${data.participantName}!`,
-        variant: "default",
+        description: `Your ticket ID is ${data.ticketId}. See you at yoURFest 2026!`,
       });
-    } catch (error: any) {
-      if (onError) onError(error);
+      queryClient.invalidateQueries({ queryKey: [api.events.list.path] });
+    },
+    onError: (error: Error) => {
       toast({
         title: "Registration Failed",
-        description: error.message || "An error occurred",
+        description: error.message,
         variant: "destructive",
       });
-    } finally {
-      setIsPending(false);
-    }
-  };
-
-  return {
-    mutate,
-    isPending
-  };
+    },
+  });
 }
