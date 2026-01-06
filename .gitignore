@@ -9,6 +9,7 @@ build/
 .env
 .env.*
 !.env.example
+*.mp4
 
 # OS junk
 .DS_Store

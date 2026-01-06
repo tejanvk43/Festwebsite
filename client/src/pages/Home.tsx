@@ -19,6 +19,22 @@ export default function Home() {
         {/* Promo Banner - At top */}
         <PromoBanner />
         
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            key={import.meta.env.VITE_BANNER_VIDEO_URL || "/banner_video.mp4"}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-50"
+          >
+            <source src={import.meta.env.VITE_BANNER_VIDEO_URL || "/banner_video.mp4"} type="video/mp4" />
+          </video>
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-[1px]" />
+        </div>
+
         {/* Hero Content */}
         <div className="flex-1 flex items-center justify-center">
         {/* Abstract Background Elements */}
