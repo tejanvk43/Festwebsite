@@ -11,6 +11,7 @@ const navItems = [
   { href: "/schedule", label: "Schedule" },
   { href: "/venue", label: "Venue" },
   { href: "/banners", label: "Banners" },
+  { href: "#", label: "Spot Registration" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -53,13 +54,18 @@ export function Navigation({
               Online Registration
             </button>
           </Link>
+          <a href="#" onClick={(e) => { e.preventDefault(); alert("Spot Registration is available at the venue desk!"); }}>
+            <button className="hidden sm:block px-3 sm:px-4 py-2 bg-accent/10 border-2 border-accent text-accent font-pixel text-[10px] hover:bg-accent hover:text-accent-foreground transition-all glow-cyan">
+              Spot Registration
+            </button>
+          </a>
           <Link href="/contact">
-            <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
+            <button className="hidden lg:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
               Contact Us
             </button>
           </Link>
           <Link href="/banners">
-            <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
+            <button className="hidden lg:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
               Banners
             </button>
           </Link>

@@ -13,6 +13,7 @@ const navItems = [
   { href: "/schedule", label: "SCHEDULE", icon: Clock },
   { href: "/venue", label: "VENUE", icon: MapPin },
   { href: "/banners", label: "BANNERS", icon: ImageIcon },
+  { href: "#", label: "SPOT REG", icon: Calendar },
   { href: "/contact", label: "CONTACT", icon: Mail },
 ];
 
