@@ -100,9 +100,9 @@ export function LoadingScreen({ onFinished }: { onFinished: () => void }) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={currentLine >= lines.length - 1 ? { opacity: 1 } : {}}
-              className="text-center mt-12"
+              className="text-center mt-12 font-brand font-black tracking-tight"
             >
-              <h2 className="text-2xl font-bold tracking-tighter normal-case">
+              <h2 className="text-2xl tracking-tighter normal-case">
                 <span className="text-secondary">yo</span>
                 <span className="text-primary glow-yellow">URFest</span>
               </h2>

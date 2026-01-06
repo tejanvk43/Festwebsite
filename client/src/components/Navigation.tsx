@@ -38,9 +38,9 @@ export function Navigation({
           </a>
           <div className="h-6 sm:h-8 w-[2px] bg-border hidden sm:block" />
           <Link href="/">
-            <div className="font-pixel text-base sm:text-xl md:text-2xl text-primary cursor-pointer hover:animate-neon-pulse transition-all flex items-baseline" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
+            <div className="font-brand font-black text-base sm:text-lg md:text-xl text-primary cursor-pointer hover:animate-neon-pulse transition-all flex items-baseline tracking-tight uppercase" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
               <span>yoUR Fest</span>
-              <span className="text-secondary text-[10px] sm:text-xs align-top ml-0.5 sm:ml-1" style={{ textShadow: `0 0 8px hsla(var(--secondary), 0.4)` }}>2026</span>
+              <span className="font-pixel text-secondary text-[8px] sm:text-[10px] align-top ml-1" style={{ textShadow: `0 0 8px hsla(var(--secondary), 0.4)` }}>2026</span>
             </div>
           </Link>
         </div>

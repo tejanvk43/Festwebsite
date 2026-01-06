@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,6 +45,7 @@
 
   /* Fonts */
   --font-pixel: 'Press Start 2P', cursive;
+  --font-brand: 'Orbitron', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   /* Neon glow colors */
@@ -121,6 +122,10 @@
 @layer utilities {
   .text-pixel {
     font-family: var(--font-pixel);
+  }
+
+  .font-brand {
+    font-family: var(--font-brand);
   }
 
   /* Neon Glow Effects */

@@ -12,7 +12,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const branches = [
-  "CSE/AIML",
+  "CSE/AI",
   "IT",
   "ECE/EEE",
   "MECH",
@@ -239,7 +239,7 @@ export default function Register() {
         >
           {/* Header for print hidden in digital view */}
           <div className="hidden print:block text-center mb-8 pb-4 border-b-2 border-primary">
-            <h1 className="text-3xl font-pixel text-primary mb-2">yoURFest 2026</h1>
+            <h1 className="text-3xl font-brand font-black text-primary mb-2 uppercase tracking-tight">yoURFest 2026</h1>
             <p className="text-sm font-pixel text-muted-foreground uppercase">Official Registration Ticket</p>
           </div>
 
@@ -252,7 +252,7 @@ export default function Register() {
             <div className="space-y-8 relative z-10">
               <div className="flex justify-between items-start border-b border-border/50 pb-6 print:border-black/20">
                 <div>
-                  <h2 className="text-2xl text-primary font-pixel mb-1 print:text-black">REGISTRATION CONFIRMED</h2>
+                  <h2 className="text-2xl text-primary font-brand font-black mb-1 print:text-black uppercase tracking-tight">REGISTRATION CONFIRMED</h2>
                   <p className="text-muted-foreground text-xs font-pixel uppercase">Ticket ID: <span className="text-accent font-mono text-lg print:text-black">{ticketData?.ticketId || `#${String(regId).padStart(6, '0')}`}</span></p>
                 </div>
                 <div className="text-right">
@@ -427,7 +427,7 @@ export default function Register() {
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-5xl mb-4 text-primary normal-case">JOIN yoURFest</h1>
+          <h1 className="text-3xl md:text-5xl mb-4 text-primary font-brand font-black uppercase tracking-tight">JOIN yoURFest</h1>
           
           {/* Progress Bar */}
           <div className="flex justify-between max-w-sm mx-auto mt-8 relative">

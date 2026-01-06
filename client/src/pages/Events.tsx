@@ -63,7 +63,7 @@ export default function Events() {
 
   const deptFilters = [
     { id: "all", label: "ALL DEPTS" },
-    { id: "cse/aiml", label: "CSE/AIML" },
+    { id: "cse/ai", label: "CSE/AI" },
     { id: "it", label: "IT" },
     { id: "ece/eee", label: "ECE/EEE" },
     { id: "mech", label: "MECH" },
@@ -130,38 +130,42 @@ export default function Events() {
         {(() => {
           const displayGroups: Record<string, any[]> = {};
           
-          if (deptFilter !== "all") {
-            // If a specific department is selected, we only show that group
+          if (deptFilter !== "all" && mainFilter !== "cultural") {
+            // If a specific department is selected, we only show that group from filteredEvents
             const groupEvents = filteredEvents || [];
             if (groupEvents.length > 0) {
               displayGroups[deptFilter.toUpperCase()] = groupEvents;
             }
           } else {
-            // Group technical events by branch
-            const allBranches = ["CSE/AIML", "IT", "ECE/EEE", "MECH", "DIPLOMA"];
-            allBranches.forEach(branch => {
-              const branchEvents = events?.filter(e => {
-                const isTech = e.type === "tech";
-                const matchesBranch = e.department.toLowerCase() === branch.toLowerCase();
-                const isGeneral = e.department.toLowerCase() === "all";
-                const isDiploma = e.tags?.includes("DIPLOMA");
+            // Group filtered technical events by branch
+            const allBranches = ["CSE/AI", "IT", "ECE/EEE", "MECH", "DIPLOMA"];
+            
+            if (mainFilter === "tech" || mainFilter === "all") {
+              allBranches.forEach(branch => {
+                const branchEvents = filteredEvents?.filter(e => {
+                  const matchesBranch = e.department.toLowerCase() === branch.toLowerCase();
+                  const isGeneral = e.department.toLowerCase() === "all";
+                  const isDiploma = e.tags?.includes("DIPLOMA");
 
-                if (branch === "DIPLOMA") {
-                   return isTech && isDiploma;
-                }
+                  if (branch === "DIPLOMA") {
+                     return isDiploma;
+                  }
+                  
+                  return matchesBranch || (isGeneral && !isDiploma);
+                }) || [];
                 
-                return isTech && (matchesBranch || isGeneral);
-              }) || [];
-              
-              if (branchEvents.length > 0) {
-                displayGroups[branch] = branchEvents;
-              }
-            });
+                if (branchEvents.length > 0) {
+                  displayGroups[branch] = branchEvents;
+                }
+              });
+            }
 
-            // Cultural events are handled separately to ensure they don't merge incorrectly
-            const culturalEvents = events?.filter(e => e.type === "cultural") || [];
-            if (culturalEvents.length > 0 && mainFilter !== "tech") {
-              displayGroups["CULTURAL"] = culturalEvents;
+            // Group filtered cultural events
+            if (mainFilter === "cultural" || mainFilter === "all") {
+              const culturalEvents = filteredEvents?.filter(e => e.type === "cultural") || [];
+              if (culturalEvents.length > 0) {
+                displayGroups["CULTURAL"] = culturalEvents;
+              }
             }
           }
 
@@ -240,11 +244,6 @@ export default function Events() {
         })()}
       </div>
 
-      {filteredEvents?.length === 0 && (
-        <div className="text-center py-20 border-2 border-dashed border-border text-muted-foreground font-pixel text-sm">
-          NO EVENTS FOUND IN THIS CATEGORY.
-        </div>
-      )}
     </div>
   );
 }

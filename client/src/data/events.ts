@@ -14,6 +14,8 @@ export interface Event {
     rules: string[];
     tags: string[];
     image: string;
+    venue?: string;
+    contactNo?: string;
     facultyCoordinator?: string;
     studentCoordinator?: string;
 }
@@ -36,8 +38,9 @@ export const events: Event[] = [
         rules: ["Standard safety gear required", "Participants must bring college ID"],
         tags: ["mechanical", "competition"],
         image: "/assets/events/tech-olympics.png",
-        facultyCoordinator: "Dr. Smith",
-        studentCoordinator: "John Doe"
+        venue: "Basketball Court",
+        contactNo: "9966139994",
+        facultyCoordinator: "Dr.R. Bhargavi & Mr.G. Jaya Raju"
     },
     {
         id: "evt-mech-002",
@@ -53,17 +56,87 @@ export const events: Event[] = [
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
         rules: ["Helmets mandatory", "Strict adherence to track signals"],
-        tags: ["racing", "mechanical"],
+        tags: ["mechanical", "competition"],
         image: "/assets/events/go-karting.png",
-        facultyCoordinator: "Prof. Johnson",
-        studentCoordinator: "Jane Doe"
+        venue: "Near W-Block",
+        contactNo: "9490501085",
+        facultyCoordinator: "Dr.V. Ajay Kumar & Mr. B. Nani"
+    },
+    {
+        id: "evt-mech-quiz",
+        title: "Technical Quiz",
+        type: "tech",
+        department: "MECH",
+        shortDescription: "Mechanical technical quiz.",
+        fullDescription: "Test your knowledge of the latest developments in mechanical engineering.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Multiple rounds", "Rapid fire final"],
+        tags: ["quiz", "mechanical"],
+        image: "/assets/events/technical-quiz.png"
+    },
+    {
+        id: "evt-mech-exh",
+        title: "Project Exhibition",
+        type: "tech",
+        department: "MECH",
+        shortDescription: "Showcase your innovations.",
+        fullDescription: "An opportunity for students to demonstrate their mechanical projects and innovations.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Open only to final-year students.", "Projects must be technical in nature."],
+        tags: ["innovation", "mechanical"],
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+    },
+    {
+        id: "evt-mech-poster",
+        title: "Poster Presentation",
+        type: "tech",
+        department: "MECH",
+        shortDescription: "Visual presentation of research ideas.",
+        fullDescription: "Design and present a poster summarizing a mechanical technical research topic.",
+        date: "23-01-2026",
+        startTime: "10:00",
+        endTime: "15:00",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
+        tags: ["research", "mechanical"],
+        image: "/assets/events/poster-presentation.png"
+    },
+    {
+        id: "evt-mech-paper",
+        title: "Paper Presentation",
+        type: "tech",
+        department: "MECH",
+        shortDescription: "Present your technical papers.",
+        fullDescription: "Submit and present mechanical research papers to a panel of expert judges.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
+        tags: ["mechanical", "competition"],
+        image: "/assets/events/paper_presentation.png",
+        venue: "Seminar Hall - 1"
     },
     // CSE, AIML & DS
     {
         id: "evt-cse-001",
         title: "Tech Talks",
         type: "tech",
-        department: "CSE/AIML",
+        department: "CSE/AI",
         shortDescription: "Insightful sessions on emerging technologies.",
         fullDescription: "Expert talks on AI, Machine Learning, and the future of Computing.",
         date: "23-01-2026",
@@ -72,15 +145,18 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["No recording without permission"],
+        rules: ["Participants must present on a relevant technical topic.", "Clarity, confidence, and content quality will be evaluated."],
         tags: ["AI", "ML", "Computer Science"],
-        image: "/assets/events/tech_talks.png"
+        image: "/assets/events/tech_talks.png",
+        venue: "R310",
+        contactNo: "6305806663",
+        facultyCoordinator: "Dr.V.G.N.S Prasad & Mr.R. Sriram"
     },
     {
         id: "evt-cse-002",
         title: "Cryptic Crosswords",
         type: "tech",
-        department: "CSE/AIML",
+        department: "CSE/AI",
         shortDescription: "Solve the code, win the game.",
         fullDescription: "A tech-themed crossword competition to test your vocabulary and knowledge.",
         date: "23-01-2026",
@@ -91,13 +167,16 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["No mobile phones during the contest"],
         tags: ["puzzles", "logic"],
-        image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&q=80",
+        venue: "R201",
+        contactNo: "9573752230",
+        facultyCoordinator: "Mrs.P.Bhagya Sri & Ms.P.Usha Sri"
     },
     {
         id: "evt-cse-003",
         title: "Prompt AI",
         type: "tech",
-        department: "CSE/AIML",
+        department: "CSE/AI",
         shortDescription: "Master the art of prompt engineering.",
         fullDescription: "Competitions focused on generating the best outputs from AI models using creative prompts.",
         date: "23-01-2026",
@@ -108,13 +187,16 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Use of specific AI models only", "Ethical guidelines apply"],
         tags: ["AI", "Prompting"],
-        image: "/assets/events/prompt-ai.png"
+        image: "/assets/events/prompt-ai.png",
+        venue: "CP LAB 2",
+        contactNo: "6281016866",
+        facultyCoordinator: "Mrs.B. Sowmya"
     },
     {
         id: "evt-cse-004",
         title: "Rapid Coders",
         type: "tech",
-        department: "CSE/AIML",
+        department: "CSE/AI",
         shortDescription: "Speed coding challenge.",
         fullDescription: "Solve programming problems as fast as you can in this high-intensity coding sprint.",
         date: "23-01-2026",
@@ -125,13 +207,16 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Standard competitive programming rules apply"],
         tags: ["coding", "programming"],
-        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80",
+        venue: "R204",
+        contactNo: "9490903578",
+        facultyCoordinator: "Mrs.T.N.Mounika & Mr.K.Surya"
     },
     {
         id: "evt-cse-005",
         title: "Beat The Clock",
         type: "tech",
-        department: "CSE/AIML",
+        department: "CSE/AI",
         shortDescription: "Time-bound technical tasks.",
         fullDescription: "A series of quick-fire technical tasks where you race against the timer.",
         date: "23-01-2026",
@@ -142,7 +227,78 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Completion within time is key"],
         tags: ["stamina", "logic"],
-        image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80",
+        venue: "R308",
+        contactNo: "9948699901",
+        facultyCoordinator: "Mrs.S.Gogulapriya & Mr.M.Chanti Babu"
+    },
+    {
+        id: "evt-cse-quiz",
+        title: "Technical Quiz",
+        type: "tech",
+        department: "CSE/AI",
+        shortDescription: "Computer science quiz.",
+        fullDescription: "Test your knowledge of the latest developments in CSE & AI.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Multiple rounds", "Rapid fire final"],
+        tags: ["quiz", "CSE", "AI"],
+        image: "/assets/events/technical-quiz.png"
+    },
+    {
+        id: "evt-cse-exh",
+        title: "Project Exhibition",
+        type: "tech",
+        department: "CSE/AI",
+        shortDescription: "Showcase your prototypes.",
+        fullDescription: "An opportunity for students to demonstrate their CSE/AI projects and innovations.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Open only to final-year students.", "Projects must be technical in nature."],
+        tags: ["innovation", "CSE", "AI"],
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+    },
+    {
+        id: "evt-cse-poster",
+        title: "Poster Presentation",
+        type: "tech",
+        department: "CSE/AI",
+        shortDescription: "Visual presentation of research ideas.",
+        fullDescription: "Design and present a poster summarizing a CSE/AI research topic.",
+        date: "23-01-2026",
+        startTime: "10:00",
+        endTime: "15:00",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
+        tags: ["research", "CSE", "AI"],
+        image: "/assets/events/poster-presentation.png"
+    },
+    {
+        id: "evt-cse-paper",
+        title: "Paper Presentation",
+        type: "tech",
+        department: "CSE/AI",
+        shortDescription: "Present your technical papers.",
+        fullDescription: "Submit and present CSE/AI research papers to a panel of expert judges.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
+        tags: ["academic", "CSE", "AI"],
+        image: "/assets/events/paper_presentation.png"
     },
     // IT
     {
@@ -158,9 +314,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Bring your own laptops"],
+        rules: ["Teams must present a productive and implementable idea.", "Innovation and problem-solving approach are mandatory."],
         tags: ["hacking", "development"],
-        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80",
+        venue: "U406",
+        contactNo: "7702720850",
+        facultyCoordinator: "Mrs. B. Sirisha"
     },
     {
         id: "evt-it-002",
@@ -177,7 +336,78 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Limit to 5 min pitch"],
         tags: ["startup", "ideas"],
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+        venue: "U311",
+        contactNo: "6301552836",
+        facultyCoordinator: "Mr. CH. Madhu Babu"
+    },
+    {
+        id: "evt-it-quiz",
+        title: "Technical Quiz",
+        type: "tech",
+        department: "IT",
+        shortDescription: "Information technology quiz.",
+        fullDescription: "Test your knowledge of the latest developments in IT.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Multiple rounds", "Rapid fire final"],
+        tags: ["quiz", "IT"],
+        image: "/assets/events/technical-quiz.png"
+    },
+    {
+        id: "evt-it-exh",
+        title: "Project Exhibition",
+        type: "tech",
+        department: "IT",
+        shortDescription: "Showcase your prototypes.",
+        fullDescription: "An opportunity for students to demonstrate their IT projects and innovations.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Open only to final-year students.", "Projects must be technical in nature."],
+        tags: ["innovation", "IT"],
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+    },
+    {
+        id: "evt-it-poster",
+        title: "Poster Presentation",
+        type: "tech",
+        department: "IT",
+        shortDescription: "Visual presentation of research ideas.",
+        fullDescription: "Design and present a poster summarizing an IT research topic.",
+        date: "23-01-2026",
+        startTime: "10:00",
+        endTime: "15:00",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
+        tags: ["research", "IT"],
+        image: "/assets/events/poster-presentation.png"
+    },
+    {
+        id: "evt-it-paper",
+        title: "Paper Presentation",
+        type: "tech",
+        department: "IT",
+        shortDescription: "Present your technical papers.",
+        fullDescription: "Submit and present IT research papers to a panel of expert judges.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
+        tags: ["academic", "IT"],
+        image: "/assets/events/paper_presentation.png"
     },
     // ECE & EEE
     {
@@ -195,7 +425,9 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Safety first", "Components provided"],
         tags: ["electronics", "hardware"],
-        image: "/assets/events/circuitrix.png"
+        image: "/assets/events/circuitrix.png",
+        contactNo: "9703370227",
+        facultyCoordinator: "Mrs.U.Nalini"
     },
     {
         id: "evt-ece-002",
@@ -212,7 +444,9 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Speed and accuracy"],
         tags: ["quiz", "fast-paced"],
-        image: "/assets/events/stress_burst.png"
+        image: "/assets/events/stress_burst.png",
+        contactNo: "8801427804",
+        facultyCoordinator: "Mr. G. Rajesh Babu"
     },
     {
         id: "evt-ece-003",
@@ -229,7 +463,9 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Mobile tracking mandatory"],
         tags: ["treasure-hunt", "clues"],
-        image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80",
+        contactNo: "7396652874",
+        facultyCoordinator: "Mr. P. Venkanna"
     },
     {
         id: "evt-ece-004",
@@ -246,16 +482,86 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Humor allowed but respectful"],
         tags: ["humor", "creative"],
-        image: "/assets/events/techno-parady.png"
+        image: "/assets/events/techno-parady.png",
+        contactNo: "9440110662",
+        facultyCoordinator: "Mr.K.N.V.Prasad"
     },
-    // All Departments / General
     {
-        id: "evt-all-001",
+        id: "evt-ece-quiz",
         title: "Technical Quiz",
         type: "tech",
-        department: "ALL",
-        shortDescription: "General technical quiz across disciplines.",
-        fullDescription: "Test your knowledge of the latest developments across all engineering fields.",
+        department: "ECE/EEE",
+        shortDescription: "Electronics & Electrical quiz.",
+        fullDescription: "Test your knowledge of the latest developments in ECE & EEE.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Multiple rounds", "Rapid fire final"],
+        tags: ["quiz", "ECE", "EEE"],
+        image: "/assets/events/technical-quiz.png"
+    },
+    {
+        id: "evt-ece-exh",
+        title: "Project Exhibition",
+        type: "tech",
+        department: "ECE/EEE",
+        shortDescription: "Showcase your innovations.",
+        fullDescription: "An opportunity for students to demonstrate their ECE/EEE projects and innovations.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Open only to final-year students.", "Projects must be technical in nature."],
+        tags: ["innovation", "ECE", "EEE"],
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+    },
+    {
+        id: "evt-ece-poster",
+        title: "Poster Presentation",
+        type: "tech",
+        department: "ECE/EEE",
+        shortDescription: "Visual presentation of research ideas.",
+        fullDescription: "Design and present a poster summarizing an ECE/EEE research topic.",
+        date: "23-01-2026",
+        startTime: "10:00",
+        endTime: "15:00",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
+        tags: ["research", "ECE", "EEE"],
+        image: "/assets/events/poster-presentation.png"
+    },
+    {
+        id: "evt-ece-paper",
+        title: "Paper Presentation",
+        type: "tech",
+        department: "ECE/EEE",
+        shortDescription: "Present your technical papers.",
+        fullDescription: "Submit and present ECE/EEE research papers to a panel of expert judges.",
+        date: "23-01-2026",
+        startTime: "09:40 AM",
+        endTime: "04:00 PM",
+        teamSize: 1,
+        registrationFee: 100,
+        prize: "Cash Prize & Certificates",
+        rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
+        tags: ["academic", "ECE", "EEE"],
+        image: "/assets/events/paper_presentation.png"
+    },
+    // DIPLOMA
+    {
+        id: "evt-dip-quiz",
+        title: "Technical Quiz",
+        type: "tech",
+        department: "DIPLOMA",
+        shortDescription: "Technical quiz for diploma students.",
+        fullDescription: "Test your technical knowledge in this diploma-focused quiz competition.",
         date: "23-01-2026",
         startTime: "09:40 AM",
         endTime: "04:00 PM",
@@ -267,27 +573,27 @@ export const events: Event[] = [
         image: "/assets/events/technical-quiz.png"
     },
     {
-        id: "evt-all-002",
+        id: "evt-dip-exh",
         title: "Project Exhibition",
         type: "tech",
-        department: "ALL",
-        shortDescription: "Showcase your innovative prototypes.",
-        fullDescription: "An opportunity for students to demonstrate their final year projects and innovations.",
+        department: "DIPLOMA",
+        shortDescription: "Showcase your innovatve prototypes.",
+        fullDescription: "An opportunity for diploma students to demonstrate their innovative projects.",
         date: "23-01-2026",
         startTime: "09:40 AM",
         endTime: "04:00 PM",
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Functional models required", "Poster mandatory"],
+        rules: ["Open only to final-year students.", "Projects must be technical in nature."],
         tags: ["innovation", "DIPLOMA"],
         image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
     },
     {
-        id: "evt-all-003",
+        id: "evt-dip-poster",
         title: "Poster Presentation",
         type: "tech",
-        department: "ALL",
+        department: "DIPLOMA",
         shortDescription: "Visual presentation of research ideas.",
         fullDescription: "Design and present a poster summarizing a technical research topic.",
         date: "23-01-2026",
@@ -296,15 +602,15 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Standard poster size", "Oral summary required"],
+        rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
         tags: ["research", "DIPLOMA"],
         image: "/assets/events/poster-presentation.png"
     },
     {
-        id: "evt-all-004",
+        id: "evt-dip-paper",
         title: "Paper Presentation",
         type: "tech",
-        department: "ALL",
+        department: "DIPLOMA",
         shortDescription: "Present your technical papers.",
         fullDescription: "Submit and present research papers to a panel of expert judges.",
         date: "23-01-2026",
@@ -313,7 +619,7 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Standard format guidelines", "PPT required"],
+        rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
         tags: ["academic", "DIPLOMA"],
         image: "/assets/events/paper_presentation.png"
     },
@@ -331,9 +637,13 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Traditional attire mandatory"],
+        rules: ["Only female participants are allowed.", "Participants must wear traditional Telugu attire."],
         tags: ["tradition", "talent"],
-        image: "/assets/events/telugu-ammai.png"
+        image: "/assets/events/telugu-ammai.png",
+        venue: "U-Block Seminar Hall",
+        contactNo: "9182616668",
+        facultyCoordinator: "Mrs K. Nitya",
+        studentCoordinator: "Advisory Committee: Dr. Ch. Santhi Rani, Dr. KPNV. Satya Sree, Dr. R. Bhargavi, M. Deepthi, K. Ratna Sree"
     },
     {
         id: "evt-cul-002",
@@ -348,9 +658,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Max 3 minute performance"],
+        rules: ["Participants may perform to any movie or non-movie songs.", "Exception: Songs related to top hero families are not allowed."],
         tags: ["dance", "performance"],
-        image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80",
+        venue: "R301",
+        contactNo: "9550419419",
+        facultyCoordinator: "Mr K. Koteshwara Kishore"
     },
     {
         id: "evt-cul-003",
@@ -365,9 +678,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Minus-one tracks allowed"],
+        rules: ["Any language is permitted unless specified otherwise by the judges."],
         tags: ["music", "voice"],
-        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
+        venue: "R309",
+        contactNo: "9347226667",
+        facultyCoordinator: "Mr. Ch Phani Kumar"
     },
     {
         id: "evt-cul-004",
@@ -382,9 +698,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Event hashtags required"],
+        rules: ["Participants must submit 2 reels.", "Each reel must be less than 30 seconds.", "The participant must be visibly present in the reel."],
         tags: ["social-media", "creative"],
-        image: "https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=800&q=80",
+        venue: "R108",
+        contactNo: "9032832857",
+        facultyCoordinator: "Mr. D. Hari Chanrda Prasad Babu Naik"
     },
     {
         id: "evt-cul-005",
@@ -399,9 +718,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Raw files required on demand"],
+        rules: ["Participants must bring their own camera.", "Photography must be done only within the campus.", "Photos must be captured within the given time limit."],
         tags: ["photography", "art"],
-        image: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?w=800&q=80",
+        venue: "R404",
+        contactNo: "7093325903",
+        facultyCoordinator: "Mr E. Rama Krishna Reddy"
     },
     {
         id: "evt-cul-006",
@@ -416,9 +738,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["No hazardous materials"],
+        rules: ["Participants must bring working models.", "Models should be related to General Science or Engineering concepts."],
         tags: ["science", "learning"],
-        image: "/assets/events/science_fair.png"
+        image: "/assets/events/science_fair.png",
+        venue: "R105",
+        contactNo: "8125813894",
+        facultyCoordinator: "Mr D. Sahitya Devi"
     },
     {
         id: "evt-cul-007",
@@ -433,9 +758,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Bring your flowers if needed"],
+        rules: ["Flowers must be arranged on paper, cloth, or wooden base.", "Arrangement should be creative and aesthetically appealing.", "Final work must be submitted within the given time."],
         tags: ["art", "natural"],
-        image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80",
+        venue: "R103",
+        contactNo: "8121630984",
+        facultyCoordinator: "Ms. G. Sree Manogna"
     },
     {
         id: "evt-cul-008",
@@ -450,9 +778,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Language: English/Telugu"],
+        rules: ["The event consists of 3 stages.", "Participants must speak only in English throughout the event."],
         tags: ["speaking", "debate"],
-        image: "/assets/events/talkathon.png"
+        image: "/assets/events/talkathon.png",
+        venue: "R104",
+        contactNo: "7995487415",
+        facultyCoordinator: "Mr R Simhachalam"
     },
     {
         id: "evt-cul-009",
@@ -467,9 +798,12 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Bring your own brushes"],
+        rules: ["The management will provide only white drawing sheets.", "Participants must bring their own stationery and colors."],
         tags: ["painting", "creative"],
-        image: "/assets/events/painting_art.png"
+        image: "/assets/events/painting_art.png",
+        venue: "Drawing Hall U412",
+        contactNo: "9963132131",
+        facultyCoordinator: "Mrs. S. Sri Laxmi"
     },
     {
         id: "evt-cul-010",
@@ -486,7 +820,10 @@ export const events: Event[] = [
         prize: "Cash Prize & Certificates",
         rules: ["Fastest solvers win"],
         tags: ["literature", "maze"],
-        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80"
+        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80",
+        venue: "R102",
+        contactNo: "9014938372",
+        facultyCoordinator: "Mrs. R. Sarojini Devi"
     },
     {
         id: "evt-cul-011",
@@ -501,8 +838,11 @@ export const events: Event[] = [
         teamSize: 1,
         registrationFee: 100,
         prize: "Cash Prize & Certificates",
-        rules: ["Semi-formal attire required"],
+        rules: ["Participants may dance, act, or perform a walk.", "The performance should clearly showcase individual talent."],
         tags: ["personality", "talent"],
-        image: "/assets/events/mr_perfect.png"
+        image: "/assets/events/mr_perfect.png",
+        venue: "R-Block Seminar Hall",
+        contactNo: "7396652874 & 9666969796",
+        facultyCoordinator: "Mr. P. Venkanna & Mr. V. Mahesh"
     }
 ];

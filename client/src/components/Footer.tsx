@@ -14,13 +14,9 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="font-pixel text-lg text-primary mb-2 flex items-baseline">
-              <span>yoUR Fes</span>
-              <span className="relative flex items-baseline">
-                t
-                <span className="absolute bottom-[2px] right-[-1px] w-[3px] h-[3px] bg-primary" />
-              </span>
-              <span className="text-secondary text-[10px] ml-1">2026</span>
+            <div className="font-brand font-black text-xl text-primary mb-2 flex items-baseline tracking-tight uppercase">
+              <span>yoUR Fest</span>
+              <span className="font-pixel text-secondary text-[8px] ml-1">2026</span>
             </div>
             <div className="text-[9px] font-pixel text-muted-foreground leading-normal mt-4 mb-2">
               USHA RAMA COLLEGE OF ENGINEERING & TECHNOLOGY (AUTONOMOUS)

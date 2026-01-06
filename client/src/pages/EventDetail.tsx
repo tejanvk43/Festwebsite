@@ -78,40 +78,45 @@ export default function EventDetail() {
 
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
+                    <MapPin className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground font-pixel uppercase">Venue</div>
+                    <div className="font-medium">{event.venue || "TBD"}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
                     <Users className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground font-pixel uppercase">Participation</div>
-                    <div className="font-medium">Individual</div>
+                    <div className="text-xs text-muted-foreground font-pixel uppercase">Faculty Coordinator</div>
+                    <div className="font-medium">{event.facultyCoordinator}</div>
+                    {event.contactNo && (
+                      <>
+                        <div className="mt-2 text-xs text-muted-foreground font-pixel uppercase">Contact</div>
+                        <div className="font-medium text-primary glow-cyan">{event.contactNo}</div>
+                      </>
+                    )}
+                    {event.studentCoordinator && (
+                      <>
+                        <div className="mt-2 text-xs text-muted-foreground font-pixel uppercase">Student Coordinator</div>
+                        <div className="font-medium">{event.studentCoordinator}</div>
+                      </>
+                    )}
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-4">
-                 <div className="w-10 h-10 border-2 border-primary flex items-center justify-center bg-primary/10">
-                   <Users className="w-5 h-5 text-primary" />
-                 </div>
-                 <div>
-                   <div className="text-xs text-muted-foreground font-pixel uppercase">Faculty Coordinator</div>
-                   <div className="font-medium">{event.facultyCoordinator}</div>
-                   <div className="mt-2 text-xs text-muted-foreground font-pixel uppercase">Student Coordinator</div>
-                   <div className="font-medium">{event.studentCoordinator}</div>
-                 </div>
-               </div>
 
-               <div className="flex items-center gap-4">
-                 <div className="w-10 h-10 border-2 border-accent flex items-center justify-center bg-accent/10">
-                   <Trophy className="w-5 h-5 text-accent" />
-                 </div>
-                 <div>
-                   <div className="text-xs text-muted-foreground font-pixel uppercase">Prize Pool</div>
-                   <div className="font-medium text-accent">{event.prize}</div>
-                    <ul className="mt-2 space-y-1 text-xs font-medium text-primary list-disc list-inside">
-                     <li>1st Prize: ₹1000</li>
-                     <li>2nd Prize: ₹800</li>
-                     <li>3rd Prize: ₹500</li>
-                   </ul>
-                 </div>
-               </div>
+                <div className="flex items-center gap-4">
+                   <div className="w-10 h-10 border-2 border-accent flex items-center justify-center bg-accent/10">
+                     <Trophy className="w-5 h-5 text-accent" />
+                   </div>
+                   <div>
+                     <div className="text-xs text-muted-foreground font-pixel uppercase">Prize Pool</div>
+                     <div className="font-medium text-accent">{event.prize}</div>
+                   </div>
+                </div>
 
                <div className="border-t-2 border-border my-6"></div>
 
