@@ -80,7 +80,7 @@ export default function Events() {
       </div>
 
       {/* Main Categories */}
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-4 mb-4">
         {mainFilters.map((f) => (
           <button
             key={f.id}
@@ -99,6 +99,19 @@ export default function Events() {
           </button>
         ))}
       </div>
+
+      {/* Date Display */}
+      <motion.div 
+        key={`date-${mainFilter}`}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center mb-8"
+      >
+        <div className="inline-flex items-center gap-3 px-4 py-2 border border-primary/20 bg-primary/5 font-pixel text-[10px] text-primary">
+          <Calendar className="w-3 h-3" />
+          {mainFilter === "all" ? "BOTH 23/01/2026 , 24/01/2026" : (mainFilter === "tech" ? "23/01/2026" : "24/01/2026")}
+        </div>
+      </motion.div>
 
       {/* Department Sub-categories (only show if tech or all is selected) */}
       {(mainFilter === "tech" || mainFilter === "all") && (
