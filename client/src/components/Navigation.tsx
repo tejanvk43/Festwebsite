@@ -10,6 +10,7 @@ const navItems = [
   { href: "/stalls", label: "Stalls" },
   { href: "/schedule", label: "Schedule" },
   { href: "/venue", label: "Venue" },
+  { href: "/banners", label: "Banners" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -38,14 +39,14 @@ export function Navigation({
           </a>
           <div className="h-6 sm:h-8 w-[2px] bg-border hidden sm:block" />
           <Link href="/">
-            <div className="font-brand font-black text-base sm:text-lg md:text-xl text-primary cursor-pointer hover:animate-neon-pulse transition-all flex items-baseline tracking-tight uppercase" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
+            <div className="font-brand font-black text-base sm:text-lg md:text-xl text-primary cursor-pointer hover:animate-neon-pulse transition-all flex items-baseline tracking-tight" style={{ textShadow: '0 0 10px rgba(255, 241, 0, 0.5)' }}>
               <span>yoUR Fest</span>
               <span className="font-pixel text-secondary text-[8px] sm:text-[10px] align-top ml-1" style={{ textShadow: `0 0 8px hsla(var(--secondary), 0.4)` }}>2026</span>
             </div>
           </Link>
         </div>
 
-        {/* Unified START button for Desktop & Mobile */}
+        {/* Action Buttons */}
         <div className="flex items-center gap-3 sm:gap-6">
           <Link href="/register">
             <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
@@ -55,6 +56,11 @@ export function Navigation({
           <Link href="/contact">
             <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
               Contact Us
+            </button>
+          </Link>
+          <Link href="/banners">
+            <button className="hidden sm:block px-3 sm:px-4 py-2 bg-primary/10 border-2 border-primary text-primary font-pixel text-[10px] hover:bg-primary hover:text-primary-foreground transition-all">
+              Banners
             </button>
           </Link>
           <button
@@ -79,7 +85,6 @@ export function Navigation({
           </button>
         </div>
       </div>
-
     </motion.header>
   );
 }

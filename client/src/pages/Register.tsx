@@ -239,7 +239,7 @@ export default function Register() {
         >
           {/* Header for print hidden in digital view */}
           <div className="hidden print:block text-center mb-8 pb-4 border-b-2 border-primary">
-            <h1 className="text-3xl font-brand font-black text-primary mb-2 uppercase tracking-tight">yoURFest 2026</h1>
+            <h1 className="text-3xl font-brand font-black text-primary mb-2 tracking-tight">yoURFest 2026</h1>
             <p className="text-sm font-pixel text-muted-foreground uppercase">Official Registration Ticket</p>
           </div>
 
@@ -427,7 +427,7 @@ export default function Register() {
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-5xl mb-4 text-primary font-brand font-black uppercase tracking-tight">JOIN yoURFest</h1>
+          <h1 className="text-3xl md:text-5xl mb-4 text-primary font-brand font-black tracking-tight">JOIN yoUR Fest</h1>
           
           {/* Progress Bar */}
           <div className="flex justify-between max-w-sm mx-auto mt-8 relative">

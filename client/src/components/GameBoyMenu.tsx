@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { HandheldConsole } from "./HandheldConsole";
-import { Home, Calendar, ShoppingBag, MapPin, Mail, ChevronRight, User, Clock } from "lucide-react";
+import { Home, Calendar, ShoppingBag, MapPin, Mail, ChevronRight, Image as ImageIcon, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { playRetroSound } from "@/lib/audio";
 
@@ -12,6 +12,7 @@ const navItems = [
   { href: "/stalls", label: "STALLS", icon: ShoppingBag },
   { href: "/schedule", label: "SCHEDULE", icon: Clock },
   { href: "/venue", label: "VENUE", icon: MapPin },
+  { href: "/banners", label: "BANNERS", icon: ImageIcon },
   { href: "/contact", label: "CONTACT", icon: Mail },
 ];
 
@@ -105,43 +106,43 @@ export function GameBoyMenu({ onClose }: GameBoyMenuProps) {
           onA={handleSelect} 
           onB={onClose}
         >
-          <div className="flex flex-col h-full">
-            <div ref={menuRef} className="space-y-0.5 flex-1 overflow-y-auto scrollbar-hide">
+          <div className="flex flex-col h-full font-pixel">
             <div className="flex items-center justify-between border-b border-white/30 pb-2 mb-2">
-              <span className="text-sm font-pixel text-white">yoUR Fest 2026</span>
+              <span className="text-sm text-white">yoUR Fest 2026</span>
               <div className="flex gap-2">
                  <div className="w-1.5 h-1.5 bg-white/30" />
                  <div className="w-1.5 h-1.5 bg-white/30" />
               </div>
             </div>
 
-            {navItems.map((item, index) => {
-              const Icon = item.icon;
-              const isSelected = index === selectedIndex;
-              
-              return (
-                <div 
-                  key={item.href}
-                  data-menu-item
-                  className={cn(
-                    "flex items-center gap-2 p-2 transition-all duration-150 pointer-events-none",
-                    isSelected ? "bg-primary text-black translate-x-1" : "text-white/80"
-                  )}
-                >
-                  <Icon className={cn("w-4 h-4", isSelected ? "animate-pulse" : "opacity-50")} />
-                  <span className="text-sm font-pixel tracking-wider">{item.label}</span>
-                  {isSelected && <ChevronRight className="w-4 h-4 ml-auto" />}
-                </div>
-              );
-            })}
+            <div ref={menuRef} className="space-y-0.5 flex-1 overflow-y-auto scrollbar-hide">
+              {navItems.map((item, index) => {
+                const Icon = item.icon;
+                const isSelected = index === selectedIndex;
+                
+                return (
+                  <div 
+                    key={item.href}
+                    data-menu-item
+                    className={cn(
+                      "flex items-center gap-2 p-2 transition-all duration-150 pointer-events-none",
+                      isSelected ? "bg-primary text-black translate-x-1" : "text-white/80"
+                    )}
+                  >
+                    <Icon className={cn("w-4 h-4", isSelected ? "animate-pulse" : "opacity-50")} />
+                    <span className="text-sm tracking-wider">{item.label}</span>
+                    {isSelected && <ChevronRight className="w-4 h-4 ml-auto" />}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Instructions - Always visible at bottom */}
             <div className="mt-2 pt-2 border-t border-white/20">
-              <div className="text-[10px] font-pixel text-white/70 leading-relaxed uppercase space-y-0.5">
+              <div className="text-[10px] text-white/70 leading-relaxed uppercase space-y-0.5">
                 DPAD: NAVIGATE<br/>
                 (A) BUTTON: SELECT/ENTER<br/>
-                (B) BUTTON: GO BACK/CLOSE
+                (B) BUTTON: CLOSE/BACK
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="font-brand font-black text-xl text-primary mb-2 flex items-baseline tracking-tight uppercase">
+            <div className="font-brand font-black text-xl text-primary mb-2 flex items-baseline tracking-tight">
               <span>yoUR Fest</span>
               <span className="font-pixel text-secondary text-[8px] ml-1">2026</span>
             </div>
