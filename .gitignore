@@ -1,7 +1,23 @@
-node_modules
-dist
-.DS_Store
-server/public
-vite.config.ts.*
-*.tar.gz
+# dependencies
+node_modules/
+
+# builds
+dist/
+build/
+
+# env files
 .env
+.env.*
+!.env.example
+
+# OS junk
+.DS_Store
+
+# archives
+*.tar.gz
+
+# backend static
+server/public/
+
+# vite temp configs
+vite.config.ts.*
