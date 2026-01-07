@@ -65,7 +65,8 @@ export default function Events() {
     { id: "all", label: "ALL DEPTS" },
     { id: "cse/ai", label: "CSE/AI" },
     { id: "it", label: "IT" },
-    { id: "ece/eee", label: "ECE/EEE" },
+    { id: "ece", label: "ECE" },
+    { id: "eee", label: "EEE" },
     { id: "mech", label: "MECH" },
     { id: "diploma", label: "DIPLOMA" },
   ];
@@ -151,7 +152,7 @@ export default function Events() {
             }
           } else {
             // Group filtered technical events by branch
-            const allBranches = ["CSE/AI", "IT", "ECE/EEE", "MECH", "DIPLOMA"];
+            const allBranches = ["CSE/AI", "IT", "ECE", "EEE", "MECH", "DIPLOMA"];
             
             if (mainFilter === "tech" || mainFilter === "all") {
               allBranches.forEach(branch => {

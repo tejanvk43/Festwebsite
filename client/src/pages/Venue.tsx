@@ -12,19 +12,19 @@ export default function Venue() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
            <div className="prose prose-invert max-w-none">
-             <h3 className="text-2xl font-pixel mb-4 text-secondary">Main Grounds</h3>
+             <h3 className="text-2xl font-pixel mb-4 text-secondary">Ground</h3>
              <p className="text-muted-foreground">
                The heartbeat of yoURFest. This sprawling open area hosts the main stage, food stalls, 
                and open-air exhibitions. Prepare for high-energy performances and the bustling marketplace.
              </p>
 
-             <h3 className="text-2xl font-pixel mb-4 mt-8 text-accent">Tech Halls (Block A)</h3>
+             <h3 className="text-2xl font-pixel mb-4 mt-8 text-accent">R-Block</h3>
              <p className="text-muted-foreground">
                Where the coding magic happens. Equipped with high-speed internet and power stations, 
                these halls will host the 24-hour Hackathon, Code Clash, and Robo Rush.
              </p>
 
-             <h3 className="text-2xl font-pixel mb-4 mt-8 text-primary">Auditorium</h3>
+             <h3 className="text-2xl font-pixel mb-4 mt-8 text-primary">U-Block</h3>
              <p className="text-muted-foreground">
                The stage for the grand finale, cultural performances, and prize distribution. 
                Experience state-of-the-art sound and lighting systems.

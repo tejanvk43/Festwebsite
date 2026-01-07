@@ -30,9 +30,9 @@ async function seed() {
             rules: ["Standard safety gear required", "Participants must bring college ID"],
             tags: ["mechanical", "competition"],
             image: "/assets/events/tech-olympics.png",
-            venue: "Basketball Court",
+            venue: "Basket ball court",
             contactNo: "9966139994",
-            facultyCoordinator: "Dr.R. Bhargavi & Mr.G. Jaya Raju"
+            facultyCoordinator: "Dr. R. Bhargavi & Mr. G. Jaya Raju"
         },
         {
             id: "evt-mech-002",
@@ -50,9 +50,9 @@ async function seed() {
             rules: ["Helmets mandatory", "Strict adherence to track signals"],
             tags: ["mechanical", "competition"],
             image: "/assets/events/go-karting.png",
-            venue: "Near W-Block",
+            venue: "Near 'W' block",
             contactNo: "9490501085",
-            facultyCoordinator: "Dr.V. Ajay Kumar & Mr. B. Nani"
+            facultyCoordinator: "Dr. V. Ajay Kumar & Mr. B. Nani"
         },
         {
             id: "evt-mech-quiz",
@@ -69,7 +69,10 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Multiple rounds", "Rapid fire final"],
             tags: ["quiz", "mechanical"],
-            image: "/assets/events/technical-quiz.png"
+            image: "/assets/events/technical-quiz.png",
+            venue: "R 307B",
+            contactNo: "9949221277",
+            facultyCoordinator: "Dr. B. Kiran Babu & Mr. N. Ranjith Kumar"
         },
         {
             id: "evt-mech-exh",
@@ -86,7 +89,10 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Open only to final-year students.", "Projects must be technical in nature."],
             tags: ["innovation", "mechanical"],
-            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+            venue: "R 307A",
+            contactNo: "9912866226",
+            facultyCoordinator: "Mrs. K. Vidya"
         },
         {
             id: "evt-mech-poster",
@@ -103,7 +109,10 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
             tags: ["research", "mechanical"],
-            image: "/assets/events/poster-presentation.png"
+            image: "/assets/events/poster-presentation.png",
+            venue: "R 307A",
+            contactNo: "7893602287",
+            facultyCoordinator: "Mr. Nawab Abdul"
         },
         {
             id: "evt-mech-paper",
@@ -121,7 +130,9 @@ async function seed() {
             rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
             tags: ["mechanical", "competition"],
             image: "/assets/events/paper_presentation.png",
-            venue: "Seminar Hall - 1"
+            venue: "R 306B",
+            contactNo: "7901533324",
+            facultyCoordinator: "Dr. P. Danaiah"
         },
         // CSE, AIML & DS
         {
@@ -142,7 +153,7 @@ async function seed() {
             image: "/assets/events/tech_talks.png",
             venue: "R310",
             contactNo: "6305806663",
-            facultyCoordinator: "Dr.V.G.N.S Prasad & Mr.R. Sriram"
+            facultyCoordinator: "Dr. VGNS Prasad and R. Sriram"
         },
         {
             id: "evt-cse-002",
@@ -162,7 +173,7 @@ async function seed() {
             image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&q=80",
             venue: "R201",
             contactNo: "9573752230",
-            facultyCoordinator: "Mrs.P.Bhagya Sri & Ms.P.Usha Sri"
+            facultyCoordinator: "P. Bhagyasri and P. Usha sri"
         },
         {
             id: "evt-cse-003",
@@ -182,7 +193,7 @@ async function seed() {
             image: "/assets/events/prompt-ai.png",
             venue: "CP LAB 2",
             contactNo: "6281016866",
-            facultyCoordinator: "Mrs.B. Sowmya"
+            facultyCoordinator: "B. Sowmya"
         },
         {
             id: "evt-cse-004",
@@ -199,7 +210,8 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Standard competitive programming rules apply"],
             tags: ["coding", "programming"],
-            image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80",
+            facultyCoordinator: "T N Mounika and K Surya"
         },
         {
             id: "evt-cse-005",
@@ -219,7 +231,7 @@ async function seed() {
             image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80",
             venue: "R308",
             contactNo: "9948699901",
-            facultyCoordinator: "Mrs.S.Gogulapriya & Mr.M.Chanti Babu"
+            facultyCoordinator: "S Gogulapriya and M Chanti Babu"
         },
         {
             id: "evt-cse-quiz",
@@ -236,7 +248,8 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Multiple rounds", "Rapid fire final"],
             tags: ["quiz", "CSE", "AI"],
-            image: "/assets/events/technical-quiz.png"
+            image: "/assets/events/technical-quiz.png",
+            facultyCoordinator: "Ch Phani and K Rajasekhar"
         },
         {
             id: "evt-cse-exh",
@@ -253,7 +266,8 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Open only to final-year students.", "Projects must be technical in nature."],
             tags: ["innovation", "CSE", "AI"],
-            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+            facultyCoordinator: "K Bhavani and M Chaitanya"
         },
         {
             id: "evt-cse-poster",
@@ -270,7 +284,8 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
             tags: ["research", "CSE", "AI"],
-            image: "/assets/events/poster-presentation.png"
+            image: "/assets/events/poster-presentation.png",
+            facultyCoordinator: "S Mounika and P Pranitha"
         },
         {
             id: "evt-cse-paper",
@@ -287,7 +302,8 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
             tags: ["academic", "CSE", "AI"],
-            image: "/assets/events/paper_presentation.png"
+            image: "/assets/events/paper_presentation.png",
+            facultyCoordinator: "Dr B Asha Latha and K Jyothi"
         },
         // IT
         {
@@ -305,7 +321,10 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Teams must present a productive and implementable idea.", "Innovation and problem-solving approach are mandatory."],
             tags: ["hacking", "development"],
-            image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80"
+            image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800&q=80",
+            venue: "U406",
+            contactNo: "77027 20850",
+            facultyCoordinator: "B. Sirisha"
         },
         {
             id: "evt-it-002",
@@ -324,8 +343,8 @@ async function seed() {
             tags: ["startup", "ideas"],
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
             venue: "U311",
-            contactNo: "6301552836",
-            facultyCoordinator: "Mr. CH. Madhu Babu"
+            contactNo: "63015 52836",
+            facultyCoordinator: "CH. Madhu Babu"
         },
         {
             id: "evt-it-quiz",
@@ -376,7 +395,10 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
             tags: ["research", "IT"],
-            image: "/assets/events/poster-presentation.png"
+            image: "/assets/events/poster-presentation.png",
+            venue: "U405",
+            contactNo: "9703418339",
+            facultyCoordinator: "B. Trivikrama Rao"
         },
         {
             id: "evt-it-paper",
@@ -393,14 +415,17 @@ async function seed() {
             prize: "Cash Prize & Certificates",
             rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
             tags: ["academic", "IT"],
-            image: "/assets/events/paper_presentation.png"
+            image: "/assets/events/paper_presentation.png",
+            venue: "U403",
+            contactNo: "99636 67936",
+            facultyCoordinator: "M. Rajesh"
         },
-        // ECE & EEE
+        // ECE
         {
             id: "evt-ece-001",
             title: "Circuitrix",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Test your circuit debugging skills.",
             fullDescription: "A hands-on challenge to debug and complete missing parts of a complex circuit board.",
             date: "23-01-2026",
@@ -413,15 +438,15 @@ async function seed() {
             tags: ["electronics", "hardware"],
             image: "/assets/events/circuitrix.png",
             contactNo: "9703370227",
-            facultyCoordinator: "Mrs.U.Nalini"
+            facultyCoordinator: "Mrs. U. Nalini"
         },
         {
             id: "evt-ece-002",
             title: "Stress Burst",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Fast-paced technical trivia.",
-            fullDescription: "Rapid response technical challenges specifically for ECE & EEE concepts.",
+            fullDescription: "Rapid response technical challenges specifically for ECE concepts.",
             date: "23-01-2026",
             startTime: "09:40 AM",
             endTime: "04:00 PM",
@@ -438,7 +463,7 @@ async function seed() {
             id: "evt-ece-003",
             title: "Mystery Busters",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Sherlock-style technical hunt.",
             fullDescription: "Solve clues hidden in circuits and component data sheets to reach the goal.",
             date: "23-01-2026",
@@ -457,7 +482,7 @@ async function seed() {
             id: "evt-ece-004",
             title: "Techno Parady",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Creative tech reimagining.",
             fullDescription: "A contest involving re-designing or paradying everyday tech objects for comical or alternate uses.",
             date: "23-01-2026",
@@ -470,15 +495,15 @@ async function seed() {
             tags: ["humor", "creative"],
             image: "/assets/events/techno-parady.png",
             contactNo: "9440110662",
-            facultyCoordinator: "Mr.K.N.V.Prasad"
+            facultyCoordinator: "Mr. K. N. V. Prasad"
         },
         {
             id: "evt-ece-quiz",
             title: "Technical Quiz",
             type: "tech",
-            department: "ECE/EEE",
-            shortDescription: "Electronics & Electrical quiz.",
-            fullDescription: "Test your knowledge of the latest developments in ECE & EEE.",
+            department: "ECE",
+            shortDescription: "Electronics quiz.",
+            fullDescription: "Test your knowledge of the latest developments in ECE.",
             date: "23-01-2026",
             startTime: "09:40 AM",
             endTime: "04:00 PM",
@@ -486,16 +511,18 @@ async function seed() {
             registrationFee: 100,
             prize: "Cash Prize & Certificates",
             rules: ["Multiple rounds", "Rapid fire final"],
-            tags: ["quiz", "ECE", "EEE"],
-            image: "/assets/events/technical-quiz.png"
+            tags: ["quiz", "ECE"],
+            image: "/assets/events/technical-quiz.png",
+            contactNo: "7702 191 922",
+            facultyCoordinator: "Dr. M. V. Srikanth"
         },
         {
             id: "evt-ece-exh",
             title: "Project Exhibition",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Showcase your innovations.",
-            fullDescription: "An opportunity for students to demonstrate their ECE/EEE projects and innovations.",
+            fullDescription: "An opportunity for students to demonstrate their ECE projects and innovations.",
             date: "23-01-2026",
             startTime: "09:40 AM",
             endTime: "04:00 PM",
@@ -503,16 +530,18 @@ async function seed() {
             registrationFee: 100,
             prize: "Cash Prize & Certificates",
             rules: ["Open only to final-year students.", "Projects must be technical in nature."],
-            tags: ["innovation", "ECE", "EEE"],
-            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+            tags: ["innovation", "ECE"],
+            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+            contactNo: "98855 71089",
+            facultyCoordinator: "Mrs. K. Nitya"
         },
         {
             id: "evt-ece-poster",
             title: "Poster Presentation",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Visual presentation of research ideas.",
-            fullDescription: "Design and present a poster summarizing an ECE/EEE research topic.",
+            fullDescription: "Design and present a poster summarizing an ECE research topic.",
             date: "23-01-2026",
             startTime: "10:00",
             endTime: "15:00",
@@ -520,16 +549,18 @@ async function seed() {
             registrationFee: 100,
             prize: "Cash Prize & Certificates",
             rules: ["Posters must be technical-topic based.", "Posters should be colored and clearly explained."],
-            tags: ["research", "ECE", "EEE"],
-            image: "/assets/events/poster-presentation.png"
+            tags: ["research", "ECE"],
+            image: "/assets/events/poster-presentation.png",
+            contactNo: "98855 09518",
+            facultyCoordinator: "Mr. D. Srinivasulu"
         },
         {
             id: "evt-ece-paper",
             title: "Paper Presentation",
             type: "tech",
-            department: "ECE/EEE",
+            department: "ECE",
             shortDescription: "Present your technical papers.",
-            fullDescription: "Submit and present ECE/EEE research papers to a panel of expert judges.",
+            fullDescription: "Submit and present ECE research papers to a panel of expert judges.",
             date: "23-01-2026",
             startTime: "09:40 AM",
             endTime: "04:00 PM",
@@ -537,7 +568,27 @@ async function seed() {
             registrationFee: 100,
             prize: "Cash Prize & Certificates",
             rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
-            tags: ["academic", "ECE", "EEE"],
+            tags: ["academic", "ECE"],
+            image: "/assets/events/paper_presentation.png",
+            contactNo: "98668 47510",
+            facultyCoordinator: "Dr. E. Naga Venkata"
+        },
+        // EEE
+        {
+            id: "evt-eee-001",
+            title: "Paper Presentation",
+            type: "tech",
+            department: "EEE",
+            shortDescription: "Present your technical papers.",
+            fullDescription: "Submit and present EEE research papers to a panel of expert judges.",
+            date: "23-01-2026",
+            startTime: "09:40 AM",
+            endTime: "04:00 PM",
+            teamSize: 1,
+            registrationFee: 100,
+            prize: "Cash Prize & Certificates",
+            rules: ["Topics must be technical.", "A maximum of 10 slides is sufficient."],
+            tags: ["academic", "EEE"],
             image: "/assets/events/paper_presentation.png"
         },
         // DIPLOMA

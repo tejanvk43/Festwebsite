@@ -14,7 +14,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const branches = [
   "CSE/AI",
   "IT",
-  "ECE/EEE",
+  "ECE",
+  "EEE",
   "MECH",
   "DIPLOMA"
 ];
