@@ -91,6 +91,22 @@ export default function Contact() {
                       { name: "Sri P Sunil (Purchases)", phone: "9989012255" }
                     ],
                     student: []
+                  },
+                  {
+                    dept: "Registration",
+                    faculty: [
+                      { name: "Mr M Samba Siva Rao", phone: "9848209419" },
+                      { name: "Mr. M. Rajesh", phone: "9963667936" }
+                    ],
+                    student: []
+                  },
+                  {
+                    dept: "Central Announcement",
+                    faculty: [
+                      { name: "Mr R Simhachalam", phone: "9059314648" },
+                      { name: "Ms. G. Manogna", phone: "8374322527" }
+                    ],
+                    student: []
                   }
                 ].map((group, idx) => (
                   <div key={idx} className="bg-background/50 border-2 border-border/50 p-6 space-y-4 hover:border-primary/50 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">

@@ -15,7 +15,7 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function Navigation({ 
+export function Navigation({
   onOpenMenu, 
   theme, 
   toggleTheme 
