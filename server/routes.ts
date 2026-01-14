@@ -165,9 +165,13 @@ export async function registerRoutes(
 
 
 async function seedDatabase(storage: IStorage) {
-  // Clear existing events to force re-seed with new list
-  await storage.clearEvents();
   const existingEvents = await storage.getEvents();
+  if (existingEvents.length > 0) {
+    console.log("✅ Database already contains events, skipping seed.");
+    return;
+  }
+
+  console.log("🌱 Seeding database...");
   if (existingEvents.length === 0) {
     const events = [
       // MECH

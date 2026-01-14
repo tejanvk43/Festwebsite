@@ -22,3 +22,5 @@ server/public/
 
 # vite temp configs
 vite.config.ts.*
+
+server/flush.ts
